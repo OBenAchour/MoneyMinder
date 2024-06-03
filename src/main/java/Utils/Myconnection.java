@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Myconnection {
     //database
-    final String URL = "jdbc:mysql://localhost:3306/moneyminderdb";
+    final String URL = "jdbc:mysql://localhost:3306/moneyminderdb1";
     final String USR = "root";
     final String PWD = "";
 
@@ -15,7 +15,7 @@ public class Myconnection {
     static Myconnection instance;
 
     //Constructeur
-    private Myconnection(){
+    public Myconnection(){
         try {
             cnx = DriverManager.getConnection(URL, USR, PWD);
             System.out.println("Connexion etablie avec succes!");
