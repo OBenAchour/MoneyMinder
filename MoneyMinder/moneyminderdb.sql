@@ -45,8 +45,7 @@ CREATE TABLE `assets` (
   `id_asset` int(11) NOT NULL,
   `titre` varchar(255) DEFAULT NULL,
   `prix` float DEFAULT NULL,
-  `id_categ` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `id_cat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -67,8 +66,9 @@ CREATE TABLE `attachment` (
 --
 
 CREATE TABLE `categorieassets` (
-  `id_categ` int(11) NOT NULL,
-  `categ` varchar(255) DEFAULT NULL
+  `id_cat` int(11) NOT NULL,
+  `categ` varchar(255) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -328,8 +328,7 @@ ALTER TABLE `action`
 --
 ALTER TABLE `assets`
   ADD PRIMARY KEY (`id_asset`),
-  ADD KEY `id_categ` (`id_categ`),
-  ADD KEY `id_user` (`id_user`);
+    ADD KEY `id_cat` (`id_cat`);
 
 --
 -- Indexes for table `attachment`
@@ -342,7 +341,9 @@ ALTER TABLE `attachment`
 -- Indexes for table `categorieassets`
 --
 ALTER TABLE `categorieassets`
-  ADD PRIMARY KEY (`id_categ`);
+  ADD PRIMARY KEY (`id_cat`);,
+  ADD KEY `id_user` (`id_user`);
+
 
 --
 -- Indexes for table `categoriedep`
@@ -630,11 +631,15 @@ ALTER TABLE `action`
   ADD CONSTRAINT `action_ibfk_1` FOREIGN KEY (`id_portefeuille`) REFERENCES `portefeuille_actions` (`id_portefeuille`);
 
 --
+
+ALTER TABLE `assets`
+    ADD CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`id_cat`) REFERENCES `assets` (`id_cat`),
+
+
 -- Constraints for table `assets`
 --
-ALTER TABLE `assets`
-  ADD CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`id_categ`) REFERENCES `categorieassets` (`id_categ`),
-  ADD CONSTRAINT `assets_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+ALTER TABLE `categorieassets`
+  ADD CONSTRAINT `categorieassets_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `attachment`

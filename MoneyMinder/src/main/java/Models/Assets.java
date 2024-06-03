@@ -5,17 +5,15 @@ public class Assets {
     String titre;
     Float prix;
     CatAssets id_catassets;
-    User id_user;
 
     public Assets() {
     }
 
-    public Assets(int id_assets, String titre, Float prix, CatAssets id_catassets, User id_user) {
+    public Assets(int id_assets, String titre, Float prix, CatAssets id_catassets) {
         this.id_assets = id_assets;
         this.titre = titre;
         this.prix = prix;
         this.id_catassets = id_catassets;
-        this.id_user = id_user;
     }
 
     public int getId_assets() {
@@ -50,14 +48,6 @@ public class Assets {
         this.id_catassets = id_catassets;
     }
 
-    public User getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(User id_user) {
-        this.id_user = id_user;
-    }
-
     @Override
     public String toString() {
         return "Assets{" +
@@ -65,7 +55,6 @@ public class Assets {
                 ", titre='" + titre + '\'' +
                 ", prix=" + prix +
                 ", id_catassets=" + id_catassets +
-                ", id_user=" + id_user +
                 '}';
     }
 }
