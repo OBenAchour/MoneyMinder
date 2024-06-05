@@ -1,8 +1,19 @@
 package Models;
 
+import Utils.Myconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Quotedep {
     private int id;
     private String quote;
+
+    //var
+
+    Connection cnx= Myconnection.getInstance().getCnx();
 
     //contructors
 
@@ -38,8 +49,29 @@ public class Quotedep {
         this.quote = quote;
     }
 
-    //to string
+    //get quotedep by id
 
+    public  Quotedep getQuotedepById(int id) {
+        String req="SELECT * FROM `quote_dep` WHERE id_quote_dep=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()){
+                Quotedep quotedep = new Quotedep();
+                quotedep.setId(res.getInt("id_quote_dep"));
+                quotedep.setQuote(res.getString("quote"));
+                return quotedep;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+    //to string
 
     @Override
     public String toString() {
