@@ -1,8 +1,19 @@
 package Models;
 
+import Utils.Myconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Transactiontype {
     private int id;
     private String type;
+
+
+    //var
+    Connection cnx= Myconnection.getInstance().getCnx();
 
     //Constructors
 
@@ -37,6 +48,28 @@ public class Transactiontype {
     public void setType(String type) {
         this.type = type;
     }
+
+
+    // get type by id
+    public Transactiontype gettypebyid  (int id) throws SQLException {
+        String req ="SELECT * FROM `transactiontype` WHERE id=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()){
+                Transactiontype TP = new Transactiontype();
+                TP.setId((res.getInt("id")));
+                TP.setType((res.getString("type")));
+                return TP;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
 
     //to string
 

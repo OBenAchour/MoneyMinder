@@ -1,5 +1,12 @@
 package Models;
 
+import Utils.Myconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public  class Transaction {
     int id_trans,mois,annee;
     User id_user;
@@ -11,6 +18,10 @@ public  class Transaction {
     private Quoterev quoterev;
     private Catrev catrev;
     private CatDep catDep;
+
+
+
+
 
     //Constructeurs
 
@@ -155,6 +166,9 @@ public  class Transaction {
     public void setCatDep(CatDep catDep) {
         this.catDep = catDep;
     }
+
+
+
 
     // to string
 

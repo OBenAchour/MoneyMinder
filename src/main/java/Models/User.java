@@ -1,5 +1,11 @@
 package Models;
 
+import Utils.Myconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class User {
@@ -8,6 +14,9 @@ public class User {
     Date date_de_naiss;
     String mail;
 
+
+    //var
+    Connection cnx= Myconnection.getInstance().getCnx();
 
     //constructeurs
 
@@ -34,6 +43,10 @@ public class User {
 
     //getters and setters
 
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -78,6 +91,33 @@ public class User {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+
+    // get user by ID
+
+    public User getUserbyid (int id) throws SQLException {
+        String req ="SELECT * FROM `users` WHERE id_user=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()){
+                User u =new User();
+                u.setId(res.getInt("id_user"));
+                u.setNom(res.getString("nom"));
+                u.setPrenom(res.getString("prenom"));
+                u.setMot_de_passe(res.getString("mot_de_passe"));
+                u.setDate_de_naiss(res.getDate("date_de_naiss"));
+                u.setMail(res.getString("mail"));
+                return u;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
     }
 
     //to string
