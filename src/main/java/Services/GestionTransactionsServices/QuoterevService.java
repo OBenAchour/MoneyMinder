@@ -69,7 +69,7 @@ public void update(Quoterev quoterev) {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return quoterevs;
     }
 
     @Override
@@ -88,7 +88,7 @@ public void update(Quoterev quoterev) {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return quoterevs;
     }
 
     @Override
@@ -107,6 +107,6 @@ public void update(Quoterev quoterev) {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return quoterevs;
     }
 }

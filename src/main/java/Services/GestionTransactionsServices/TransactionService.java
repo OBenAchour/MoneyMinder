@@ -116,7 +116,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return transactions;
     }
 
     @Override
@@ -162,7 +162,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return transactions;
     }
 
     @Override
@@ -208,6 +208,6 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return transactions;
     }
 }
