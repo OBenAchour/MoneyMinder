@@ -1,7 +1,7 @@
 package Models;
 
 public class Objectif {
-    int id_obj, mois, annee;
+    int id_obj, mois;
     String titre, commentaire;
     Double montant_globale, echeance;
     Catobj catobj;
@@ -9,10 +9,9 @@ public class Objectif {
 
     public Objectif() {}
 
-    public Objectif(int mois, int annee, String titre, String commentaire, Double montant_globale, Double echeance,Catobj catobj, int id_wallet) {
+    public Objectif(int mois,  String titre, String commentaire, Double montant_globale, Double echeance,Catobj catobj, int id_wallet) {
          // Assurez-vous de définir `id_obj` ou ajustez-le en fonction de votre logique
         this.mois = mois;
-        this.annee = annee;
         this.titre = titre;
         this.commentaire = commentaire;
         this.montant_globale = montant_globale;
@@ -21,10 +20,9 @@ public class Objectif {
         this.id_wallet = id_wallet; // Initialisez `id_wallet` ou ajustez-le en fonction de votre logique
     }
 
-    public Objectif(int id_obj, int mois, int annee, String titre, String commentaire, Double montant_globale, Double echeance, Catobj catobj, int id_wallet) {
+    public Objectif(int id_obj, int mois,  String titre, String commentaire, Double montant_globale, Double echeance, Catobj catobj, int id_wallet) {
         this.id_obj = id_obj; // Assurez-vous de définir `id_obj` ou ajustez-le en fonction de votre logique
         this.mois = mois;
-        this.annee = annee;
         this.titre = titre;
         this.commentaire = commentaire;
         this.montant_globale = montant_globale;
@@ -50,13 +48,8 @@ public class Objectif {
         this.mois = mois;
     }
 
-    public int getAnnee() {
-        return annee;
-    }
 
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
+
 
     public String getTitre() {
         return titre;
@@ -111,7 +104,6 @@ public class Objectif {
         return "Objectif{" +
                 "id_obj=" + id_obj +
                 ", mois=" + mois +
-                ", annee=" + annee +
                 ", titre='" + titre + '\'' +
                 ", commentaire='" + commentaire + '\'' +
                 ", montant_globale=" + montant_globale +

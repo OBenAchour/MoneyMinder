@@ -41,12 +41,17 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
     }
 
     @Override
-    public List<Transaction> getbyfilter() {
-        return null;
+    public List<Transaction> getbyfilter(String column, String value) {
+        return List.of();
     }
+//
+    //@Override
+    //public List<Transaction> getbyfilter(String filter) {
+      //  return null;
+    //}
 
     @Override
-    public List<Transaction> getbyid() {
+    public List<Transaction> getbyid(int id) {
         return null;
     }
 }
