@@ -62,7 +62,7 @@ public class CatDep {
             while (res.next()){
                 CatDep catDep = new CatDep();
                 catDep.setId(res.getInt("idCatDep"));
-                catDep.setType(res.getString("type"));
+                catDep.setType(res.getString("catDep"));
                 return catDep;
             }
 

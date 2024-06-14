@@ -95,7 +95,7 @@ public void update(Quotedep quotedep) {
     @Override
     public List<Quotedep> getbyid(int id) {
         List<Quotedep> quotedeps = new ArrayList<>();
-        String req="SELECT * FROM `quote_dep`WHERE id_quote_dep="+"`"+id+"`";
+        String req="SELECT * FROM `quote_dep`WHERE id_quote_dep="+id;
         try {
             Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);

@@ -62,7 +62,7 @@ public void update(Quoterev quoterev) {
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 Quoterev quoterev = new Quoterev();
-                quoterev.setId(res.getInt("id_quote_dep"));
+                quoterev.setId(res.getInt("id_quote_rev"));
                 quoterev.setQuote(res.getString("quote"));
                 quoterevs.add(quoterev);
             }
@@ -81,7 +81,7 @@ public void update(Quoterev quoterev) {
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 Quoterev quoterev = new Quoterev();
-                quoterev.setId(res.getInt("id_quote_dep"));
+                quoterev.setId(res.getInt("id_quote_rev"));
                 quoterev.setQuote(res.getString("quote"));
                 quoterevs.add(quoterev);
             }
@@ -94,13 +94,13 @@ public void update(Quoterev quoterev) {
     @Override
     public List<Quoterev> getbyid(int id) {
         List<Quoterev> quoterevs = new ArrayList<>();
-        String req="SELECT * FROM `quote_rev`WHERE id_quote_dep="+"`"+id+"`";
+        String req="SELECT * FROM `quote_rev`WHERE id_quote_rev="+id;
         try {
             Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 Quoterev quoterev = new Quoterev();
-                quoterev.setId(res.getInt("id_quote_dep"));
+                quoterev.setId(res.getInt("id_quote_rev"));
                 quoterev.setQuote(res.getString("quote"));
                 quoterevs.add(quoterev);
             }

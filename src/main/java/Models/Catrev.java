@@ -60,7 +60,7 @@ public class Catrev {
             while (res.next()){
                 Catrev catrev = new Catrev();
                 catrev.setId(res.getInt("idCatRev"));
-                catrev.setType(res.getString("type"));
+                catrev.setType(res.getString("catRev"));
                 return catrev;
             }
         }

@@ -19,6 +19,7 @@ public class FrequenceService implements InterfaceMoneyMinder<Frequence> {
             try {
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setString(1,frequence.getFrequence());
+                ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -30,6 +31,7 @@ public class FrequenceService implements InterfaceMoneyMinder<Frequence> {
             try {
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setInt(1,frequence.getId());
+                ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -59,7 +61,7 @@ public class FrequenceService implements InterfaceMoneyMinder<Frequence> {
                 while (res.next()){
                     Frequence frequence = new Frequence();
                     frequence.setId(res.getInt("id_freq"));
-                    frequence.setFrequence(res.getString("frequence"));
+                    frequence.setFrequence(res.getString("type"));
                     frequences.add(frequence);
                 }
             } catch (SQLException e) {
@@ -77,7 +79,7 @@ public class FrequenceService implements InterfaceMoneyMinder<Frequence> {
             while (res.next()){
                 Frequence frequence= new Frequence();
                 frequence.setId(res.getInt("id_freq"));
-                frequence.setFrequence(res.getString("frequence"));
+                frequence.setFrequence(res.getString("type"));
                 frequences.add(frequence);
             }
         } catch (SQLException e) {
@@ -89,13 +91,13 @@ public class FrequenceService implements InterfaceMoneyMinder<Frequence> {
     @Override
         public List<Frequence> getbyid(int id) {
             List<Frequence> frequences = new ArrayList<>();
-            String req="SELECT * FROM `frequence` WHERE id_freq"+"`"+id+"`";
+            String req="SELECT * FROM `frequence` WHERE id_freq="+id;
             try {Statement st = cnx.createStatement();
                 ResultSet res = st.executeQuery(req);
                 while (res.next()){
                     Frequence frequence= new Frequence();
                     frequence.setId(res.getInt("id_freq"));
-                    frequence.setFrequence(res.getString("frequence"));
+                    frequence.setFrequence(res.getString("type"));
                     frequences.add(frequence);
                 }
             } catch (SQLException e) {

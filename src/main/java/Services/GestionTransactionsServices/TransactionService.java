@@ -32,7 +32,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             ps.executeUpdate();
             System.out.println("transactions ajoutée avec succés");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -42,7 +42,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
          ps.setInt(1,transaction.getId_trans());
-
+         ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -67,7 +67,8 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             ps.setInt(11, transaction.getCatDep().getId());
             ps.setInt(12, transaction.getCatrev().getId());
             ps.setInt(13, transaction.getId_trans());
-            System.out.println("transaction ùodifiée avec succées");
+            System.out.println("transaction modifiée avec succées");
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -81,20 +82,20 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()){
-                Catrev cr=null;
+                Catrev cr=new Catrev();
                 cr=cr.getCatrevbyid(res.getInt("id_cat_revenu"));
-                CatDep cd=null;
+                CatDep cd=new CatDep();
                 cd=cd.getCatDepById(res.getInt("id_cat_depense"));
-                Quoterev qr=null;
+                Quoterev qr=new Quoterev();
                 qr=qr.getQuoteRevbyid(res.getInt("id_quote_rev"));
-                Quotedep qd =null;
+                Quotedep qd =new Quotedep();
                 qd=qd.getQuotedepById(res.getInt("id_quote_dep"));
-                Transactiontype tt=null;
-                tt=tt.gettypebyid(res.getInt("idfreq"));
-               User u = null;
+                Transactiontype tt=new Transactiontype();
+                tt=tt.gettypebyid(res.getInt("type"));
+               User u = new User();
                 u=u.getUserbyid((res.getInt("id_user")));
-                Frequence f = null;
-                f=f.getFrequenceById((res.getInt("id_freq")));
+                Frequence f = new Frequence();
+                f=f.getFrequenceById((res.getInt("type")));
                 Transaction t =new Transaction();
                 t.setId_trans(res.getInt("id_trans"));
                 t.setTitre(res.getString("titre"));

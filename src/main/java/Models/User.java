@@ -97,18 +97,18 @@ public class User {
     // get user by ID
 
     public User getUserbyid (int id) throws SQLException {
-        String req ="SELECT * FROM `users` WHERE id_user=?";
+        String req ="SELECT * FROM `user` WHERE id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1,id);
             ResultSet res = ps.executeQuery();
             while (res.next()){
                 User u =new User();
-                u.setId(res.getInt("id_user"));
+                u.setId(res.getInt("id"));
                 u.setNom(res.getString("nom"));
                 u.setPrenom(res.getString("prenom"));
                 u.setMot_de_passe(res.getString("mot_de_passe"));
-                u.setDate_de_naiss(res.getDate("date_de_naiss"));
+                u.setDate_de_naiss(res.getDate("date_naissance"));
                 u.setMail(res.getString("mail"));
                 return u;
             }
