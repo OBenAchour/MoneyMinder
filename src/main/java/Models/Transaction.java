@@ -56,9 +56,25 @@ public  class Transaction {
         this.catrev = catrev;
         this.catDep = catDep;
     }
+    public Transaction(int mois, int annee, User id_user, String commentaire, String titre, Frequence id_freq, Float montant, Transactiontype type, Quoterev quoterev, Catrev catrev) {
+        this.mois = mois;
+        this.annee = annee;
+        this.id_user = id_user;
+        this.commentaire = commentaire;
+        this.titre = titre;
+        this.id_freq = id_freq;
+        this.montant = montant;
+        Type = type;
+
+        this.quoterev = quoterev;
+        this.catrev = catrev;
+
+    }
+
 
     public Transaction() {
     }
+
 
     // Setters and Getters
 

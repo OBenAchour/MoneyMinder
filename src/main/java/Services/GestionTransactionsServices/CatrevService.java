@@ -21,6 +21,7 @@ public class CatrevService implements InterfaceMoneyMinder<Catrev> {
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1,catrev.getType());
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -32,6 +33,7 @@ public class CatrevService implements InterfaceMoneyMinder<Catrev> {
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1,catrev.getId());
+            ps.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -44,6 +46,7 @@ public class CatrevService implements InterfaceMoneyMinder<Catrev> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1,catrev.getType());
             ps.setInt(2,catrev.getId());
+            ps.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -89,7 +92,7 @@ public class CatrevService implements InterfaceMoneyMinder<Catrev> {
     @Override
     public List<Catrev> getbyid(int id) {
         List<Catrev> catrevs = new ArrayList<>();
-        String req="SELECT * FROM `categorierev`WHERE idCatRev="+"`"+id+"`";
+        String req="SELECT * FROM `categorierev`WHERE idCatRev="+id;
         try {Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()){

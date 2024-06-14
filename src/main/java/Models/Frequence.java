@@ -54,7 +54,7 @@ private String frequence;
     //get frequence by id
 
     public Frequence getFrequenceById(int id) throws SQLException {
-        String req = "SELECT * FROM `frequence` WHERE id_freq=?";
+        String req = "SELECT * FROM frequence    WHERE id_freq = '?' ";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);

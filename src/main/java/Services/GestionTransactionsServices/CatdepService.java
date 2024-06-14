@@ -19,6 +19,8 @@ public class CatdepService implements InterfaceMoneyMinder<CatDep> {
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
            ps.setString(1, catDep.getType());
+            ps.executeUpdate();
+            System.out.println("categorie depense ajoutée avec succees");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -30,6 +32,7 @@ public class CatdepService implements InterfaceMoneyMinder<CatDep> {
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1,catDep.getId());
+            ps.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -59,8 +62,8 @@ public class CatdepService implements InterfaceMoneyMinder<CatDep> {
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 CatDep catdep = new CatDep();
-                catdep.setId(res.getInt("idCatRev"));
-                catdep.setType(res.getString("catRev"));
+                catdep.setId(res.getInt("idCatDep"));
+                catdep.setType(res.getString("catDep"));
                 catdeps.add(catdep);
         }
     } catch (SQLException e) {
@@ -78,8 +81,8 @@ public class CatdepService implements InterfaceMoneyMinder<CatDep> {
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 CatDep catdep = new CatDep();
-                catdep.setId(res.getInt("idCatRev"));
-                catdep.setType(res.getString("catRev"));
+                catdep.setId(res.getInt("idCatDep"));
+                catdep.setType(res.getString("catDep"));
                 catdeps.add(catdep);
             }
         } catch (SQLException e) {
@@ -92,14 +95,14 @@ public class CatdepService implements InterfaceMoneyMinder<CatDep> {
     @Override
     public List<CatDep> getbyid(int id) {
         List<CatDep> catdeps = new ArrayList<>();
-        String req="SELECT * FROM `categoriedep`WHERE idCatDep="+"`"+id+"`";
+        String req="SELECT * FROM `categoriedep`WHERE idCatDep="+id;
         try {
             Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 CatDep catdep = new CatDep();
-                catdep.setId(res.getInt("idCatRev"));
-                catdep.setType(res.getString("catRev"));
+                catdep.setId(res.getInt("idCatDep"));
+                catdep.setType(res.getString("catDep"));
                 catdeps.add(catdep);
             }
         } catch (SQLException e) {
