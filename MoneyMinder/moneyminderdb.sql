@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 11:48 PM
+-- Generation Time: Jun 02, 2024 at 03:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -119,19 +119,6 @@ CREATE TABLE `commentaire` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `depense`
---
-
-CREATE TABLE `depense` (
-  `id` int(11) NOT NULL,
-  `idCatDep` int(11) DEFAULT NULL,
-  `id_trans` int(11) DEFAULT NULL,
-  `id_quote` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `errorcategory`
 --
 
@@ -187,7 +174,7 @@ CREATE TABLE `portefeuille_actions` (
 
 --
 -- Table structure for table `quote_dep`
---
+-- 
 
 CREATE TABLE `quote_dep` (
   `id_quote_dep` int(11) NOT NULL,
@@ -232,19 +219,6 @@ CREATE TABLE `response` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `revenu`
---
-
-CREATE TABLE `revenu` (
-  `id` int(11) NOT NULL,
-  `idCatRev` int(11) DEFAULT NULL,
-  `id_trans` int(11) DEFAULT NULL,
-  `id_quote` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `status`
 --
 
@@ -281,7 +255,23 @@ CREATE TABLE `transactions` (
   `annee` int(11) DEFAULT NULL,
   `commentaire` varchar(255) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `id_freq` int(11) DEFAULT NULL
+  `id_freq` int(11) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `id_quote_dep` int(11) NOT NULL,
+  `id_quote_rev` int(11) NOT NULL,
+  `id_cat_depense` int(11) NOT NULL,
+  `id_cat_revenu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactiontype`
+--
+
+CREATE TABLE `transactiontype` (
+  `id` int(11) NOT NULL,
+  `type` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -370,15 +360,6 @@ ALTER TABLE `commentaire`
   ADD KEY `id_sujet` (`id_sujet`);
 
 --
--- Indexes for table `depense`
---
-ALTER TABLE `depense`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idCatDep` (`idCatDep`),
-  ADD KEY `fk_id_trans` (`id_trans`),
-  ADD KEY `id_quote` (`id_quote`);
-
---
 -- Indexes for table `errorcategory`
 --
 ALTER TABLE `errorcategory`
@@ -433,15 +414,6 @@ ALTER TABLE `response`
   ADD KEY `ReportID` (`ReportID`);
 
 --
--- Indexes for table `revenu`
---
-ALTER TABLE `revenu`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idCatRev` (`idCatRev`),
-  ADD KEY `id_trans` (`id_trans`),
-  ADD KEY `id_quote` (`id_quote`);
-
---
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
@@ -461,7 +433,17 @@ ALTER TABLE `sujet`
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id_trans`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_freq` (`id_freq`);
+  ADD KEY `id_freq` (`id_freq`),
+  ADD KEY `transactions_ibfk_3` (`type`),
+  ADD KEY `transactions_ibfk_` (`id_quote_rev`),
+  ADD KEY `transactions_ibfk_5` (`id_cat_revenu`),
+  ADD KEY `transactions_ibfk_6` (`id_quote_dep`);
+
+--
+-- Indexes for table `transactiontype`
+--
+ALTER TABLE `transactiontype`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -530,12 +512,6 @@ ALTER TABLE `commentaire`
   MODIFY `id_cmt` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `depense`
---
-ALTER TABLE `depense`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `errorcategory`
 --
 ALTER TABLE `errorcategory`
@@ -584,12 +560,6 @@ ALTER TABLE `response`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `revenu`
---
-ALTER TABLE `revenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
@@ -606,6 +576,12 @@ ALTER TABLE `sujet`
 --
 ALTER TABLE `transactions`
   MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transactiontype`
+--
+ALTER TABLE `transactiontype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -649,14 +625,6 @@ ALTER TABLE `commentaire`
   ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`id_sujet`) REFERENCES `sujet` (`id_sujet`);
 
 --
--- Constraints for table `depense`
---
-ALTER TABLE `depense`
-  ADD CONSTRAINT `depense_ibfk_1` FOREIGN KEY (`idCatDep`) REFERENCES `categoriedep` (`idCatDep`),
-  ADD CONSTRAINT `depense_ibfk_2` FOREIGN KEY (`id_quote`) REFERENCES `quote_dep` (`id_quote_dep`),
-  ADD CONSTRAINT `fk_id_trans` FOREIGN KEY (`id_trans`) REFERENCES `transactions` (`id_trans`);
-
---
 -- Constraints for table `errorcategory`
 --
 ALTER TABLE `errorcategory`
@@ -688,14 +656,6 @@ ALTER TABLE `response`
   ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`ReportID`) REFERENCES `reporterror` (`id`);
 
 --
--- Constraints for table `revenu`
---
-ALTER TABLE `revenu`
-  ADD CONSTRAINT `revenu_ibfk_1` FOREIGN KEY (`idCatRev`) REFERENCES `categorierev` (`idCatRev`),
-  ADD CONSTRAINT `revenu_ibfk_2` FOREIGN KEY (`id_trans`) REFERENCES `transactions` (`id_trans`),
-  ADD CONSTRAINT `revenu_ibfk_3` FOREIGN KEY (`id_quote`) REFERENCES `quote_rev` (`id_quote_rev`);
-
---
 -- Constraints for table `status`
 --
 ALTER TABLE `status`
@@ -711,8 +671,13 @@ ALTER TABLE `sujet`
 -- Constraints for table `transactions`
 --
 ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_` FOREIGN KEY (`id_quote_rev`) REFERENCES `quote_rev` (`id_quote_rev`),
   ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`id_freq`) REFERENCES `frequence` (`id_freq`);
+  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`id_freq`) REFERENCES `frequence` (`id_freq`),
+  ADD CONSTRAINT `transactions_ibfk_3` FOREIGN KEY (`type`) REFERENCES `transactiontype` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_4` FOREIGN KEY (`id_quote_dep`) REFERENCES `quote_dep` (`id_quote_dep`),
+  ADD CONSTRAINT `transactions_ibfk_5` FOREIGN KEY (`id_cat_revenu`) REFERENCES `categorierev` (`idCatRev`),
+  ADD CONSTRAINT `transactions_ibfk_6` FOREIGN KEY (`id_quote_dep`) REFERENCES `categoriedep` (`idCatDep`);
 
 --
 -- Constraints for table `wallet`
