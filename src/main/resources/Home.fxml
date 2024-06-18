@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Home">
+   <children>
+      <SplitPane prefHeight="400.0" prefWidth="600.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="622.0" style="-fx-text-fill: #000080;">
+               <children>
+                  <ImageView fitHeight="364.0" fitWidth="627.0" layoutX="-14.0" layoutY="41.0" opacity="0.52">
+                     <image>
+                        <Image url="@/images/Logo_Money_Minder.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="537.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Report" textFill="WHITE" />
+                  <Button layoutX="471.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Forum" textFill="#f4f2f2" />
+                  <Button layoutX="397.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Assets" textFill="#f7f2f2" />
+                  <Button layoutX="258.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="130.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Trading Simulateur" textFill="#f4f4f4" />
+                  <Button layoutX="85.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Dépense" textFill="#f7f3f3" />
+                  <Button fx:id="btnObj" layoutX="172.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Objectif" textFill="#faf2f2" />
+                  <Button layoutX="-1.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Revenus" textFill="#f4f1f1" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="46.0" prefWidth="613.0" style="-fx-background-color: #004B57;">
+         <children>
+            <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #004B57; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Mon Compte" textFill="WHITE" />
+            <Text fill="WHITE" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

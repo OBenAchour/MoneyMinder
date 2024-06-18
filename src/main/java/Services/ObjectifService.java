@@ -76,9 +76,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
             Myconnection connectNow = new Myconnection();
             connectDB = connectNow.getCnx();
         }
-
         String req = "DELETE FROM `objectif` WHERE id = ?";
-
         try {
             PreparedStatement ps = connectDB.prepareStatement(req);
             ps.setInt(1, objectif.getId_obj());

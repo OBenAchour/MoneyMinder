@@ -1,27 +1,28 @@
 package Models;
 
 public class Catobj {
-    int id_obj;
+    int idObj;
     String catobj;
 
 
     public Catobj() {}
 
     public Catobj(int id_obj, String catobj) {
-        this.id_obj = id_obj;
+        this.idObj = id_obj;
         this.catobj = catobj;
     }
 
     public Catobj(String catobj) {
+
         this.catobj = catobj;
     }
 
     public int getId_obj() {
-        return id_obj;
+        return idObj;
     }
 
     public void setId_obj(int id_obj) {
-        this.id_obj = id_obj;
+        this.idObj = id_obj;
     }
 
     public String getCatobj() {
@@ -38,7 +39,7 @@ public class Catobj {
     @Override
     public String toString() {
         return "Catobj{" +
-                "id_obj=" + id_obj +
+                "id_obj=" + idObj +
                 ", catobj='" + catobj + '\'' +
                 '}';
     }
