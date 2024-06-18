@@ -18,8 +18,7 @@
 //    private Button btnV;
 //    @FXML
 //    private TextField typeTextField;
-//
-//
+
 //    Myconnection cnx2 =null;
 //    PreparedStatement pst =null;
 //

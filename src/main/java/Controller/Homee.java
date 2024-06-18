@@ -20,12 +20,16 @@ public class Homee {
     @FXML
     private Button btnmodifier;
     @FXML
+    private Button btnret;
+
+    @FXML
     private URL location;
 
     @FXML
     void initialize() {
         btnajouter.setOnAction(event -> loadFormulaire());
         btnmodifier.setOnAction(event -> loadFormulaireModif());
+//        btnret.setOnAction(event -> RetourAjout ());
     }
 
     private void loadFormulaire() {
@@ -57,5 +61,21 @@ public class Homee {
         }
 
     }
-}
+
+//    private void RetourAjout() {
+//        try {
+//            System.out.println("Chargement de l'interface modifier Objectif...");
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterObjectif.fxml"));
+//            Parent root = loader.load();
+//            Stage stage = (Stage) btnret.getScene().getWindow();
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//            System.out.println("Retour avec succès !");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+    }
+
 

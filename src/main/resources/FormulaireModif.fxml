@@ -15,6 +15,7 @@
                <children>
                   <Text fill="WHITE" layoutX="19.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
                   <Button layoutX="27.0" layoutY="137.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Modifier" textFill="#f4f1f1" />
+                  <Button fx:id="btnretmodif" layoutX="27.0" layoutY="316.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="#f4f1f1" />
                </children>
             </Pane>
             <Text layoutX="349.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" />
