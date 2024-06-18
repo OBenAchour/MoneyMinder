@@ -1,29 +1,20 @@
 package Controllers;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 
-import java.io.IOException;
+public class Home{
 
-public class Home extends Application {
+    @FXML
+    private ResourceBundle resources;
 
-    public static void main(String[] args) {
-        launch(args);
+    @FXML
+    private URL location;
+
+    @FXML
+    void initialize() {
+
     }
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader Loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
-        try {
-            Parent root = Loader.load();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }catch(IOException e){
-            throw new RuntimeException(e);
-        }
-    }
 }
