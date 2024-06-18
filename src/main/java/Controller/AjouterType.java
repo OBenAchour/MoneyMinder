@@ -1,23 +1,23 @@
-//package Controller;
+package Controller;
+
+import Utils.Myconnection;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class AjouterType {
 //
-//import Utils.Myconnection;
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.scene.control.Alert;
-//import javafx.scene.control.Button;
-//import javafx.scene.control.TextField;
-//import javafx.scene.control.cell.PropertyValueFactory;
-//
-//import java.sql.*;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
-//
-//public class AjouterType {
-//
-//    @FXML
-//    private Button btnV;
-//    @FXML
-//    private TextField typeTextField;
+    @FXML
+    private Button btnV;
+    @FXML
+    private TextField typeTextField;
 
 //    Myconnection cnx2 =null;
 //    PreparedStatement pst =null;
@@ -103,5 +103,6 @@
 //            }
 //
 //
-//        }}}
+//        }}
+}
 //

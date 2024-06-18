@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterType">
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
@@ -14,11 +13,12 @@
             <Pane layoutY="-1.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
                <children>
                   <Text fill="WHITE" layoutX="19.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
-                  <Button layoutX="27.0" layoutY="128.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter Type" textFill="#f4f1f1" />
+                  <Button fx:id="btnHomeAd" layoutX="27.0" layoutY="128.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home Admin" textFill="#f4f1f1" />
+                  <Button fx:id="btnretour" layoutX="27.0" layoutY="352.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="#f4f1f1" />
                </children>
             </Pane>
             <Text layoutX="257.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
-            <TextField fx:id="typeTextField" layoutX="293.0" layoutY="147.0" />
+            <TextField fx:id="typeTextField" layoutX="292.0" layoutY="147.0" />
             <Button fx:id="btnV" layoutX="302.0" layoutY="306.0" mnemonicParsing="false" onAction="#createtype" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Valider" textFill="#f4f1f1" />
          </children>
       </AnchorPane>
