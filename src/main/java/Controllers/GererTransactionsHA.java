@@ -39,14 +39,27 @@ public class GererTransactionsHA {
     void initialize() {
         to_home_admin.setOnAction(event->to_home_admin());
         to_transaction_type.setOnAction(event->to_transaction_type());
+        to_frequence.setOnAction(event->to_frequence());
+    }
 
+    private void to_frequence() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Frequence.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_frequence.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void to_transaction_type() {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/TransactionType.fxml"));
         try {
             Parent root=loader.load();
-            Stage stage=(Stage)to_home_admin.getScene().getWindow();
+            Stage stage=(Stage)to_transaction_type.getScene().getWindow();
             Scene scene=new Scene(root);
             stage.setScene(scene);
             stage.show();
