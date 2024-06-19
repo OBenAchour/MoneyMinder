@@ -28,23 +28,41 @@ public class GestionObjectif {
         btnmodifierType.setOnAction(event -> loadFormulaireModif());
     }
 
+//    private void loadAjouterType() {
+//        try {
+//            System.out.println("Chargement de l'interface Ajouter Type...");
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterType.fxml"));
+//            Parent root = loader.load();
+//            Stage stage = (Stage) btnajoutertype.getScene().getWindow();
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//            System.out.println("Interface Ajouter Objectif chargée avec succès !");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     private void loadAjouterType() {
         try {
-            System.out.println("Chargement de l'interface Ajouter Objectif...");
+            System.out.println("Chargement de l'interface modifier Type...");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterType.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btnajoutertype.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            System.out.println("Interface Ajouter Objectif chargée avec succès !");
+            System.out.println("Interface modifier Objectif chargée avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
     private void loadFormulaireModif() {
         try {
-            System.out.println("Chargement de l'interface modifier Objectif...");
+            System.out.println("Chargement de l'interface modifier Type...");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btnmodifierType.getScene().getWindow();
