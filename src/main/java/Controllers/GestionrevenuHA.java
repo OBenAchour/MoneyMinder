@@ -31,6 +31,20 @@ public class GestionrevenuHA {
     void initialize() {
         to_quote_rev.setOnAction(event->to_quote_rev());
         to_gestion_transactions.setOnAction(event->to_gestion_transactions());
+        to_cat_rev.setOnAction(event->to_cat_rev());
+    }
+
+    private void to_cat_rev() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/catrev.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_cat_rev.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void to_gestion_transactions() {

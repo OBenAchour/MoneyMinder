@@ -54,7 +54,7 @@ public class Frequence {
     @FXML
     private Button update_transaction_type;
 
-    public ObservableList<Models.Frequence> TTdata = FXCollections.observableArrayList();
+    public ObservableList<Models.Frequence> Fdata = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
@@ -67,11 +67,11 @@ public class Frequence {
     private void viewFrequence() {
         FrequenceService fs = new FrequenceService();
         List<Models.Frequence> Frequences = fs.getAll();
-        TTdata.clear();
-        TTdata.addAll(Frequences);
+        Fdata.clear();
+        Fdata.addAll(Frequences);
         ID.setCellValueFactory(new PropertyValueFactory<Models.Frequence, Integer>("id"));
         Frequence.setCellValueFactory(new PropertyValueFactory<Models.Frequence, String>("frequence"));
-        Table.setItems(TTdata);
+        Table.setItems(Fdata);
     }
 
     private void to_gestion_transaction() {
