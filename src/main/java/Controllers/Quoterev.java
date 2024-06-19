@@ -55,7 +55,7 @@ public class Quoterev {
 
 
 
-    public ObservableList<Models.Quoterev> TTdata = FXCollections.observableArrayList();
+    public ObservableList<Models.Quoterev> QRdata = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
@@ -66,11 +66,11 @@ public class Quoterev {
     private void viewQuoterev() {
         QuoterevService qrs = new QuoterevService();
         List<Models.Quoterev> Quotes = qrs.getAll();
-        TTdata.clear();
-        TTdata.addAll(Quotes);
+        QRdata.clear();
+        QRdata.addAll(Quotes);
         ID.setCellValueFactory(new PropertyValueFactory<Models.Quoterev, Integer>("id"));
         Quoterev.setCellValueFactory(new PropertyValueFactory<Models.Quoterev, String>("quote"));
-        Table.setItems(TTdata);
+        Table.setItems(QRdata);
     }
 
     private void to_gestion_revenu() {
