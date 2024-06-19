@@ -38,6 +38,16 @@ public class GestiondepenseHA {
     }
 
     private void to_cat_dep() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Catdep.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_cat_dep.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void to_gestion_transactions() {
