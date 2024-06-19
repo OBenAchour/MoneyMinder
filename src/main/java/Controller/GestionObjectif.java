@@ -52,13 +52,12 @@ public class GestionObjectif {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            System.out.println("Interface modifier Objectif chargée avec succès !");
+            System.out.println("Interface Ajouter Type chargée avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
 
     private void loadFormulaireModif() {
         try {
@@ -69,7 +68,7 @@ public class GestionObjectif {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            System.out.println("Interface modifier Objectif chargée avec succès !");
+            System.out.println("Interface modifier Type chargée avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
         }

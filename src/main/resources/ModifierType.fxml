@@ -13,7 +13,6 @@
             <Pane layoutY="-1.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
                <children>
                   <Text fill="WHITE" layoutX="19.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
-                  <Button layoutX="27.0" layoutY="128.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter Type" textFill="#f4f1f1" />
                </children>
             </Pane>
             <Text layoutX="257.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
@@ -21,5 +20,7 @@
             <Button layoutX="302.0" layoutY="306.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Valider" textFill="#f4f1f1" />
          </children>
       </AnchorPane>
+      <Button fx:id="btnHomeAd" layoutX="32.0" layoutY="126.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home Admin" textFill="#f4f1f1" />
+      <Button fx:id="btnretour" layoutX="32.0" layoutY="350.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="#f4f1f1" />
    </children>
 </AnchorPane>
