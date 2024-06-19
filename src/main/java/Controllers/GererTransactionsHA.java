@@ -41,6 +41,20 @@ public class GererTransactionsHA {
         to_transaction_type.setOnAction(event->to_transaction_type());
         to_frequence.setOnAction(event->to_frequence());
         to_gestion_revenu.setOnAction(event->to_gestion_revenu());
+        to_gestion_depense.setOnAction(event -> to_gestion_depense());
+    }
+
+    private void to_gestion_depense() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestiondepenseHA.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_frequence.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void to_gestion_revenu() {
