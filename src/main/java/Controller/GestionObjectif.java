@@ -19,6 +19,11 @@ public class GestionObjectif {
     private Button btnajoutertype;
     @FXML
     private Button btnmodifierType;
+
+    @FXML
+    private Button btnHomeAd;
+
+
     @FXML
     private URL location;
 
@@ -26,22 +31,9 @@ public class GestionObjectif {
     void initialize() {
         btnajoutertype.setOnAction(event -> loadAjouterType());
         btnmodifierType.setOnAction(event -> loadFormulaireModif());
+        btnHomeAd.setOnAction(event -> loadretHomeAdmin());
     }
 
-//    private void loadAjouterType() {
-//        try {
-//            System.out.println("Chargement de l'interface Ajouter Type...");
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterType.fxml"));
-//            Parent root = loader.load();
-//            Stage stage = (Stage) btnajoutertype.getScene().getWindow();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//            System.out.println("Interface Ajouter Objectif chargée avec succès !");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void loadAjouterType() {
         try {
@@ -72,7 +64,22 @@ public class GestionObjectif {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+        private void loadretHomeAdmin() {
+            try {
+                System.out.println("Chargement de l'interface retHomeAdmin...");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnHomeAd.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("Retour avec succès !");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
-}
+
 

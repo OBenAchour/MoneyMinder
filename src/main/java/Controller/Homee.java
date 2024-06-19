@@ -17,10 +17,15 @@ public class Homee {
 
     @FXML
     private Button btnajouter;
+
     @FXML
     private Button btnmodifier;
+
+
     @FXML
-    private Button btnret;
+    private Button btnHome;
+
+
 
     @FXML
     private URL location;
@@ -29,7 +34,7 @@ public class Homee {
     void initialize() {
         btnajouter.setOnAction(event -> loadFormulaire());
         btnmodifier.setOnAction(event -> loadFormulaireModif());
-//        btnret.setOnAction(event -> RetourAjout ());
+        btnHome.setOnAction(event -> retHome());
     }
 
     private void loadFormulaire() {
@@ -59,23 +64,26 @@ public class Homee {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-//    private void RetourAjout() {
-//        try {
-//            System.out.println("Chargement de l'interface modifier Objectif...");
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterObjectif.fxml"));
-//            Parent root = loader.load();
-//            Stage stage = (Stage) btnret.getScene().getWindow();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//            System.out.println("Retour avec succès !");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
+        private void retHome() {
+            try {
+                System.out.println("Chargement de l'interface retHome...");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnHome.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("Retour avec succès !");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+
+
+
 
 

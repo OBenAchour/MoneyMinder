@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GestionObjectif">
    <children>
-      <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <Pane layoutX="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="600.0">
          <children>
             <Pane layoutX="-10.0" layoutY="-15.0" prefHeight="416.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
                <children>
@@ -43,6 +43,7 @@
                   <Image url="@images/Logo_Money_Minder.jpg" />
                </image>
             </ImageView>
+            <Button fx:id="btnHomeAd" layoutX="188.0" layoutY="16.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home Admin" textFill="#f4f1f1" />
          </children>
       </Pane>
    </children>
