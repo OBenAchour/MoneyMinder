@@ -8,6 +8,21 @@ public class User {
     Date date_de_naiss;
     String mail;
 
+    public User() {
+    }
+
+    public User(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public User(String nom, String prenom, String mot_de_passe, Date date_de_naiss, String mail) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mot_de_passe = mot_de_passe;
+        this.date_de_naiss = date_de_naiss;
+        this.mail = mail;
+    }
+
     public User(int id_user, String nom, String prenom, String mot_de_passe, Date date_de_naiss, String mail) {
         this.id_user = id_user;
         this.nom = nom;
@@ -15,20 +30,13 @@ public class User {
         this.mot_de_passe = mot_de_passe;
         this.date_de_naiss = date_de_naiss;
         this.mail = mail;
-
-    }
-
-    public User() {
-    }
-    public User (int id_user){
-        this.id_user = id_user;
     }
 
     public int getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_usser) {
+    public void setId_user(int id_user) {
         this.id_user = id_user;
     }
 
@@ -84,4 +92,3 @@ public class User {
                 '}';
     }
 }
-

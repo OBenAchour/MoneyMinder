@@ -45,7 +45,8 @@ CREATE TABLE `assets` (
   `id_asset` int(11) NOT NULL,
   `titre` varchar(255) DEFAULT NULL,
   `prix` float DEFAULT NULL,
-  `id_cat` int(11) DEFAULT NULL
+  `id_cat` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -68,7 +69,7 @@ CREATE TABLE `attachment` (
 CREATE TABLE `categorieassets` (
   `id_cat` int(11) NOT NULL,
   `categ` varchar(255) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
