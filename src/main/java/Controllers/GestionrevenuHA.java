@@ -1,16 +1,27 @@
 package Controllers;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
-public class GestionrevenuHA extends Application {
+public class GestionrevenuHA {
 
-    public static void main(String[] args) {
-        launch(args);
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button to_cat_rev;
+
+    @FXML
+    private Button to_quote_rev;
+
+    @FXML
+    void initialize() {
+      
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-
-    }
 }

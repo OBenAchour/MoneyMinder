@@ -29,7 +29,7 @@ public class HomeAdmin {
 
     @FXML
     void initialize() {
-        to_Transactions.setOnAction(event -> to_Transactions());
+     to_Transactions.setOnAction(event -> to_Transactions());
     }
 
     private void to_Transactions() {
