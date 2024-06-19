@@ -10,13 +10,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Home">
    <children>
-      <SplitPane prefHeight="400.0" prefWidth="600.0">
+      <SplitPane prefHeight="400.0" prefWidth="613.0">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="622.0" style="-fx-text-fill: #000080;">
                <children>
-                  <ImageView fitHeight="364.0" fitWidth="627.0" layoutX="-14.0" layoutY="41.0" opacity="0.52">
+                  <ImageView fitHeight="364.0" fitWidth="629.0" layoutX="-14.0" layoutY="41.0" opacity="0.52">
                      <image>
-                        <Image url="@/images/Logo_Money_Minder.jpg" />
+                        <Image url="@images/Logo_Money_Minder.jpg" />
                      </image>
                   </ImageView>
                   <Button layoutX="537.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Report" textFill="WHITE" />
