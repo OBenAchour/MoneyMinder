@@ -15,5 +15,6 @@
       </ImageView>
       <Button fx:id="to_quote_rev" layoutX="155.0" layoutY="194.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Quote revenu" textFill="WHITE" />
       <Button fx:id="to_cat_rev" layoutX="358.0" layoutY="194.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Catégorie revenu" textFill="WHITE" />
+      <Button fx:id="to_gestion_transactions" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="65.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="WHITE" />
    </children>
 </AnchorPane>
