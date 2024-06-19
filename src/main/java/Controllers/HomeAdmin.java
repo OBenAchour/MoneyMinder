@@ -7,7 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class HomeAdmin {
 
@@ -18,22 +20,29 @@ public class HomeAdmin {
     private URL location;
 
     @FXML
-    private AnchorPane rootPane;
+    private Button to_Transactions;
 
     @FXML
     void Gerer_Transaction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GererTransactionsHA.fxml"));
-            Parent newRoot = loader.load();
-            rootPane.getChildren().setAll(newRoot);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @FXML
     void initialize() {
+     to_Transactions.setOnAction(event -> to_Transactions());
+    }
 
+    private void to_Transactions() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/GererTransactionsHA.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_Transactions.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

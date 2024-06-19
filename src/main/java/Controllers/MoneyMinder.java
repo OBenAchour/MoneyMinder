@@ -109,7 +109,7 @@ public class MoneyMinder extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader Loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+        FXMLLoader Loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
         try {
             Parent root = Loader.load();
             Scene scene = new Scene(root);
