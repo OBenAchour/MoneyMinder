@@ -15,15 +15,15 @@
          </image>
       </ImageView>
       <Button fx:id="to_gestion_transaction" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="WHITE" />
-      <TableView fx:id="Table" layoutX="160.0" layoutY="87.0" opacity="0.8" prefHeight="200.0" prefWidth="291.0" style="-fx-text-fill: #004B57;">
-         <columns>
-            <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="Frequence" prefWidth="214.39998474121091" style="-fx-text-fill: #F0FFFF;" text="Frequence" />
-         </columns>
-      </TableView>
       <Button fx:id="update_transaction_type" layoutX="390.0" layoutY="362.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Modifier" textFill="WHITE" />
       <Button fx:id="delete_transaction_type" layoutX="468.0" layoutY="362.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer" textFill="WHITE" />
       <Button fx:id="add_transaction_type" layoutX="311.0" layoutY="362.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter" textFill="WHITE" />
       <Button fx:id="Refresh" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Refresh" textFill="WHITE" />
+      <TableView fx:id="Table" layoutX="191.0" layoutY="90.0" opacity="0.8" prefHeight="182.0" prefWidth="259.0">
+         <columns>
+            <TableColumn fx:id="ID" prefWidth="75.0" style="-fx-text-fill: #004B57;" text="ID" />
+            <TableColumn fx:id="Frequence" prefWidth="214.39998474121091" style="-fx-text-fill: #004B57;" text="Frequence" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
