@@ -98,6 +98,9 @@ public class Quoterev {
         }
             else{
                 qrs.delete(QR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Quote revenu supprimée avec succées!");
+            alert.show();
             }
 
     }
