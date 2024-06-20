@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Catobj;
 import Utils.Myconnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AjouterType {
+
+    private Connection connection;
 
     @FXML
     private Button btnretour;
@@ -85,4 +88,11 @@ public class AjouterType {
     }
 
 
-}
+    }
+
+
+
+
+
+
+

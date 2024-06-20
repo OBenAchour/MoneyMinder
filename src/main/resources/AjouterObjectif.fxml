@@ -18,11 +18,11 @@
         <Pane layoutX="-6.0" layoutY="-3.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
             <children>
                 <Text fill="WHITE" layoutX="16.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
-            <Text fill="WHITE" layoutX="39.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Objectifs">
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </Text>
+                <Text fill="WHITE" layoutX="39.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Objectifs">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Text>
             </children>
         </Pane>
         <VBox layoutX="181.0" layoutY="102.0" prefHeight="273.0" prefWidth="415.0">
@@ -36,13 +36,13 @@
                         <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="274.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView prefHeight="279.0" prefWidth="415.0">
+                        <TableView fx:id="tableView" prefHeight="279.0" prefWidth="415.0">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="Type" />
-                                <TableColumn prefWidth="75.0" text="Titre" />
-                                <TableColumn prefWidth="75.0" text="Budget" />
-                                <TableColumn prefWidth="75.0" text="Mois" />
-                                <TableColumn prefWidth="88.0" text="Commentaire" />
+                                <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+                                <TableColumn fx:id="colTitre" prefWidth="75.0" text="Titre" />
+                                <TableColumn fx:id="colBudget" prefWidth="75.0" text="Budget" />
+                                <TableColumn fx:id="colMois" prefWidth="75.0" text="Mois" />
+                                <TableColumn fx:id="colCommentaire" prefWidth="88.0" text="Commentaire" />
                             </columns>
                         </TableView>
                     </children>
@@ -52,11 +52,11 @@
         <Button fx:id="btnajouter" layoutX="338.0" layoutY="69.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter" textFill="#f4f1f1" />
         <Button fx:id="btnmodifier" layoutX="425.0" layoutY="71.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Modifier" textFill="#f4f1f1" />
         <Button layoutX="509.0" layoutY="70.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer" textFill="#f4f1f1" />
-      <ImageView fitHeight="69.0" fitWidth="84.0" layoutX="515.0" layoutY="-2.0" opacity="0.52">
-         <image>
-            <Image url="@images/Logo_Money_Minder.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnHome" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home" textFill="#f4f1f1" />
+        <ImageView fitHeight="69.0" fitWidth="84.0" layoutX="515.0" layoutY="-2.0" opacity="0.52">
+            <image>
+                <Image url="@images/Logo_Money_Minder.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="btnHome" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home" textFill="#f4f1f1" />
     </children>
 </Pane>

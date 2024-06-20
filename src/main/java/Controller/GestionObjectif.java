@@ -1,85 +1,62 @@
 package Controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import Models.Catobj;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
+import Models.Objectif;
+import Services.ObjectifService;
 
 public class GestionObjectif {
 
     @FXML
-    private ResourceBundle resources;
+    private TextField titreField;
 
     @FXML
-    private Button btnajoutertype;
-    @FXML
-    private Button btnmodifierType;
+    private TextField montantField;
 
     @FXML
-    private Button btnHomeAd;
-
+    private TextField echeanceField;
 
     @FXML
-    private URL location;
+    private TextField moisField;
+
+    @FXML
+    private TextField commentaireField;
+
+    @FXML
+    private Button btnAjouter;
+
+    private ObjectifService objectifService;
 
     @FXML
     void initialize() {
-        btnajoutertype.setOnAction(event -> loadAjouterType());
-        btnmodifierType.setOnAction(event -> loadFormulaireModif());
-        btnHomeAd.setOnAction(event -> loadretHomeAdmin());
+        objectifService = new ObjectifService();
+
+        btnAjouter.setOnAction(event -> {
+            // Récupérer les données des champs
+            String titre = titreField.getText();
+            double montant_globale = Double.parseDouble(montantField.getText());
+            double echeance = Double.parseDouble(echeanceField.getText());
+            int mois = Integer.parseInt(moisField.getText());
+            String commentaire = commentaireField.getText();
+
+            // Créer un nouvel objectif
+            Objectif nouvelObjectif = new Objectif( mois, "titre",  "commentaire",  montant_globale, echeance);
+
+            // Ajouter l'objectif à la base de données
+            objectifService.add(nouvelObjectif);
+
+            // Effacer les champs après l'ajout (si nécessaire)
+            clearFields();
+        });
     }
 
-
-    private void loadAjouterType() {
-        try {
-            System.out.println("Chargement de l'interface modifier Type...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterType.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnajoutertype.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Interface Ajouter Type chargée avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    private void clearFields() {
+        titreField.clear();
+        montantField.clear();
+        echeanceField.clear();
+        moisField.clear();
+        commentaireField.clear();
     }
-
-    private void loadFormulaireModif() {
-        try {
-            System.out.println("Chargement de l'interface modifier Type...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnmodifierType.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Interface modifier Type chargée avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-        private void loadretHomeAdmin() {
-            try {
-                System.out.println("Chargement de l'interface retHomeAdmin...");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) btnHomeAd.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                System.out.println("Retour avec succès !");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-
+}

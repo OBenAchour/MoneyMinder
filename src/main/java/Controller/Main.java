@@ -17,9 +17,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-//           CatobjService In = new CatobjService();
-//           Catobj catobj = new Catobj("autre");
-          // In.add(catobj);
+         //CatobjService In = new CatobjService();
+           //Catobj catobj = new Catobj("autre");
+         // In.add(catobj);
         //System.out.println(In.getAll());
         //System.out.println(In.getbyfilter("`catobj`","Vehicule"));
 
