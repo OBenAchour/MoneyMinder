@@ -85,7 +85,7 @@ public class TransactionTypeHA {
     private void deleteTransactiontype() {
         Models.Transactiontype TT=Table.getSelectionModel().getSelectedItem();
         TransactionTypeService tts = new TransactionTypeService();
-        if (TT == null) {
+        if   (TT == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("aucune ligne n'est selectionner !");
             alert.show();

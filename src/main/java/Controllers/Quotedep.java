@@ -14,9 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -52,12 +50,63 @@ public class Quotedep {
     @FXML
     private Button update_quote;
 
+    @FXML
+    private TextArea textfield;
+
     public ObservableList<Models.Quotedep> QDdata = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
        to_gestion_revenu.setOnAction(event -> to_gestion_revenu());
        Refresh.setOnAction(event -> viewQuoteDep());
+       add_quote.setOnAction(event -> add_quote());
+       delete_quote.setOnAction(event -> delete_quote());
+       update_quote.setOnAction(event -> update_quote());
+    }
+
+    private void update_quote() {
+        Models.Quotedep QD=Table.getSelectionModel().getSelectedItem();
+        QuotedepService qds = new QuotedepService();
+        Models.Quotedep QDU = new Models.Quotedep();
+        if (QD == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            QDU.setQuote(textfield.getText());
+            QDU.setId(QD.getId());
+            qds.update(QDU);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Quote revenu modifier avec succées!");
+            alert.show();
+        }
+    }
+
+    private void delete_quote() {
+        Models.Quotedep QD=Table.getSelectionModel().getSelectedItem();
+        QuotedepService qds = new QuotedepService();
+        if (QD == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            qds.delete(QD);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Quote dépense supprimée avec succées!");
+            alert.show();
+        }
+    }
+
+    private void add_quote() {
+        String quotedepTA=textfield.getText();
+        Models.Quotedep QD=new Models.Quotedep(quotedepTA);
+        QuotedepService QDS=new QuotedepService();
+        QDS.add(QD);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Quote dépense ajouter avec succées!");
+        alert.show();
     }
 
     private void viewQuoteDep() {

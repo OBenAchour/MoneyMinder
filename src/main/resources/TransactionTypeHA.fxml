@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TransactionTypeHA">
    <children>
-      <ImageView fitHeight="408.0" fitWidth="600.0" layoutX="13.0" layoutY="-13.0" opacity="0.22">
+      <ImageView fitHeight="408.0" fitWidth="600.0" layoutX="14.0" layoutY="-13.0" opacity="0.22">
          <image>
             <Image url="@images/Logo_Money_Minder.jpg" />
          </image>
@@ -20,8 +20,8 @@
       <Button fx:id="update_transaction_type" layoutX="380.0" layoutY="352.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Modifier" textFill="WHITE" />
       <Button fx:id="delete_transaction_type" layoutX="458.0" layoutY="352.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer" textFill="WHITE" />
       <Button fx:id="add_transaction_type" layoutX="301.0" layoutY="352.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter" textFill="WHITE" />
-      <Button fx:id="Refresh" layoutX="186.0" layoutY="267.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Refresh" textFill="WHITE" />
-      <TableView fx:id="Table" layoutX="11.0" layoutY="113.0" opacity="0.8" prefHeight="154.0" prefWidth="246.0">
+      <Button fx:id="Refresh" layoutX="186.0" layoutY="281.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Refresh" textFill="WHITE" />
+      <TableView fx:id="Table" layoutX="13.0" layoutY="123.0" opacity="0.8" prefHeight="154.0" prefWidth="246.0">
         <columns>
           <TableColumn fx:id="ID" prefWidth="75.0" style="-fx-text-fill: #004B57;" text="ID" />
           <TableColumn fx:id="Transactiontype" prefWidth="214.39998474121091" style="-fx-text-fill: #004B57;" text="Trasaction Type" />

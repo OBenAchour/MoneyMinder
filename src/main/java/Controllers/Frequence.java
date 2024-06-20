@@ -15,9 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -43,16 +41,19 @@ public class Frequence {
     private URL location;
 
     @FXML
-    private Button add_transaction_type;
-
-    @FXML
-    private Button delete_transaction_type;
-
-    @FXML
     private Button to_gestion_transaction;
 
     @FXML
-    private Button update_transaction_type;
+    private Button add_frequence;
+
+    @FXML
+    private Button delete_frequence;
+
+    @FXML
+    private TextField ftextfield;
+
+    @FXML
+    private Button update_frequence;
 
     public ObservableList<Models.Frequence> Fdata = FXCollections.observableArrayList();
 
@@ -61,7 +62,51 @@ public class Frequence {
 
         to_gestion_transaction.setOnAction(event->to_gestion_transaction());
         Refresh.setOnAction(event -> viewFrequence());
+        add_frequence.setOnAction(event -> addFrequence());
+        delete_frequence.setOnAction(event -> deleteFrequence());
+        update_frequence.setOnAction(event -> updateFrequence());
+    }
 
+    private void updateFrequence() {
+        Models.Frequence F=Table.getSelectionModel().getSelectedItem();
+        FrequenceService tts = new FrequenceService();
+        if (F == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            F.setFrequence(ftextfield.getText());
+            tts.update(F);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Fréquence modifier avec succées!");
+            alert.show();
+        }
+    }
+
+    private void deleteFrequence() {
+        Models.Frequence F=Table.getSelectionModel().getSelectedItem();
+        FrequenceService FS=new FrequenceService();
+        if (FS==null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else {
+        FS.delete(F);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("fréquence supprimer avec succées!");
+        alert.show();
+    }}
+
+    private void addFrequence() {
+        String FTF=ftextfield.getText();
+        Models.Frequence F=new Models.Frequence(FTF);
+        FrequenceService FS=new FrequenceService();
+        FS.add(F);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("fréquence ajouter avec succées!");
+        alert.show();
     }
 
     private void viewFrequence() {
