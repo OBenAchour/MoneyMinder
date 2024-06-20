@@ -110,6 +110,9 @@ public class Quoterev {
         Models.Quoterev QR=new Models.Quoterev(quoterevTA);
         QuoterevService QRS=new QuoterevService();
         QRS.add(QR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Quote revenu ajouter avec succées!");
+        alert.show();
     }
 
     private void viewQuoterev() {
