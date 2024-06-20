@@ -15,11 +15,11 @@
          </image>
       </ImageView>
       <Button fx:id="to_gestion_revenu" layoutX="34.0" layoutY="34.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="WHITE" />
-      <Button fx:id="Refresh" layoutX="104.0" layoutY="105.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Refresh" textFill="WHITE" />
+      <Button fx:id="Refresh" layoutX="78.0" layoutY="134.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Refresh" textFill="WHITE" />
       <TableView fx:id="Table" layoutX="193.0" layoutY="105.0" opacity="0.8" prefHeight="168.0" prefWidth="259.0">
          <columns>
             <TableColumn fx:id="ID" prefWidth="75.0" style="-fx-text-fill: #004B57;" text="ID" />
-            <TableColumn fx:id="Catdep" prefWidth="214.39998474121091" style="-fx-text-fill: #004B57;" text="Catégorie" />
+            <TableColumn fx:id="Catrev" prefWidth="214.39998474121091" style="-fx-text-fill: #004B57;" text="Catégorie" />
          </columns>
       </TableView>
       <Button fx:id="update_catrev" layoutX="432.0" layoutY="372.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Modifier" textFill="WHITE" />

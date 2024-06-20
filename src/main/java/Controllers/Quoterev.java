@@ -14,9 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -53,6 +51,10 @@ public class Quoterev {
     private Button update_quote;
 
 
+    @FXML
+    private TextArea textfield;
+
+
 
 
     public ObservableList<Models.Quoterev> QRdata = FXCollections.observableArrayList();
@@ -61,6 +63,50 @@ public class Quoterev {
     void initialize() {
         to_gestion_revenu.setOnAction(event->to_gestion_revenu());
         Refresh.setOnAction(event -> viewQuoterev());
+        add_quote.setOnAction(event -> add_quote());
+        delete_quote.setOnAction(event -> delete_quote());
+        update_quote.setOnAction(event -> update_quote());
+    }
+
+
+    private void update_quote() {
+        Models.Quoterev QR=Table.getSelectionModel().getSelectedItem();
+        QuoterevService qrs = new QuoterevService();
+        Models.Quoterev QRU = new Models.Quoterev();
+        if (QR == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            QRU.setQuote(textfield.getText());
+            QRU.setId(QR.getId());
+            qrs.update(QRU);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Quote revenu modifier avec succées!");
+            alert.show();
+        }
+    }
+
+    private void delete_quote() {
+        Models.Quoterev QR=Table.getSelectionModel().getSelectedItem();
+        QuoterevService qrs = new QuoterevService();
+        if (QR == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+            else{
+                qrs.delete(QR);
+            }
+
+    }
+
+    private void add_quote() {
+        String quoterevTA=textfield.getText();
+        Models.Quoterev QR=new Models.Quoterev(quoterevTA);
+        QuoterevService QRS=new QuoterevService();
+        QRS.add(QR);
     }
 
     private void viewQuoterev() {
@@ -85,5 +131,6 @@ public class Quoterev {
             e.printStackTrace();
         }
     }
+
 
 }
