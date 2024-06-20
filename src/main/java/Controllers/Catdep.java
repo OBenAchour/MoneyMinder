@@ -15,9 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -53,6 +51,10 @@ public class Catdep {
     @FXML
     private Button update_catdep;
 
+    @FXML
+    private TextArea textfield;
+
+
     public ObservableList<CatDep> CDdata = FXCollections.observableArrayList();
 
 
@@ -60,7 +62,55 @@ public class Catdep {
     void initialize() {
         to_gestion_depense.setOnAction(event->to_gestion_depense());
         Refresh.setOnAction(event -> view_categorie_dep());
+        add_catdep.setOnAction(event ->add_catdep());
+        update_catdep.setOnAction(event ->update_catdep());
+        delete_catdep.setOnAction(event ->delete_catdep());
 
+    }
+
+    private void delete_catdep() {
+        Models.CatDep CD=Table.getSelectionModel().getSelectedItem();
+        CatdepService cds = new CatdepService();
+        if (CD == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            cds.delete(CD);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Catégorie dépense supprimer avec succées !");
+            alert.show();
+        }
+    }
+
+    private void update_catdep() {
+        Models.CatDep CD=Table.getSelectionModel().getSelectedItem();
+        CatdepService cds = new CatdepService();
+        Models.CatDep CDU = new Models.CatDep();
+        if (CD == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            CDU.setType(textfield.getText());
+            CDU.setId(CD.getId());
+            cds.update(CDU);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Catégorie dépense modifier avec succées!");
+            alert.show();
+        }
+    }
+
+    private void add_catdep() {
+        String CatdepTA=textfield.getText();
+        Models.CatDep CD=new Models.CatDep(CatdepTA);
+        CatdepService CDS=new CatdepService();
+        CDS.add(CD);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Catégorie dépense ajouter avec succées !");
+        alert.show();
     }
 
     private void view_categorie_dep() {
