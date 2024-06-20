@@ -107,6 +107,9 @@ public class Catrev {
         Models.Catrev CR=new Models.Catrev(CatrevTA);
         CatrevService CRS=new CatrevService();
         CRS.add(CR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Catégorie revenu ajouter avec succées !");
+        alert.show();
     }
 
     private void view_Categorie_Revenu() {
