@@ -8,15 +8,14 @@ import java.util.ResourceBundle;
 import Models.Quoterev;
 import Services.GestionTransactionsServices.CatrevService;
 import Services.GestionTransactionsServices.FrequenceService;
+import Services.GestionTransactionsServices.QuoterevService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -52,12 +51,62 @@ public class Catrev {
     @FXML
     private Button update_catrev;
 
+    @FXML
+    private TextArea textfield;
+
+
     public ObservableList<Models.Catrev> CRdata = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
        to_gestion_revenu.setOnAction(event ->to_gestion_revenu());
        Refresh.setOnAction(event -> view_Categorie_Revenu());
+       add_catrev.setOnAction(event -> add_catrev());
+       delete_catrev.setOnAction(event -> delete_catrev());
+       update_catrev.setOnAction(event -> update_catrev());
+    }
+
+    private void update_catrev() {
+        Models.Catrev CR=Table.getSelectionModel().getSelectedItem();
+        CatrevService crs = new CatrevService();
+        Models.Catrev CRU = new Models.Catrev();
+        if (CR == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            CRU.setType(textfield.getText());
+            CRU.setId(CR.getId());
+            crs.update(CRU);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Catégorie revenu modifier avec succées!");
+            alert.show();
+        }
+    }
+
+
+    private void delete_catrev() {
+        Models.Catrev CR=Table.getSelectionModel().getSelectedItem();
+        CatrevService crs = new CatrevService();
+        if (CR == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            crs.delete(CR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Catégorie revenu supprimer avec succées !");
+            alert.show();
+        }
+    }
+
+    private void add_catrev() {
+        String CatrevTA=textfield.getText();
+        Models.Catrev CR=new Models.Catrev(CatrevTA);
+        CatrevService CRS=new CatrevService();
+        CRS.add(CR);
     }
 
     private void view_Categorie_Revenu() {
