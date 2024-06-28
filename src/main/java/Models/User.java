@@ -3,7 +3,7 @@ package Models;
 import java.util.Date;
 
 public class User {
-    int id;
+    int id,tel;
     String nom, prenom, mot_de_passe;
     Date date_de_naiss;
     String mail;
@@ -64,7 +64,7 @@ public class User {
         this.mot_de_passe = mot_de_passe;
     }
 
-    public Date getDate_de_naiss() {
+    public java.sql.Date getDate_de_naiss() {
         return date_de_naiss;
     }
 
@@ -94,5 +94,7 @@ public class User {
                 ", mail='" + mail + '\'' +
                 '}';
     }
+
+
 }
 
