@@ -62,21 +62,21 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
 
     @Override
     public void update(Objectif objectif) {
-        String req = "UPDATE `objectif` SET `titre` = ?, `montant_globale` = ?, `echeance` = ?, `mois` = ?, `commentaire` = ?, `id_cat_obj` = ?, `id_wallet` = ? WHERE `id` = ?";
+        String req = "UPDATE `objectif` SET `titre` = ?, `montant_globale` = ?, `mois` = ?, `commentaire` = ? WHERE `id` = ?";
         try {
             PreparedStatement ps = connectDB.prepareStatement(req);
             ps.setString(1, objectif.getTitre());
             ps.setDouble(2, objectif.getMontant_globale());
-            ps.setDouble(3, objectif.getEcheance());
-            ps.setInt(4, objectif.getMois());
-            ps.setString(5, objectif.getCommentaire());
-            if (objectif.getCatobj() != null) {
-                ps.setInt(6, objectif.getCatobj().getId_obj());
-            } else {
-                ps.setNull(6, java.sql.Types.INTEGER);
-            }
-            ps.setInt(7, objectif.getId_wallet());
-            ps.setInt(8, objectif.getId_obj());
+           // ps.setDouble(3, objectif.getEcheance());
+            ps.setInt(3, objectif.getMois());
+            ps.setString(4, objectif.getCommentaire());
+           // if (objectif.getCatobj() != null) {
+               // ps.setInt(6, objectif.getCatobj().getId_obj());
+           // } else {
+               // ps.setNull(6, java.sql.Types.INTEGER);
+            //}
+            //ps.setInt(7, objectif.getId_wallet());
+            ps.setInt(5, objectif.getId_obj());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de l'objectif", e);
@@ -95,7 +95,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
                 objectif.setId_obj(rs.getInt("id"));
                 objectif.setTitre(rs.getString("titre"));
                 objectif.setMontant_globale(rs.getDouble("montant_globale"));
-                objectif.setEcheance(rs.getDouble("echeance"));
+                //objectif.setEcheance(rs.getDouble("echeance"));
                 objectif.setMois(rs.getInt("mois"));
                 objectif.setCommentaire(rs.getString("commentaire"));
 
@@ -126,7 +126,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
                 objectif.setId_obj(rs.getInt("id"));
                 objectif.setTitre(rs.getString("titre"));
                 objectif.setMontant_globale(rs.getDouble("montant_globale"));
-                objectif.setEcheance(rs.getDouble("echeance"));
+                //objectif.setEcheance(rs.getDouble("echeance"));
                 objectif.setMois(rs.getInt("mois"));
                 objectif.setCommentaire(rs.getString("commentaire"));
 
@@ -157,7 +157,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
                 objectif.setId_obj(rs.getInt("id"));
                 objectif.setTitre(rs.getString("titre"));
                 objectif.setMontant_globale(rs.getDouble("montant_globale"));
-                objectif.setEcheance(rs.getDouble("echeance"));
+                //objectif.setEcheance(rs.getDouble("echeance"));
                 objectif.setMois(rs.getInt("mois"));
                 objectif.setCommentaire(rs.getString("commentaire"));
                 objectifs.add(objectif);
@@ -186,15 +186,15 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
         }
     }
 
-    private void updateEcheance(int objectId, double echeance) {
-        String updateQuery = "UPDATE `objectif` SET `echeance` = ? WHERE `id` = ?";
-        try {
-            PreparedStatement ps = connectDB.prepareStatement(updateQuery);
-            ps.setDouble(1, echeance);
-            ps.setInt(2, objectId);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la mise à jour de l'échéance", e);
-        }
-    }
+   // private void updateEcheance(int objectId, double echeance) {
+     //   String updateQuery = "UPDATE `objectif` SET `echeance` = ? WHERE `id` = ?";
+       // try {
+         //   PreparedStatement ps = connectDB.prepareStatement(updateQuery);
+           // ps.setDouble(1, echeance);
+            //ps.setInt(2, objectId);
+            //ps.executeUpdate();
+        //} catch (SQLException e) {
+          //  throw new RuntimeException("Erreur lors de la mise à jour de l'échéance", e);
+        //}
+    //}
 }

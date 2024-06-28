@@ -12,27 +12,21 @@ import java.io.IOException;
 public class HomeAdmin {
 
     @FXML
-    private Button btnGesObj;
-
-
+    private Button btnAjouter;
 
     @FXML
     public void initialize() {
-        btnGesObj.setOnAction(event -> loadHomee());
-
+        btnAjouter.setOnAction(event -> loadGestionObjectif());
     }
 
-
-    private void loadHomee() {
+    private void loadGestionObjectif() {
         try {
-            System.out.println("Chargement de l'interface Homee");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionObjectif.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) btnGesObj.getScene().getWindow();
+            Stage stage = (Stage) btnAjouter.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            System.out.println("Interface Ajouter Objectif chargée avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
         }

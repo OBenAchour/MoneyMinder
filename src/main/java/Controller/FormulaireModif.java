@@ -1,18 +1,16 @@
 package Controller;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import Models.Objectif;
+import Services.ObjectifService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
 public class FormulaireModif {
 
@@ -22,8 +20,8 @@ public class FormulaireModif {
     @FXML
     private TextField montantGlobaleField;
 
-    @FXML
-    private TextField echeanceField;
+    //@FXML
+    //private TextField echeanceField;
 
     @FXML
     private TextField moisField;
@@ -39,7 +37,10 @@ public class FormulaireModif {
 
     @FXML
     private Button btnV;
+
     private Objectif objectif;
+
+    private ObjectifService objectifService = new ObjectifService();
 
     @FXML
     void initialize() {
@@ -47,8 +48,6 @@ public class FormulaireModif {
         btnHome.setOnAction(event -> retHome());
         btnV.setOnAction(event -> ValiderAjout());
     }
-
-
 
     private void RetourModif() {
         try {
@@ -81,26 +80,42 @@ public class FormulaireModif {
     }
 
     private void ValiderAjout() {
-        try {
-            System.out.println("Chargement de l'interface modifier Objectif...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterObjectif.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnV.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Validation avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (objectif == null) {
+            System.out.println("Erreur : aucun objectif à modifier.");
+            return;
         }
+
+        // Récupérer les nouvelles valeurs des champs de texte
+        objectif.setTitre(titreField.getText());
+        objectif.setMontant_globale(Double.parseDouble(montantGlobaleField.getText()));
+        //objectif.setEcheance(Double.parseDouble(echeanceField.getText())); // Assuming echeance is un double
+        objectif.setMois(Integer.parseInt(moisField.getText()));
+        objectif.setCommentaire(commentaireField.getText());
+
+        // Appeler le service pour mettre à jour l'objectif
+        objectifService.update(objectif);
+
+        // Afficher un message de confirmation ou faire autre chose après la mise à jour
+        System.out.println("Objectif mis à jour avec succès !");
+
+        // Fermer le formulaire de modification
+        Stage stage = (Stage) btnV.getScene().getWindow();
+        stage.close();
+
+        // Vous pouvez aussi ajouter une méthode pour recharger les données de la table dans l'interface principale
     }
 
     public void setObjectif(Objectif objectif) {
         this.objectif = objectif;
-        titreField.setText(objectif.getTitre());
-        montantGlobaleField.setText(objectif.getMontant_globale().toString());
-        echeanceField.setText(objectif.getEcheance().toString());
-        moisField.setText(Integer.toString(objectif.getMois()));
-        commentaireField.setText(objectif.getCommentaire());
+        if (objectif != null) {
+            System.out.println("Objectif à modifier : " + objectif);  // Debug
+            titreField.setText(objectif.getTitre());
+            montantGlobaleField.setText(objectif.getMontant_globale().toString());
+            //echeanceField.setText(objectif.getEcheance().toString()); // Assuming echeance est un double
+            moisField.setText(Integer.toString(objectif.getMois()));
+            commentaireField.setText(objectif.getCommentaire());
+        } else {
+            System.out.println("Erreur : Objectif est null.");  // Debug
+        }
     }
 }

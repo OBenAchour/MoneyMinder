@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 
 public class Homee implements Initializable {
 
-
     @FXML
     private TableView<Objectif> objectifTable;
 
@@ -96,22 +95,30 @@ public class Homee implements Initializable {
     }
 
     private void loadFormulaireModif() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnmodifier.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Objectif selectedObjectif = tableView.getSelectionModel().getSelectedItem();
+        if (selectedObjectif != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
+                Parent root = loader.load();
+
+                FormulaireModif controller = loader.getController();
+                controller.setObjectif(selectedObjectif);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Modifier Objectif");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun objectif sélectionné pour modification.");
         }
     }
 
-
     private void retHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/home.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btnHome.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -121,7 +128,6 @@ public class Homee implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     private void deleteObjectif() {
         Objectif selectedObjectif = tableView.getSelectionModel().getSelectedItem();
@@ -142,7 +148,7 @@ public class Homee implements Initializable {
 
     private void openModificationForm(Objectif objectif) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/FormulaireModif.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
             Parent root = loader.load();
 
             FormulaireModif controller = loader.getController();

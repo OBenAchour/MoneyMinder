@@ -26,7 +26,7 @@
             <Text layoutX="349.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" />
             <TextField fx:id="titreField" layoutX="385.0" layoutY="109.0" />
             <Text layoutX="340.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget" />
-            <TextField fx:id="budgetField" layoutX="384.0" layoutY="150.0" />
+            <TextField fx:id="montantGlobaleField" layoutX="384.0" layoutY="150.0" />
             <Text layoutX="346.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mois" />
             <TextField fx:id="moisField" layoutX="382.0" layoutY="195.0" />
             <Text layoutX="306.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commentaire" />

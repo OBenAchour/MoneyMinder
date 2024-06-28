@@ -1,98 +1,49 @@
 package Controller;
 
-import Models.Catobj;
-import Utils.Myconnection;
-import javafx.event.ActionEvent;
+import Models.Objectif;
+import Services.ObjectifService;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AjouterType {
 
-    private Connection connection;
+    @FXML
+    private TextField txtTitre;
 
     @FXML
-    private Button btnretour;
+    private TextField txtMontant;
 
     @FXML
-    private Button btnHomeAd;
+    private Button btnAjouterObjectif;
+
+    private ObjectifService objectifService;
+
+    public void setObjectifService(ObjectifService objectifService) {
+        this.objectifService = objectifService;
+    }
 
     @FXML
-    private Button btnV;
+    private void initialize() {
+        btnAjouterObjectif.setOnAction(event -> ajouterObjectif());
+    }
 
     @FXML
-    private TextField typeTextField;
+    private void ajouterObjectif() {
+        String titre = txtTitre.getText();
+        double montant = Double.parseDouble(txtMontant.getText());
 
-    @FXML
-    void initialize() {
-        btnretour.setOnAction(event -> RetourAjout());
-        btnHomeAd.setOnAction(event -> retHomeAdmin());
-        btnV.setOnAction(event -> ValiderAjout());
+        // Exemple de création d'un nouvel objectif
+        Objectif nouvelObjectif = new Objectif();
+        nouvelObjectif.setTitre(titre);
+        nouvelObjectif.setMontant_globale(montant);
+
+        // Appel à ObjectifService pour ajouter l'objectif
+        objectifService.add(nouvelObjectif);
+
+        // Fermer la fenêtre de dialogue après l'ajout
+        Stage stage = (Stage) txtTitre.getScene().getWindow();
+        stage.close();
     }
-
-
-    private void RetourAjout() {
-        try {
-            System.out.println("Chargement de l'interface modifier Objectif...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionObjectif.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnretour.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Retour avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void retHomeAdmin() {
-        try {
-            System.out.println("Chargement de l'interface retHomeAdmin...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnHomeAd.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Retour avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void ValiderAjout() {
-        try {
-            System.out.println("Chargement de l'interface modifier Objectif...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionObjectif.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnV.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Validation avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    }
-
-
-
-
-
-
-
+}
