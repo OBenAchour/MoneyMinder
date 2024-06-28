@@ -1,8 +1,11 @@
 package Controller;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Models.Objectif;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +17,21 @@ import javafx.stage.Stage;
 public class FormulaireModif {
 
     @FXML
+    private TextField titreField;
+
+    @FXML
+    private TextField montantGlobaleField;
+
+    @FXML
+    private TextField echeanceField;
+
+    @FXML
+    private TextField moisField;
+
+    @FXML
+    private TextField commentaireField;
+
+    @FXML
     private Button btnretmodif;
 
     @FXML
@@ -21,6 +39,7 @@ public class FormulaireModif {
 
     @FXML
     private Button btnV;
+    private Objectif objectif;
 
     @FXML
     void initialize() {
@@ -74,5 +93,14 @@ public class FormulaireModif {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setObjectif(Objectif objectif) {
+        this.objectif = objectif;
+        titreField.setText(objectif.getTitre());
+        montantGlobaleField.setText(objectif.getMontant_globale().toString());
+        echeanceField.setText(objectif.getEcheance().toString());
+        moisField.setText(Integer.toString(objectif.getMois()));
+        commentaireField.setText(objectif.getCommentaire());
     }
 }

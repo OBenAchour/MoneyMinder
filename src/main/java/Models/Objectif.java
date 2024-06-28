@@ -9,19 +9,16 @@ public class Objectif {
 
     public Objectif() {}
 
-    public Objectif(int mois,  String titre, String commentaire, Double montant_globale, Double echeance) {
-         // Assurez-vous de définir `id_obj` ou ajustez-le en fonction de votre logique
-        this.mois = mois;
+    public Objectif(String titre, Double montantGlobale, int mois, String commentaire)
+    {
         this.titre = titre;
+        this.montant_globale = montantGlobale;
+        this.mois = mois;
         this.commentaire = commentaire;
-        this.montant_globale = montant_globale;
-        this.echeance = echeance;
-//        this.catobj = catobj; // Initialisez `catobj` à null pour éviter les erreurs de null
-//        this.id_wallet = id_wallet; // Initialisez `id_wallet` ou ajustez-le en fonction de votre logique
     }
 
-    public Objectif(int id_obj, int mois,  String titre, String commentaire, Double montant_globale, Double echeance, Catobj catobj, int id_wallet) {
-        this.id_obj = id_obj; // Assurez-vous de définir `id_obj` ou ajustez-le en fonction de votre logique
+    public Objectif(int id_obj, int mois, String titre, String commentaire, Double montant_globale, Double echeance, Catobj catobj, int id_wallet) {
+        this.id_obj = id_obj;
         this.mois = mois;
         this.titre = titre;
         this.commentaire = commentaire;
@@ -31,7 +28,17 @@ public class Objectif {
         this.id_wallet = id_wallet;
     }
 
-    // Getters and setters
+    public Objectif( int mois, String titre, String commentaire, Double montant_globale, Double echeance) {
+        this.id_obj = id_obj;
+        this.mois = mois;
+        this.titre = titre;
+        this.commentaire = commentaire;
+        this.montant_globale = montant_globale;
+        this.echeance = echeance;
+        this.catobj = catobj;
+        this.id_wallet = id_wallet;
+    }
+
     public int getId_obj() {
         return id_obj;
     }
@@ -47,9 +54,6 @@ public class Objectif {
     public void setMois(int mois) {
         this.mois = mois;
     }
-
-
-
 
     public String getTitre() {
         return titre;

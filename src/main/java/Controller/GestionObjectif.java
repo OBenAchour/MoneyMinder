@@ -42,7 +42,7 @@ public class GestionObjectif {
             String commentaire = commentaireField.getText();
 
             // Créer un nouvel objectif
-            Objectif nouvelObjectif = new Objectif( mois, "titre",  "commentaire",  montant_globale, echeance);
+            Objectif nouvelObjectif = new Objectif(mois, "titre",  "commentaire",  montant_globale, echeance);
 
             // Ajouter l'objectif à la base de données
             objectifService.add(nouvelObjectif);

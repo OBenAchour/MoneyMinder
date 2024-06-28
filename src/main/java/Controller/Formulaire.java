@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,9 +23,6 @@ public class Formulaire {
 
     @FXML
     private Button btnV;
-
-    @FXML
-    private ComboBox<String> typeComboBox;
 
     @FXML
     private TextField titreTextField;
@@ -56,7 +52,6 @@ public class Formulaire {
     }
 
     private void validerAjout() {
-        //String type = typeComboBox.getValue();
         String titre = titreTextField.getText();
         String montant_globale = budgetTextField.getText();
         String mois = moisTextField.getText();
@@ -67,12 +62,11 @@ public class Formulaire {
         String user = "root";
         String password = "";
 
-        String sql = "INSERT INTO objectif (titre, montant_globale, mois, commentaire) VALUES ( ?, ?, ?, ?)";
+        String sql = "INSERT INTO objectif (titre, montant_globale, mois, commentaire) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            //pstmt.setString(1, type);
             pstmt.setString(1, titre);
             pstmt.setString(2, montant_globale);
             pstmt.setString(3, mois);
@@ -81,6 +75,8 @@ public class Formulaire {
             pstmt.executeUpdate();
             System.out.println("Les données ont été ajoutées avec succès.");
 
+            // Redirection après ajout
+            navigateTo("/AjouterObjectif.fxml");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

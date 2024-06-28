@@ -5,31 +5,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Myconnection {
-    //database
-    final String URL = "jdbc:mysql://localhost:3306/moneyminderdb";
-    final String USR = "root";
-    final String PWD = "";
 
-    //var
     private Connection cnx;
-    static Myconnection instance;
+    private static Myconnection instance;
 
-    //Constructeur
-    public Myconnection(){
+    private Myconnection() {
         try {
-            cnx = DriverManager.getConnection(URL, USR, PWD);
-            System.out.println("Connexion etablie avec succes!");
+            String url = "jdbc:mysql://localhost:3306/moneyminderdb";
+            String username = "root";
+            String password = "";
+            cnx = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
-    public Connection getCnx() {
-        return cnx;
+
+    public static synchronized Myconnection getInstance() {
+        if (instance == null) {
+            instance = new Myconnection();
+        }
+        return instance;
     }
 
-    public static Myconnection getInstance() {
-        if(instance == null)
-            instance = new Myconnection();
-        return instance;
+    public Connection getCnx() {
+        return cnx;
     }
 }

@@ -40,18 +40,19 @@
                             <columns>
                                 <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
                                 <TableColumn fx:id="colTitre" prefWidth="75.0" text="Titre" />
-                                <TableColumn fx:id="colBudget" prefWidth="75.0" text="Budget" />
+                                <TableColumn fx:id="colmontant_globale" prefWidth="75.0" text="montant_globale" />
                                 <TableColumn fx:id="colMois" prefWidth="75.0" text="Mois" />
                                 <TableColumn fx:id="colCommentaire" prefWidth="88.0" text="Commentaire" />
                             </columns>
                         </TableView>
+
                     </children>
                 </GridPane>
             </children>
         </VBox>
         <Button fx:id="btnajouter" layoutX="338.0" layoutY="69.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter" textFill="#f4f1f1" />
         <Button fx:id="btnmodifier" layoutX="425.0" layoutY="71.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Modifier" textFill="#f4f1f1" />
-        <Button layoutX="509.0" layoutY="70.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer" textFill="#f4f1f1" />
+        <Button fx:id="btnSupprimer" layoutX="509.0" layoutY="70.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer" textFill="#f4f1f1" />
         <ImageView fitHeight="69.0" fitWidth="84.0" layoutX="515.0" layoutY="-2.0" opacity="0.52">
             <image>
                 <Image url="@images/Logo_Money_Minder.jpg" />
