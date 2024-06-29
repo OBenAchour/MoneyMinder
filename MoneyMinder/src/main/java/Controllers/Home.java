@@ -9,11 +9,27 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import java.io.IOException;
 
 public class Home extends Application {
     @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
     private Button btnFinancement;
+
+    @FXML
+    void initialize() {
+        assert btnFinancement != null : "fx:id=\"btnFinancement\" was not injected: check your FXML file 'Home.fxml'.";
+
+    }
+
 
     @FXML
     void navigateToFinancement(ActionEvent event) throws IOException {

@@ -9,36 +9,32 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
-   <children>
-      <SplitPane dividerPositions="0.2543449197860962" prefHeight="400.0" prefWidth="600.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #4682B4;">
-               <children>
-                  <Button layoutX="10.0" layoutY="114.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Revenus" textFill="#f4f1f1" />
-                  <Button layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Dépense" textFill="#f7f3f3" />
-                  <Button layoutX="10.0" layoutY="195.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Objectif" textFill="#faf2f2" />
-                  <Button fx:id="btnFinancement" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" onAction="#navigateToFinancement" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Placement financier" textFill="#f4f4f4" />
-                  <Button layoutX="10.0" layoutY="275.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Assets" textFill="#f7f2f2" />
-                  <Text fill="WHITE" layoutX="-27.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="201.7980194091797" />
-                  <Button layoutX="10.0" layoutY="317.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Forum" textFill="#f4f2f2" />
-                  <Button layoutX="10.0" layoutY="357.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: #4682B4; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Report" textFill="WHITE" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-text-fill: #000080;">
-               <children>
-                  <ImageView fitHeight="398.0" fitWidth="451.0" layoutX="-7.0" opacity="0.52">
-                     <image>
-                        <Image url="@images/Logo_Money_Minder.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-      <Pane layoutX="145.0" layoutY="1.0" prefHeight="42.0" prefWidth="458.0" style="-fx-background-color: #4682B4;">
-         <children>
-            <Button layoutX="358.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #4682B4; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Mon Compte" textFill="WHITE" />
-         </children>
-      </Pane>
-   </children>
+    <children>
+        <SplitPane prefHeight="400.0" prefWidth="600.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-text-fill: #000080;">
+                    <children>
+                        <ImageView fitHeight="364.0" fitWidth="613.0" layoutX="-14.0" layoutY="41.0" opacity="0.52">
+                            <image>
+                                <Image url="@images/Logo_Money_Minder.jpg" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="537.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Report" textFill="WHITE" />
+                        <Button layoutX="471.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="60.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Forum" textFill="#f4f2f2" />
+                        <Button layoutX="397.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Assets" textFill="#f7f2f2" />
+                        <Button fx:id="btnFinancement" layoutX="258.0" layoutY="53.0" mnemonicParsing="false" onAction="#navigateToFinancement" prefHeight="28.0" prefWidth="130.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Placement financier" textFill="#f4f4f4" />
+                        <Button layoutX="85.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Dépense" textFill="#f7f3f3" />
+                        <Button layoutX="172.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Objectif" textFill="#faf2f2" />
+                        <Button layoutX="-1.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="78.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Revenus" textFill="#f4f1f1" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="46.0" prefWidth="613.0" style="-fx-background-color: #004B57;">
+            <children>
+                <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #004B57; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Mon Compte" textFill="WHITE" />
+                <Text fill="WHITE" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

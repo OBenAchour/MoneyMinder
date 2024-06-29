@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PortefeuilleController">
+   <children>
+      <TableView fx:id="tabPortefeuille" layoutX="-4.0" layoutY="6.0" prefHeight="362.0" prefWidth="600.0">
+         <columns>
+            <TableColumn fx:id="colNom" prefWidth="256.79997539520264" text="Nom" />
+            <TableColumn fx:id="colCours" prefWidth="96.79998779296875" text="Cours" />
+            <TableColumn fx:id="colQuantite" prefWidth="106.4000244140625" text="Quantité" />
+            <TableColumn fx:id="coltotal" prefWidth="126.4000244140625" text="total" />
+         </columns>
+      </TableView>
+      <Text layoutX="424.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtTotal" layoutX="511.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+   </children>
+</AnchorPane>

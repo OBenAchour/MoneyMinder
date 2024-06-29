@@ -1,27 +1,34 @@
 package Controllers;
 
 import Models.Action;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class actions implements Initializable {
-
+public class ActionController implements Initializable {
+    @FXML
+    private Button btnPortefeuille;
 
     @FXML
     private TableColumn<Action, Float> colAchat;
@@ -60,6 +67,20 @@ public class actions implements Initializable {
 
     @FXML
     private Text txtVariation;
+
+    @FXML
+    private Button btnportefeuille;
+
+    @FXML
+    private Button btnsolde;
+
+    @FXML
+    private Button btnmesactions;
+
+    public Action action;
+
+
+
     private List<Action> prepareActionsList() {
 
         List<Action> actions = new ArrayList<>();
@@ -132,7 +153,7 @@ public class actions implements Initializable {
 
         tabAction.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Action>() {
             @Override
-            public void changed(ObservableValue<? extends Action> observableValue, Action action, Action t1) {
+            public void changed(ObservableValue<? extends Action> observableValue, Action old, Action t1) {
                 panelDetail.setVisible(true);
                 txtOuverture.setText(String.valueOf(t1.getOuverture()));
                 txtCloture.setText(String.valueOf(t1.getCloture()));
@@ -140,10 +161,61 @@ public class actions implements Initializable {
                 txtBas.setText(String.valueOf(t1.getPrix_bas()));
                 txtVariation.setText(String.valueOf(t1.getVariation()));
                 txtQteEchange.setText(String.valueOf(t1.getQuantite_echange()));
+                action = t1;
             }
         });
     }
 
+    @FXML
+    private void  btnportefeuille(ActionEvent event) {
+        // Affiche les deux autres boutons lorsque le bouton principal est cliqué
+        btnsolde.setVisible(true);
+        btnmesactions.setVisible(true);
+    }
 
 
+
+    @FXML
+    void onAchat(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Achat.fxml"));
+        Pane popupPane = loader.load();
+        AchatController controller = loader.getController();
+        controller.setAction(action);
+        Stage popupStage = new Stage();
+        controller.setStage(popupStage);
+        popupStage.setTitle("Achat");
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        Scene popupScene = new Scene(popupPane);
+        popupStage.setScene(popupScene);
+        popupStage.showAndWait();
+    }
+
+    @FXML
+    void onVente(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vente.fxml"));
+        Pane popupPane = loader.load();
+        VenteController controller = loader.getController();
+        controller.setAction(action);
+
+        Stage popupStage = new Stage();
+        controller.setStage(popupStage);
+        popupStage.setTitle("Vente");
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        Scene popupScene = new Scene(popupPane);
+        popupStage.setScene(popupScene);
+        popupStage.showAndWait();
+
+    }
+
+
+    @FXML
+    void navigateToPortefeuille(ActionEvent event) throws IOException {
+        Stage stage = (Stage) btnPortefeuille.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/portefeuille.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

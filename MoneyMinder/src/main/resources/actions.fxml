@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="368.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.actions">
+<AnchorPane prefHeight="368.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ActionController">
    <children>
-      <TableView fx:id="tabAction" layoutX="14.0" layoutY="14.0" prefHeight="374.0" prefWidth="582.0">
+      <TableView fx:id="tabAction" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="582.0">
         <columns>
           <TableColumn fx:id="colNom" prefWidth="256.79997539520264" text="Nom" />
           <TableColumn fx:id="colCours" prefWidth="56.0" text="Cours" />
@@ -18,7 +18,7 @@
             <TableColumn fx:id="colQuantite" prefWidth="110.39996337890625" text="Quantité" />
         </columns>
       </TableView>
-      <AnchorPane fx:id="panelDetail" layoutX="608.0" layoutY="14.0" prefHeight="374.0" prefWidth="243.0">
+      <AnchorPane fx:id="panelDetail" layoutX="608.0" layoutY="116.0" prefHeight="403.0" prefWidth="243.0">
          <children>
             <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ouverture:">
                <font>
@@ -56,14 +56,15 @@
                </font>
             </Text>
             <Text fx:id="txtOuverture" layoutX="107.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Text fx:id="txtCloture" layoutX="104.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Text fx:id="txtHaut" layoutX="104.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Text fx:id="txtBas" layoutX="101.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Text fx:id="txtVariation" layoutX="101.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Text fx:id="txtQteEchange" layoutX="101.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Button layoutX="25.0" layoutY="335.0" mnemonicParsing="false" text="ACHAT" />
-            <Button layoutX="158.0" layoutY="335.0" mnemonicParsing="false" text="VENTE" />
+            <Text fx:id="txtCloture" layoutX="107.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtHaut" layoutX="107.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtBas" layoutX="107.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtVariation" layoutX="107.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtQteEchange" layoutX="107.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Button layoutX="25.0" layoutY="335.0" mnemonicParsing="false" onAction="#onAchat" text="ACHAT" />
+            <Button layoutX="159.0" layoutY="334.0" mnemonicParsing="false" onAction="#onVente" text="VENTE" />
          </children>
       </AnchorPane>
+      <Button fx:id="btnPortefeuille" layoutX="615.0" layoutY="14.0" mnemonicParsing="false" onAction="#navigateToPortefeuille" prefHeight="26.0" prefWidth="243.0" text="Portefeuille" />
    </children>
 </AnchorPane>

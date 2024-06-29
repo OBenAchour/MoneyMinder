@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/PortefeuilleActionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="cree interface action">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/AchatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/VenteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Portefeuille.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Achat.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Vente.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moneyminderdb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/moneyminderdb.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Portefeuille_actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Portefeuille_actions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MoneyMinder/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MoneyMinder/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ActionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/actions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/actions.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +26,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
@@ -41,37 +49,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Home.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.actions.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Moneyminder [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Moneyminder [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/WorkshopJDBC&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/ousse/Desktop/PI/MoneyMinder/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Home.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.actions.executor": "Run",
+    "Maven.Moneyminder [clean,install].executor": "Run",
+    "Maven.Moneyminder [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "portefeuille-action",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/Desktop/MoneyMinder/MoneyMinder/MoneyMinder/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/ousse/Desktop/PI/MoneyMinder/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\Desktop\MoneyMinder\MoneyMinder\MoneyMinder\src\main\resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\HP\Desktop\MoneyMinder\MoneyMinder\MoneyMinder\src\main\resources\images" />
       <recent name="C:\Users\HP\Desktop\MoneyMinder\MoneyMinder\MoneyMinder\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Controllers" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -80,6 +94,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Home">
+    <configuration name="ActionController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Controllers.ActionController" />
+      <module name="MoneyMinder" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Controllers.Home" />
       <module name="MoneyMinder" />
@@ -94,27 +121,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="actions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Controllers.actions" />
-      <module name="MoneyMinder" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Application.actions" />
+      <item itemvalue="Application.ActionController" />
       <item itemvalue="Application.Home" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Home" />
-        <item itemvalue="Application.actions" />
+        <item itemvalue="Application.ActionController" />
       </list>
     </recent_temporary>
   </component>
@@ -150,12 +164,29 @@
       <workItem from="1718460271544" duration="12000" />
       <workItem from="1718460303323" duration="7768000" />
       <workItem from="1718615689915" duration="3539000" />
-      <workItem from="1718619268760" duration="7356000" />
+      <workItem from="1718619268760" duration="8380000" />
+      <workItem from="1718739463615" duration="6658000" />
+      <workItem from="1718824235566" duration="11797000" />
+      <workItem from="1718906223261" duration="1058000" />
+      <workItem from="1719649058281" duration="7699000" />
     </task>
+    <task id="LOCAL-00001" summary="cree interface action">
+      <option name="closed" value="true" />
+      <created>1718627306771</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718627306771</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="cree interface action" />
+    <option name="LAST_COMMIT_MESSAGE" value="cree interface action" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
