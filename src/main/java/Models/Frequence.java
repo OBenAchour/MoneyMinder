@@ -2,10 +2,7 @@ package Models;
 
 import Utils.Myconnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Frequence {
 private int id;
@@ -53,15 +50,16 @@ private String frequence;
 
     //get frequence by id
 
-    public Frequence getFrequenceById(int id) throws SQLException {
-        String req = "SELECT * FROM frequence    WHERE id_freq = '?' ";
+    public Frequence getFrequenceById(int id)  {
+        String req = "SELECT * FROM frequence WHERE `id_freq` = ? ";
         try {
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Frequence f=new Frequence();
                 f.id = rs.getInt("id_freq");
-                f.frequence = rs.getString("frequence");
+                f.frequence = rs.getString("type");
                 return f;
             }
         } catch (SQLException e) {
