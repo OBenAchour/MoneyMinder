@@ -141,8 +141,6 @@ public class Homee implements Initializable {
         Objectif selectedObjectif = objectifTable.getSelectionModel().getSelectedItem();
         if (selectedObjectif != null) {
             openModificationForm(selectedObjectif);
-        } else {
-            // Handle case when no objectif is selected (e.g., show an alert)
         }
     }
 
@@ -159,9 +157,6 @@ public class Homee implements Initializable {
             stage.setTitle("Modifier Objectif");
             stage.show();
 
-            // Close the current window if needed
-            // Stage currentStage = (Stage) btnModifier.getScene().getWindow();
-            // currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

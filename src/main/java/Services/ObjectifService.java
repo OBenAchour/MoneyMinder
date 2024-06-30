@@ -168,10 +168,6 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
         return objectifs;
     }
 
-    @Override
-    public List<Objectif> getByFilter(String column, String value) {
-        return List.of();
-    }
 
     // Cette méthode calculerEcheance() est spécifique à vos besoins métier
     // Elle n'est pas requise par l'interface InterfaceMoneyMinder

@@ -78,21 +78,21 @@ public class CatobjService implements InterfaceMoneyMinder<Catobj> {
 
     @Override
     public List<Catobj> getAll() {
-        List<Catobj> catobjs = new ArrayList<>();
-        String query = "SELECT * FROM `categorieobj`";
-        try (PreparedStatement pstmt = connection.prepareStatement(query);
-             ResultSet resultSet = pstmt.executeQuery()) {
-            while (resultSet.next()) {
-                Catobj catobj = new Catobj();
-                catobj.setId_obj(resultSet.getInt("idObj"));
-                catobj.setCatobj(resultSet.getString("catObj"));
-                catobjs.add(catobj);
+            List<Catobj> catobjs = new ArrayList<>();
+            String query = "SELECT * FROM `categorieobj`";
+            try (PreparedStatement pstmt = connection.prepareStatement(query);
+                 ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    Catobj catobj = new Catobj();
+                    catobj.setId_obj(resultSet.getInt("idObj"));
+                    catobj.setCatobj(resultSet.getString("catObj"));
+                    catobjs.add(catobj);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Erreur lors de la récupération de toutes les catégories d'objet", e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la récupération de toutes les catégories d'objet", e);
+            return catobjs;
         }
-        return catobjs;
-    }
 
     @Override
     public List<Catobj> getbyfilter(String column, String value) {
@@ -133,10 +133,7 @@ public class CatobjService implements InterfaceMoneyMinder<Catobj> {
         }
         return catobjs;
     }
-
-    @Override
-    public List<Objectif> getByFilter(String column, String value) {
-        // Implémentation à adapter si nécessaire pour les objectifs liés à la catégorie d'objet
-        return new ArrayList<>();
-    }
 }
+
+
+

@@ -12,5 +12,5 @@ public interface InterfaceMoneyMinder<T> {
     List<T> getbyfilter(String column, String value);
     List<T> getbyid(int id);
 
-    List<Objectif> getByFilter(String column, String value);
+//    List<Objectif> getByFilter(String column, String value);
 }

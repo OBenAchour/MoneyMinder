@@ -32,7 +32,7 @@ public class Home {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            System.out.println("Interface Ajouter Objectif chargée avec succès !");
+            System.out.println("Interface Homee chargée avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
         }
