@@ -26,6 +26,18 @@ public  class Transaction {
     //Constructeurs
 
 
+    public Transaction(int mois, int annee, String commentaire, String titre, Frequence id_freq, Float montant, Transactiontype type, Quoterev quoterev, Catrev catrev) {
+        this.mois = mois;
+        this.annee = annee;
+        this.commentaire = commentaire;
+        this.titre = titre;
+        this.id_freq = id_freq;
+        this.montant = montant;
+        Type = type;
+        this.quoterev = quoterev;
+        this.catrev = catrev;
+    }
+
     public Transaction(int id_trans, int mois, int annee, User id_user, String commentaire, String titre, Frequence id_freq, Float montant, Transactiontype type, Quotedep quotedep, Quoterev quoterev, Catrev catrev, CatDep catDep) {
         this.id_trans = id_trans;
         this.mois = mois;
@@ -35,7 +47,7 @@ public  class Transaction {
         this.titre = titre;
         this.id_freq = id_freq;
         this.montant = montant;
-        Type = type;
+        this.Type = type;
         this.quotedep = quotedep;
         this.quoterev = quoterev;
         this.catrev = catrev;
@@ -50,7 +62,7 @@ public  class Transaction {
         this.titre = titre;
         this.id_freq = id_freq;
         this.montant = montant;
-        Type = type;
+        this.Type = type;
         this.quotedep = quotedep;
         this.quoterev = quoterev;
         this.catrev = catrev;
@@ -64,8 +76,7 @@ public  class Transaction {
         this.titre = titre;
         this.id_freq = id_freq;
         this.montant = montant;
-        Type = type;
-
+        this.Type = type;
         this.quoterev = quoterev;
         this.catrev = catrev;
 
@@ -128,7 +139,11 @@ public  class Transaction {
     }
 
     public Frequence getId_freq() {
-        return id_freq;
+        if (id_freq==null) {
+            Frequence F=new Frequence();
+            return F;
+        }
+        else {return id_freq;}
     }
 
     public void setId_freq(Frequence id_freq) {

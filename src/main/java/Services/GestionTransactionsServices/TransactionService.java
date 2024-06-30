@@ -95,7 +95,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
                User u = new User();
                 u=u.getUserbyid((res.getInt("id_user")));
                 Frequence f = new Frequence();
-                f=f.getFrequenceById((res.getInt("type")));
+                f=f.getFrequenceById((res.getInt("id_freq")));
                 Transaction t =new Transaction();
                 t.setId_trans(res.getInt("id_trans"));
                 t.setTitre(res.getString("titre"));
