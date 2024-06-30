@@ -15,14 +15,14 @@
    <children>
       <Pane layoutX="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="600.0">
          <children>
-            <Pane layoutX="-10.0" layoutY="-15.0" prefHeight="416.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
+            <Pane layoutX="-11.0" layoutY="-3.0" prefHeight="416.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
                <children>
                   <Text fill="WHITE" layoutX="16.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Objectif">
                      <font>
                         <Font name="System Bold Italic" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="25.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
+                  <Text fill="WHITE" layoutX="25.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder" wrappingWidth="149.7980194091797" />
                </children>
             </Pane>
             <VBox layoutX="184.0" layoutY="113.0" prefHeight="273.0" prefWidth="409.0">
@@ -30,7 +30,7 @@
                   <TableView fx:id="tableViewObjectifs" prefHeight="276.0" prefWidth="400.0">
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="66.0" text="Id" />
-                        <TableColumn fx:id="colTitre" prefWidth="348.0" text="Titre" />
+                        <TableColumn fx:id="colcatobj" prefWidth="348.0" text="Titre" />
                         <TableColumn fx:id="colMontant" prefWidth="100.0" text="Montant" />
                         <TableColumn fx:id="colEcheance" prefWidth="100.0" text="Échéance" />
                         <TableColumn fx:id="colMois" prefWidth="66.0" text="Mois" />

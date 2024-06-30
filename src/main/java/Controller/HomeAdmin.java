@@ -54,10 +54,10 @@ public class HomeAdmin {
 
 
 
-    private void setupTable() {
-        colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-
-    }
+//    private void setupTable() {
+//        colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+//
+//    }
 //    private void loadData() {
 //        List<Catobj> catobjList = CatobjService.getAll();
 //        ObservableList<Catobj> catobjList = FXCollections.observableArrayList(catobjList);

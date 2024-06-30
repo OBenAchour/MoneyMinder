@@ -169,8 +169,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
     }
 
 
-    // Cette méthode calculerEcheance() est spécifique à vos besoins métier
-    // Elle n'est pas requise par l'interface InterfaceMoneyMinder
+
     public void calculerEcheance() {
         List<Objectif> objectifs = getAll();
         for (Objectif objectif : objectifs) {
