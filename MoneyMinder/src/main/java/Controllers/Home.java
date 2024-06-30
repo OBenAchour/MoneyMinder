@@ -1,5 +1,6 @@
 package Controllers;
 
+import Utils.RestClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import java.util.ResourceBundle;
 import java.io.IOException;
 
 public class Home extends Application {
+    private RestClient restClient = new RestClient();
     @FXML
     private ResourceBundle resources;
 
@@ -27,6 +29,7 @@ public class Home extends Application {
     @FXML
     void initialize() {
         assert btnFinancement != null : "fx:id=\"btnFinancement\" was not injected: check your FXML file 'Home.fxml'.";
+        restClient.runJob();
 
     }
 

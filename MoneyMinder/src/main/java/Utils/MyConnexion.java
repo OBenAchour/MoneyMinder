@@ -7,6 +7,8 @@ import java.sql.SQLException;
 public class MyConnexion {
     //DB
     final String URL = "jdbc:mysql://localhost:3306/moneyminderdb";
+
+
     final String USR = "root";
     final String PWD = "";
 
@@ -28,7 +30,7 @@ public class MyConnexion {
         return cnx;
     }
 
-    public static MyConnexion getInstance() {
+    public static synchronized MyConnexion getInstance() {
         if(instance == null)
             instance = new MyConnexion();
         return instance;

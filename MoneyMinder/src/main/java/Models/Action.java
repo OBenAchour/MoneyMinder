@@ -135,4 +135,22 @@ public class Action {
     public void setQuantite_echange(float quantite_echange) {
         this.quantite_echange = quantite_echange;
     }
+
+    @Override
+    public String toString() {
+        return "Action{" +
+                "id_action=" + id_action +
+                ", nom='" + nom + '\'' +
+                ", cours=" + cours +
+                ", prix_achat=" + prix_achat +
+                ", prix_vente=" + prix_vente +
+                ", quantite=" + quantite +
+                ", ouverture=" + ouverture +
+                ", cloture=" + cloture +
+                ", prix_haut=" + prix_haut +
+                ", prix_bas=" + prix_bas +
+                ", variation=" + variation +
+                ", quantite_echange=" + quantite_echange +
+                '}';
+    }
 }
