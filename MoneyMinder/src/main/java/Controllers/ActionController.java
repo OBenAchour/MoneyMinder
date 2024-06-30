@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 
@@ -84,8 +83,7 @@ public class ActionController implements Initializable {
 
     private ActionService actionService = new ActionService();
 
-    @FXML
-    private LineChart<?, ?> lineChart;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
