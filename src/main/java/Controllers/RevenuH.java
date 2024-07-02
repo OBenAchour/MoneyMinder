@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Models.Transaction;
+import Models.Transactiontype;
+import Services.GestionTransactionsServices.CatdepService;
 import Services.GestionTransactionsServices.QuotedepService;
 import Services.GestionTransactionsServices.TransactionService;
+import Services.GestionTransactionsServices.TransactionTypeService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,7 +50,7 @@ public class RevenuH {
     private TableColumn<Transaction, Float> Montant;
 
     @FXML
-    private TableView<Models.Transaction> Table;
+    public TableView<Models.Transaction> Table;
 
     @FXML
     private TableColumn<Models.Transaction, String> Titre;
@@ -77,7 +83,7 @@ public class RevenuH {
         delete_revenu.setOnAction(event -> Delete_revenu());
         update_revenu.setOnAction(event -> update_revenu());
         TransactionService ts = new TransactionService();
-        List<Models.Transaction> Transactions = ts.getAll();
+        List<Models.Transaction> Transactions = ts.getbyfilter("where type=2");
         Tdata.clear();
         Tdata.addAll(Transactions);
         Titre.setCellValueFactory(new PropertyValueFactory<Transaction, String>("titre"));
@@ -92,28 +98,49 @@ public class RevenuH {
     }
 
     private void update_revenu() {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Home.fxml"));
+        Transaction T = Table.getSelectionModel().getSelectedItem();
+        if (T == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Sélectionnez une ligne à modifier !");
+            alert.show();
+            return;
+        }
+
         try {
-            Parent root=loader.load();
-            Stage stage=(Stage)To_Home.getScene().getWindow();
-            Scene scene=new Scene(root);
+            // Get the controller of UpdaterevenuH
+
+            UpdaterevenuH UR = new UpdaterevenuH();//loader.getController();
+            UR.setVT(T);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdaterevenuH.fxml"));
+            loader.setController(UR);
+            Parent root = loader.load();
+
+
+            Stage stage = (Stage) update_revenu.getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void Delete_revenu() {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Home.fxml"));
-        try {
-            Parent root=loader.load();
-            Stage stage=(Stage)To_Home.getScene().getWindow();
-            Scene scene=new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Transaction T=Table.getSelectionModel().getSelectedItem();
+        TransactionService TS = new TransactionService();
+        if (T == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            TS.delete(T);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Revenu supprimer avec succées !");
+            alert.show();
+            initialize();
         }
     }
 

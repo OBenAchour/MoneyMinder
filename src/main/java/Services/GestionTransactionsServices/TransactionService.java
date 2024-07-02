@@ -51,7 +51,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
 
     @Override
     public void update(Transaction transaction) {
-        String req ="UPDATE `transactions` SET `titre`=?,`montant`=?,`mois`=?,`annee`=?,`commentaire`=?,`id_user`=?,`id_freq`=?,`type`=?,`id_quote_dep`=?,`id_quote_rev`=?,`id_cat_depense`=?,`id_cat_revenu`=? WHERE 'id_trans' = ?";
+        String req = "UPDATE `transactions` SET `titre`=?, montant=?, mois=?, annee=?, `commentaire`=?, id_user=?, id_freq=?, type=?, id_quote_dep=?, id_quote_rev=?, id_cat_depense=?, id_cat_revenu=? WHERE id_trans=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, transaction.getTitre());
@@ -128,19 +128,19 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
             Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()){
-                Catrev cr=null;
+                Catrev cr=new Catrev();
                 cr=cr.getCatrevbyid(res.getInt("id_cat_revenu"));
-                CatDep cd=null;
+                CatDep cd=new CatDep();
                 cd=cd.getCatDepById(res.getInt("id_cat_depense"));
-                Quoterev qr=null;
+                Quoterev qr=new Quoterev();
                 qr=qr.getQuoteRevbyid(res.getInt("id_quote_rev"));
-                Quotedep qd =null;
+                Quotedep qd =new Quotedep();
                 qd=qd.getQuotedepById(res.getInt("id_quote_dep"));
-                Transactiontype tt=null;
-                tt=tt.gettypebyid(res.getInt("idfreq"));
-                User u = null;
+                Transactiontype tt=new Transactiontype();
+                tt=tt.gettypebyid(res.getInt("type"));
+                User u = new User();
                 u=u.getUserbyid((res.getInt("id_user")));
-                Frequence f = null;
+                Frequence f = new Frequence();
                 f=f.getFrequenceById((res.getInt("id_freq")));
                 Transaction t =new Transaction();
                 t.setId_trans(res.getInt("id_trans"));
