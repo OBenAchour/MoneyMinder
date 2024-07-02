@@ -2,6 +2,7 @@ package Controller;
 
 import Models.Catobj;
 import Models.Objectif;
+import Services.ObjectifService;
 import Utils.Myconnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +39,9 @@ public class ModifierType {
 
     @FXML
     private TextField typeTextField;
+
+    //private Catobj catobjser = new ObjectifService();
+
 
     @FXML
     void initialize() {

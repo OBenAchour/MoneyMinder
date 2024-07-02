@@ -28,8 +28,6 @@
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="268.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID_Cat" />
-            <TextField layoutX="321.0" layoutY="102.0" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="73.0" fitWidth="98.0" layoutX="513.0" layoutY="1.0" opacity="0.52">

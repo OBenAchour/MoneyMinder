@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -65,8 +66,8 @@ public class GestionObjectif implements Initializable {
         loadData();
         btnBack.setOnAction(event -> goBack());
         btnAjouter.setOnAction(event -> ajouterType());
-        btnModifier.setOnAction(event -> modifierObjectif());
-        btnSupprimer.setOnAction(event -> supprimerObjectif());
+        btnModifier.setOnAction(event -> modifierType());
+        btnSupprimer.setOnAction(event -> supprimerType());
         catobjService = new CatobjService();
 
     }
@@ -111,11 +112,11 @@ public class GestionObjectif implements Initializable {
       }
     }
 
-    private void modifierObjectif() {
+    private void modifierType() {
         Catobj selectedCatobj = tableView.getSelectionModel().getSelectedItem();
         if (selectedCatobj != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
                 Parent root = loader.load();
 
                 ModifierType controller = loader.getController();
@@ -123,7 +124,6 @@ public class GestionObjectif implements Initializable {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
-                stage.setTitle("Modifier Objectif");
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -133,8 +133,43 @@ public class GestionObjectif implements Initializable {
         }
     }
 
-    private void supprimerObjectif() {
-        // Ajoutez ici le code pour supprimer un objectif
+
+    private void handleModifierButton(ActionEvent event) {
+        Catobj selectedCatobj = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCatobj != null) {
+            openModificationForm(selectedCatobj);
+        }
+    }
+
+
+    private void openModificationForm(Catobj catobj) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
+            Parent root = loader.load();
+
+            ModifierType controller = loader.getController();
+            controller.setCatobj(catobj);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Modifier Objectif");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+    private void supprimerType() {
+        Catobj selectedCatobj = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCatobj != null) {
+            catobjService.delete(selectedCatobj);
+            tableView.getItems().remove(selectedCatobj);
+        }
     }
 
 
