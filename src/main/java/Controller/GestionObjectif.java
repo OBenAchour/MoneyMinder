@@ -30,6 +30,21 @@ public class GestionObjectif implements Initializable {
     @FXML
     private TableColumn<Catobj, String> colcatobj;
 
+//    @FXML
+//    private TableColumn<Catobj, String> colId;
+//
+//    @FXML
+//    private TableColumn<Catobj, String> colMontant;
+//
+//    @FXML
+//    private TableColumn<Catobj, String> colEcheance;
+//
+//    @FXML
+//    private TableColumn<Catobj, String> colMois;
+
+    @FXML
+    private Button btnBack;
+
     @FXML
     private Button btnAjouter;
 
@@ -39,66 +54,42 @@ public class GestionObjectif implements Initializable {
     @FXML
     private Button btnSupprimer;
 
-    @FXML
-    private Button btnHomeAd;
+    private CatobjService catobjService = new CatobjService();
 
-    private CatobjService catobjService = new CatobjService(); // Create an instance of CatobjService
-
-    private ObservableList<Catobj> catobjList;
+    private ObservableList<Catobj> catobjobservableList;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Initializing GestionObjectif controller");
-        btnAjouter.setOnAction(event -> loadAjouterType());
-        btnModifier.setOnAction(event -> loadModifierType());
-        btnHomeAd.setOnAction(event -> loadGestionObjectif());
         setupTable();
         loadData();
+        btnBack.setOnAction(event -> goBack());
+        btnAjouter.setOnAction(event -> ajouterType());
+        btnModifier.setOnAction(event -> modifierObjectif());
+        btnSupprimer.setOnAction(event -> supprimerObjectif());
         catobjService = new CatobjService();
+
     }
+//    @FXML
+//    public void initialize() {
+//
+//    }
+
     private void setupTable() {
-        colcatobj.setCellValueFactory(new PropertyValueFactory<>("catobj"));
+        colcatobj.setCellValueFactory(new PropertyValueFactory<>("Catobj"));
     }
 
-//    private void loadData() {
-//        System.out.println("Loading data into TableView");
-//        List<Catobj> catobjs = catobjService.getAll();
-//        catobjList = FXCollections.observableArrayList(catobjs);
-//        if (tableView != null) {
-//            tableView.setItems(catobjList);
-//        } else {
-//            System.out.println("tableView is null");
-//        }
-//    }
     private void loadData() {
         List<Catobj> catobjs = catobjService.getAll();
-        ObservableList<Catobj> catobjList = FXCollections.observableArrayList(catobjs);
-        tableView.setItems(catobjList);
+        ObservableList<Catobj> catobjobservableList = FXCollections.observableArrayList(catobjs);
+        tableView.setItems(catobjobservableList);
     }
 
-    private void loadAjouterType() {
+    private void goBack() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterType.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeAdmin.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) btnAjouter.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error loading AjouterType.fxml: " + e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Unexpected error: " + e.getMessage());
-        }
-    }
-
-    private void loadModifierType() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnModifier.getScene().getWindow();
+            Stage stage = (Stage) btnBack.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -107,26 +98,44 @@ public class GestionObjectif implements Initializable {
         }
     }
 
-    private void loadGestionObjectif() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionObjectif.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnHomeAd.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  private void ajouterType() {
+      try {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterType.fxml"));
+          Parent root = loader.load();
+          Stage stage = (Stage) btnAjouter.getScene().getWindow();
+          Scene scene = new Scene(root);
+          stage.setScene(scene);
+          stage.show();
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
     }
 
-
-
-    private void deleteCatégorie() {
+    private void modifierObjectif() {
         Catobj selectedCatobj = tableView.getSelectionModel().getSelectedItem();
         if (selectedCatobj != null) {
-            catobjService.delete(selectedCatobj);
-            tableView.getItems().remove(selectedCatobj);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
+                Parent root = loader.load();
+
+                ModifierType controller = loader.getController();
+                controller.setCatobj(selectedCatobj);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Modifier Objectif");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun objectif sélectionné pour modification.");
         }
     }
+
+    private void supprimerObjectif() {
+        // Ajoutez ici le code pour supprimer un objectif
+    }
+
+
 }

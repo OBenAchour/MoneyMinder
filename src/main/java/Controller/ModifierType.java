@@ -1,5 +1,7 @@
 package Controller;
 
+import Models.Catobj;
+import Models.Objectif;
 import Utils.Myconnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,9 @@ import java.util.logging.Logger;
 
 public class ModifierType {
 
+
+    @FXML
+    private TextField titreField;
     @FXML
     private Button btnretour;
 
@@ -27,6 +32,8 @@ public class ModifierType {
 
     @FXML
     private Button btnV;
+
+    private Catobj cobj;
 
 
     @FXML
@@ -82,6 +89,15 @@ public class ModifierType {
             System.out.println("Validation avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public void setCatobj(Catobj catobjj) {
+        this.cobj = catobjj;
+        if (catobjj != null) {
+            System.out.println("Objectif à modifier : " + catobjj);  // Debug
+            titreField.setText(catobjj.getCatobj());
+        } else {
+            System.out.println("Erreur : Objectif est null.");  // Debug
         }
     }
 

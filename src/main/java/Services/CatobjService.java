@@ -79,9 +79,9 @@ public class CatobjService implements InterfaceMoneyMinder<Catobj> {
     @Override
     public List<Catobj> getAll() {
             List<Catobj> catobjs = new ArrayList<>();
-            String query = "SELECT * FROM `categorieobj`";
-            try (PreparedStatement pstmt = connection.prepareStatement(query);
-                 ResultSet resultSet = pstmt.executeQuery()) {
+            try{ String query = "SELECT * FROM `categorieobj`";
+                PreparedStatement pstmt = connection.prepareStatement(query);
+                 ResultSet resultSet = pstmt.executeQuery() ;
                 while (resultSet.next()) {
                     Catobj catobj = new Catobj();
                     catobj.setId_obj(resultSet.getInt("idObj"));
