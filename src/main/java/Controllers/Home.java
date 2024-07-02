@@ -31,10 +31,21 @@ public class Home{
     void initialize() {
         to_depense.setOnAction(event ->to_depense());
         to_revenu.setOnAction(event ->to_revenu());
+        to_depense.setOnAction(event ->to_depense());
 
     }
 
     private void to_depense() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/DepenseH.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_depense.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void to_revenu() {
