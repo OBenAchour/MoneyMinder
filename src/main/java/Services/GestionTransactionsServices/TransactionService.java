@@ -14,7 +14,7 @@ public class TransactionService implements InterfaceMoneyMinder <Transaction> {
     Connection cnx= Myconnection.getInstance().getCnx();
     @Override
     public void add(Transaction transaction) {
-        String req = "INSERT INTO `transactions`(`titre`, `montant`, `mois`, `annee`, `commentaire`, `id_user`, `id_freq`, `type`, `id_quote_dep`, `id_quote_rev`, `id_cat_depense`, `id_cat_revenu`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO `transactions`(`titre`, montant, mois, annee, `commentaire`, id_user, id_freq, `type`, id_quote_dep, id_quote_rev, id_cat_depense, id_cat_revenu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1,transaction.getTitre());
