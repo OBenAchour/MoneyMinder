@@ -114,23 +114,23 @@ public class Serviceassets implements InterfaceMoneyMinder<Assets> {
 
     }
 
-    // Méthode pour récupérer la catégorie d'actifs par son identifiant
-    private CatAssets getCatAssetsById(int id) {
-        String query = "SELECT * FROM categorieassets WHERE id_cat = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return new CatAssets(
-                        rs.getInt("id_cat"),
-                        rs.getString("categ")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    // Méthode pour récupérer la catégorie d'actifs par son identifiant
+//    private CatAssets getCatAssetsById(int id) {
+//        String query = "SELECT * FROM categorieassets WHERE id_cat = ?";
+//        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+//            pstmt.setInt(1, id);
+//            ResultSet rs = pstmt.executeQuery();
+//            if (rs.next()) {
+//                return new CatAssets(
+//                        rs.getInt("id_cat"),
+//                        rs.getString("categ")
+//                );
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     // Business method: Calculate the total value of assets for a given user
     public float calculateTotalValueByUser(int userId) {
@@ -159,7 +159,3 @@ public class Serviceassets implements InterfaceMoneyMinder<Assets> {
         update(asset);
     }
 }
-
-
-
-

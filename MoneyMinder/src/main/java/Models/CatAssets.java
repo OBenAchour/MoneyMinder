@@ -7,10 +7,6 @@ public class CatAssets {
     public CatAssets() {
     }
 
-    public CatAssets(String categ) {
-        this.categ = categ;
-    }
-
     public CatAssets(int id_cat, String categ) {
         this.id_cat = id_cat;
         this.categ = categ;
@@ -29,10 +25,6 @@ public class CatAssets {
 
     public String getCateg() {
         return categ;
-    }
-
-    public void setCateg(String categ) {
-        this.categ = categ;
     }
 
     @Override

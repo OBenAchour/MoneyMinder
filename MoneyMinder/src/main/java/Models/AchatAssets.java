@@ -2,19 +2,13 @@ package Models;
 
 import java.util.Date;
 
-public class AchatAssets {
+public class AchatAssets extends Assets {
     private int id_achat;
-    private Assets asset;
-    private User user;
+    private String titre;
+    private float prix;
     private Date date_achat;
 
     public AchatAssets() {
-    }
-
-    public AchatAssets(Assets asset, User user, Date date_achat) {
-        this.asset = asset;
-        this.user = user;
-        this.date_achat = date_achat;
     }
 
     public int getId_achat() {
@@ -25,20 +19,20 @@ public class AchatAssets {
         this.id_achat = id_achat;
     }
 
-    public Assets getAsset() {
-        return asset;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setAsset(Assets asset) {
-        this.asset = asset;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
-    public User getUser() {
-        return user;
+    public float getPrix() {
+        return prix;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPrix(float prix) {
+        this.prix = prix;
     }
 
     public Date getDate_achat() {
@@ -53,8 +47,8 @@ public class AchatAssets {
     public String toString() {
         return "AchatAssets{" +
                 "id_achat=" + id_achat +
-                ", asset=" + asset +
-                ", user=" + user +
+                ", titre='" + titre + '\'' +
+                ", prix=" + prix +
                 ", date_achat=" + date_achat +
                 '}';
     }

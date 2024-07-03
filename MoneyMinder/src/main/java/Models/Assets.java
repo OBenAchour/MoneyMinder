@@ -40,7 +40,7 @@ public class Assets {
         this.titre = titre;
     }
 
-    public Float getPrix() {
+    public float getPrix() {
         return prix;
     }
 
@@ -95,4 +95,20 @@ public class Assets {
     public int hashCode() {
         return Objects.hash(id_assets, titre, prix, id_catassets, id_user, statut);  // Ajout du champ statut dans hashCode
     }
+
+    public void setId_categ(int idCateg) {
+    }
+
+    public void setId_Assets(int idAssets) {
+    }
+
+    public int getId_Assets() {
+        return id_assets;
+    }
+
+    public int getId_categ() {
+        return id_catassets.getId_cat();
+    }
+
+
 }

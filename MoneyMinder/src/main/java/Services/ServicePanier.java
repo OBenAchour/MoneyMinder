@@ -1,6 +1,5 @@
 package Services;
 
-import Models.AchatAssets;
 import Models.Panier;
 import Utils.MyConnexion;
 
@@ -11,23 +10,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceAchatAssets {
-    private static ServiceAchatAssets instance;
+public class ServicePanier {
+    private static ServicePanier instance;
     private Connection connection;
 
-    private ServiceAchatAssets() {
+    private ServicePanier() {
         connection = MyConnexion.getInstance().getCnx();
     }
 
-    public static ServiceAchatAssets getInstance() {
+    public static ServicePanier getInstance() {
         if (instance == null) {
-            instance = new ServiceAchatAssets();
+            instance = new ServicePanier();
         }
         return instance;
     }
 
     public void add(Panier asset) {
-        String query = "INSERT INTO achat (IdAsset, Titre, Prix, DateAchat) VALUES (?, ?, ?, CURRENT_DATE)";
+        String query = "INSERT INTO panier (IdAsset, Titre, Prix) VALUES (?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, asset.getIdAssets());
             pstmt.setString(2, asset.getTitre());
@@ -37,23 +36,32 @@ public class ServiceAchatAssets {
             e.printStackTrace();
         }
     }
-    public List<AchatAssets> getAll() {
-        List<AchatAssets> achatList = new ArrayList<>();
-        String query = "SELECT * FROM achat";
+
+    public void remove(Panier asset) {
+        String query = "DELETE FROM panier WHERE IdAsset = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, asset.getIdAssets());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Panier> getAll() {
+        List<Panier> panierList = new ArrayList<>();
+        String query = "SELECT * FROM panier";
         try (PreparedStatement pstmt = connection.prepareStatement(query);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                AchatAssets achat = new AchatAssets();
-                achat.setId_achat(rs.getInt("IdAsset"));
-                achat.setTitre(rs.getString("Titre"));
-                achat.setPrix(rs.getFloat("Prix"));
-                achat.setDate_achat(rs.getDate("DateAchat"));
-                achatList.add(achat);
+                Panier panier = new Panier();
+                panier.setIdAssets(rs.getInt("IdAsset"));
+                panier.setTitre(rs.getString("Titre"));
+                panier.setPrix(rs.getFloat("Prix"));
+                panierList.add(panier);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return achatList;
+        return panierList;
     }
-
 }
