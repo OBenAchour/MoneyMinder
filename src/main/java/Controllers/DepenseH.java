@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -70,6 +71,8 @@ public class DepenseH {
     @FXML
     void initialize() {
         To_Home.setOnAction(event -> To_Home());
+        add_depense.setOnAction(event -> add_depense());
+        delete_depense.setOnAction(event -> delete_depense());
         TransactionService ts = new TransactionService();
         List<Transaction> Transactions = ts.getbyfilter("where type=1");
         Tdata.clear();
@@ -83,6 +86,36 @@ public class DepenseH {
         Commentaire.setCellValueFactory(new PropertyValueFactory<Transaction,String>("commentaire"));
         Table.setItems(Tdata);
 
+    }
+
+    private void delete_depense() {
+        Transaction T=Table.getSelectionModel().getSelectedItem();
+        TransactionService TS = new TransactionService();
+        if (T == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("aucune ligne n'est selectionner !");
+            alert.show();
+        }
+        else{
+            TS.delete(T);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Revenu supprimer avec succées !");
+            alert.show();
+            initialize();
+        }
+    }
+
+    private void add_depense() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AddDepenseH.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)add_depense.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void To_Home() {
