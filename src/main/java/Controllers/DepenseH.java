@@ -70,6 +70,7 @@ public class DepenseH {
 
     @FXML
     void initialize() {
+        update_depense.setOnAction(event -> update_depense());
         To_Home.setOnAction(event -> To_Home());
         add_depense.setOnAction(event -> add_depense());
         delete_depense.setOnAction(event -> delete_depense());
@@ -86,6 +87,36 @@ public class DepenseH {
         Commentaire.setCellValueFactory(new PropertyValueFactory<Transaction,String>("commentaire"));
         Table.setItems(Tdata);
 
+    }
+
+    private void update_depense() {
+        Transaction T = Table.getSelectionModel().getSelectedItem();
+        if (T == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Sélectionnez une ligne à modifier !");
+            alert.show();
+            return;
+        }
+
+        try {
+            // Get the controller of UpdaterevenuH
+
+            UpdatedepenseH UD = new UpdatedepenseH();//loader.getController();
+            UD.setVT(T);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdatedepenseH.fxml"));
+            loader.setController(UD);
+            Parent root = loader.load();
+
+
+            Stage stage = (Stage) update_depense.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void delete_depense() {
