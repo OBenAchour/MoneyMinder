@@ -2,7 +2,14 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import Models.Catobj;
+import Services.CatobjService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,14 +20,17 @@ import javafx.stage.Stage;
 
 public class AjouterType {
 
+
+    @FXML
+    private TextField TF_cat;
+
+
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
 
-    @FXML
-    private TextField TF_cat;
 
     @FXML
     private Button btnHomeAd;
@@ -35,7 +45,7 @@ public class AjouterType {
     void initialize() {
         btnretour.setOnAction(event -> RetourAjout());
         btnHomeAd.setOnAction(event -> retHomeAdmin());
-        btnV.setOnAction(event -> ValiderAjout());
+        btnV.setOnAction(event -> validerAjout());
     }
 
 
@@ -69,16 +79,26 @@ public class AjouterType {
         }
     }
 
-    private void ValiderAjout() {
+
+    private void validerAjout() {
+        String titre= TF_cat.getText();
+        System.out.println(titre);
+        Catobj cat = new Catobj();
+        cat.setCatobj(titre);
+        CatobjService catser = new CatobjService();
+        catser.add(cat);
+        navigateTo("/GestionObjectif.fxml");
+
+    }
+
+    private void navigateTo(String fxmlPath) {
         try {
-            System.out.println("Chargement de l'interface modifier Objectif...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionObjectif.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
             Stage stage = (Stage) btnV.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            System.out.println("Validation avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
         }

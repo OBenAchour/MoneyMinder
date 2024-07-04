@@ -85,17 +85,14 @@ public class FormulaireModif {
             return;
         }
 
-        // Récupérer les nouvelles valeurs des champs de texte
         objectif.setTitre(titreField.getText());
         objectif.setMontant_globale(Double.parseDouble(montantGlobaleField.getText()));
-        //objectif.setEcheance(Double.parseDouble(echeanceField.getText())); // Assuming echeance is un double
+
         objectif.setMois(Integer.parseInt(moisField.getText()));
         objectif.setCommentaire(commentaireField.getText());
 
-        // Appeler le service pour mettre à jour l'objectif
         objectifService.update(objectif);
 
-        // Afficher un message de confirmation ou faire autre chose après la mise à jour
         System.out.println("Objectif mis à jour avec succès !");
 
         // Fermer le formulaire de modification

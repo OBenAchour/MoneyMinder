@@ -57,7 +57,6 @@ public class Formulaire {
         String mois = moisTextField.getText();
         String commentaire = commentaireTextField.getText();
 
-        // Connexion à la base de données et insertion des données
         String url = "jdbc:mysql://localhost:3306/moneyminderdb";
         String user = "root";
         String password = "";
