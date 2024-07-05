@@ -57,21 +57,25 @@ public class ServiceCatAssets implements InterfaceMoneyMinder<CatAssets> {
         }
     }
 
-    @Override
-    public List<CatAssets> getAll() {
-        List<CatAssets> catAssetsList = new ArrayList<>();
-        String query = "SELECT * FROM categorieassets";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                CatAssets catAssets = new CatAssets(rs.getInt("id_cat"), rs.getString("categ"));
-                catAssetsList.add(catAssets);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+//
+@Override
+public List<CatAssets> getAll() {
+    List<CatAssets> catAssetsList = new ArrayList<>();
+    String query = "SELECT * FROM categorieassets";
+    try (Statement stmt = connection.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+        while (rs.next()) {
+            CatAssets catAssets = new CatAssets(rs.getInt("id_categ"), rs.getString("categ"));
+            catAssetsList.add(catAssets);
         }
-        return catAssetsList;
+        // Print the fetched categories for debugging
+        System.out.println("Fetched Categories from DB: " + catAssetsList);
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return catAssetsList;
+}
+
 
     @Override
     public List<CatAssets> getbyfilter(String filterQuery) {
@@ -92,12 +96,12 @@ public class ServiceCatAssets implements InterfaceMoneyMinder<CatAssets> {
     @Override
     public List<CatAssets> getbyid(int id) {
         List<CatAssets> catAssetsList = new ArrayList<>();
-        String query = "SELECT * FROM categorieassets WHERE id_cat = ?";
+        String query = "SELECT * FROM categorieassets WHERE id_categ = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                CatAssets catAssets = new CatAssets(rs.getInt("id_cat"), rs.getString("categ"));
+                CatAssets catAssets = new CatAssets(rs.getInt("id_categ"), rs.getString("categ"));
                 catAssetsList.add(catAssets);
             }
         } catch (SQLException e) {

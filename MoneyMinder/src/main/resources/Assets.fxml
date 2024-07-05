@@ -41,5 +41,6 @@
         <Button fx:id="btnAjouterPanier" layoutX="200.0" layoutY="370.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter au panier" textFill="#f4f1f1" />
         <Button fx:id="btnPanier" layoutX="483.0" layoutY="103.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text=" Panier" textFill="#f4f1f1" />
         <Button fx:id="btnAchat" layoutX="483.0" layoutY="142.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Achat" textFill="#f4f1f1" />
+
     </children>
 </AnchorPane>

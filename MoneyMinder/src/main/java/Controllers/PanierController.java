@@ -43,10 +43,11 @@ public class PanierController {
     @FXML
     private Button btnValidate;
 
+    @FXML
+    private Button btnAfficherDetails;
 
     private final ServicePanier panierService = ServicePanier.getInstance();
-   private final ServiceAchatAssets achatService = ServiceAchatAssets.getInstance();
-
+    private final ServiceAchatAssets achatService = ServiceAchatAssets.getInstance();
 
     @FXML
     public void initialize() {
@@ -54,6 +55,8 @@ public class PanierController {
         btnsupp.setOnAction(event -> supprimerDuPanier());
         btnValidate.setOnAction(event -> validerAchat());
         btnRetour.setOnAction(actionEvent -> btnretour());
+       // btnAfficherDetails.setOnAction(this::afficherDetails);
+
         setupTable();
         loadData();
     }
@@ -105,9 +108,14 @@ public class PanierController {
     private void validerAchat() {
         Panier selectedAsset = panierTableView.getSelectionModel().getSelectedItem();
         if (selectedAsset != null) {
-            achatService.add(selectedAsset); // Add to "Achat" table
-            panierService.remove(selectedAsset); // Remove from "Panier"
-            loadData();
+            // Afficher les détails de l'asset avant de valider l'achat
+            afficherDetails(selectedAsset);
+
+            // Logique de validation d'achat
+            achatService.add(selectedAsset); // Ajouter à la table "Achat"
+            panierService.remove(selectedAsset); // Retirer du panier
+            loadData(); // Mettre à jour la table après l'achat
+
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText(null);
@@ -119,6 +127,26 @@ public class PanierController {
             alert.setHeaderText(null);
             alert.setContentText("Veuillez sélectionner un asset à valider.");
             alert.showAndWait();
+        }
+    }
+
+    private void afficherDetails(Panier selectedAsset) {
+        try {
+            // Charger la vue des détails
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AssetDetails.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir le contrôleur et passer l'asset sélectionné
+            AssetDetailsController controller = loader.getController();
+            controller.setAssetDetails(selectedAsset);
+
+            // Afficher les détails dans une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setTitle("Détails de l'Asset");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     @FXML
@@ -134,5 +162,4 @@ public class PanierController {
             e.printStackTrace();
         }
     }
-
 }

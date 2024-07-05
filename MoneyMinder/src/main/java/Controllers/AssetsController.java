@@ -3,6 +3,7 @@ package Controllers;
 import Models.Assets;
 import Models.CatAssets;
 import Models.Panier;
+import Services.ServiceAchatAssets;
 import Services.ServiceCatAssets;
 import Services.Serviceassets;
 import Services.ServicePanier;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AssetsController {
 
@@ -57,12 +59,7 @@ public class AssetsController {
     @FXML
     private ComboBox<String> listecateg;
 
-    ServiceCatAssets sc = new ServiceCatAssets();
-    List<CatAssets> catAssets = sc.getAll();
-    //public ObservableList<String> cdata = FXCollections.observableArrayList("formation");
-
-
-    public ObservableList<String> cdata = FXCollections.observableArrayList(catAssets.stream().map(f -> f.getCateg()).toList());
+    private ServiceCatAssets sc = new ServiceCatAssets();
 
     @FXML
     public void initialize() {
@@ -70,10 +67,38 @@ public class AssetsController {
         btnPanier.setOnAction(event -> loadPanier());
         btnAchat.setOnAction(event -> loadAchat());
         btnAjouterPanier.setOnAction(event -> ajouterAuPanier());
-        listecateg.setItems(cdata);
+
+        // Populate the ComboBox with category titles
+        populateCategoryComboBox();
+
+        // Add listener to ComboBox for category selection
+        listecateg.setOnAction(event -> filterAssetsByCategory());
 
         setupTable();
         loadData();
+    }
+
+    private void populateCategoryComboBox() {
+        // Fetch categories
+        List<CatAssets> catAssets = sc.getAll();
+
+        // Print the fetched categories for debugging
+        System.out.println("Fetched Categories: " + catAssets);
+
+        // Extract titles
+        List<String> catTitles = catAssets.stream()
+                .map(CatAssets::getCateg)
+                .collect(Collectors.toList());
+
+        // Print the extracted titles for debugging
+        System.out.println("Category Titles: " + catTitles);
+
+        // Set items to ComboBox
+        ObservableList<String> cdata = FXCollections.observableArrayList(catTitles);
+        listecateg.setItems(cdata);
+
+        // Print statement to confirm setting items
+        System.out.println("ComboBox Items Set: " + cdata);
     }
 
     private void loadHome() {
@@ -119,7 +144,7 @@ public class AssetsController {
         colidAssets.setCellValueFactory(new PropertyValueFactory<>("id_assets"));
         colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        colcateg.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
+        colcateg.setCellValueFactory(new PropertyValueFactory<>("id_categ"));
 
         AssetsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
@@ -153,4 +178,19 @@ public class AssetsController {
         }
     }
 
+    private void filterAssetsByCategory() {
+        String selectedCategory = listecateg.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            List<Assets> filteredAssets = AS.getAll().stream()
+                    .filter(asset -> {
+                        CatAssets catAsset = sc.getbyid(asset.getId_categ()).get(0);
+                        return catAsset.getCateg().equals(selectedCategory);
+                    })
+                    .collect(Collectors.toList());
+
+            // Update the table with filtered assets
+            AssetsList = FXCollections.observableArrayList(filteredAssets);
+            AssetsTable.setItems(AssetsList);
+        }
+    }
 }
