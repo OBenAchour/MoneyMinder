@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssetsController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssetsController">
     <children>
-        <Pane layoutY="-1.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
+        <Pane layoutY="0.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
             <children>
                 <Text fill="WHITE" layoutX="18.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
                 <Text fill="WHITE" layoutX="54.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assets ">
@@ -23,14 +23,14 @@
                 </Text>
             </children>
         </Pane>
-        <ComboBox fx:id="listecateg" editable="true" layoutX="186.0" layoutY="156.0" prefHeight="25.0" prefWidth="98.0" promptText="Categories" />
-        <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="533.0" layoutY="1.0" opacity="0.52">
+        <ComboBox fx:id="listecateg" editable="true" layoutX="186.0" layoutY="156.0" prefHeight="25.0" prefWidth="98.0" promptText="Categories" AnchorPane.topAnchor="156.0" AnchorPane.leftAnchor="186.0"/>
+        <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="533.0" layoutY="1.0" opacity="0.52" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <image>
                 <Image url="@images/Logo_Money_Minder.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="btnHome" layoutX="199.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home" textFill="#f4f1f1" />
-        <TableView fx:id="AssetsTable" layoutX="283.0" layoutY="197.0" prefHeight="162.0" prefWidth="307.0">
+        <Button fx:id="btnHome" layoutX="199.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home" textFill="#f4f1f1" AnchorPane.topAnchor="24.0" AnchorPane.leftAnchor="199.0"/>
+        <TableView fx:id="AssetsTable" layoutX="283.0" layoutY="197.0" prefHeight="162.0" prefWidth="307.0" AnchorPane.topAnchor="197.0" AnchorPane.leftAnchor="283.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="50.0">
             <columns>
                 <TableColumn fx:id="colidAssets" prefWidth="60.0" text="id_Assets" />
                 <TableColumn fx:id="colTitre" prefWidth="120.0" text="Titre" />
@@ -38,9 +38,8 @@
                 <TableColumn fx:id="colcateg" prefWidth="120.0" text="id_categ" />
             </columns>
         </TableView>
-        <Button fx:id="btnAjouterPanier" layoutX="200.0" layoutY="370.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter au panier" textFill="#f4f1f1" />
-        <Button fx:id="btnPanier" layoutX="483.0" layoutY="103.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text=" Panier" textFill="#f4f1f1" />
-        <Button fx:id="btnAchat" layoutX="483.0" layoutY="142.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Achat" textFill="#f4f1f1" />
-
+        <Button fx:id="btnAjouterPanier" layoutX="200.0" layoutY="370.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Ajouter au panier" textFill="#f4f1f1" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0"/>
+        <Button fx:id="btnPanier" layoutX="483.0" layoutY="103.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text=" Panier" textFill="#f4f1f1" AnchorPane.topAnchor="103.0" AnchorPane.rightAnchor="10.0"/>
+        <Button fx:id="btnAchat" layoutX="483.0" layoutY="142.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Achat" textFill="#f4f1f1" AnchorPane.topAnchor="142.0" AnchorPane.rightAnchor="10.0"/>
     </children>
 </AnchorPane>

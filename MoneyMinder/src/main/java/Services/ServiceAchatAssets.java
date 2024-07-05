@@ -68,6 +68,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ServiceAchatAssets {
@@ -135,5 +136,24 @@ public class ServiceAchatAssets {
             e.printStackTrace();
         }
         return assetsList;
+    }
+    public float getTotalMonthPurchase() {
+        float totalMonthPurchase = 0;
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1; // Les mois en Java Calendar sont indexés à partir de 0
+
+        String query = "SELECT SUM(Prix) AS TotalMonthPurchase FROM achat WHERE YEAR(DateAchat) = ? AND MONTH(DateAchat) = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, year);
+            pstmt.setInt(2, month);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                totalMonthPurchase = rs.getFloat("TotalMonthPurchase");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalMonthPurchase;
     }
 }

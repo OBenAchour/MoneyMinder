@@ -6,7 +6,7 @@ public class AchatAssets extends Assets {
     private int id_achat;
     private String titre;
     private float prix;
-    private Date date_achat;
+    private Date date_achat; // Propriété date_achat
 
     public AchatAssets() {
     }
@@ -42,6 +42,8 @@ public class AchatAssets extends Assets {
     public void setDate_achat(Date date_achat) {
         this.date_achat = date_achat;
     }
+
+    // Vous pouvez ajouter d'autres méthodes si nécessaire
 
     @Override
     public String toString() {

@@ -6,10 +6,12 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.UUID;
 
 public class AssetDetailsController {
 
@@ -31,11 +33,14 @@ public class AssetDetailsController {
         labelPrix.setText("Prix: " + asset.getPrix());
     }
 
+
     @FXML
     private void telechargerPdf() {
+        String fileName = "AssetDetails_" + UUID.randomUUID().toString() + ".pdf"; // Génère un nom de fichier unique
+
         Document document = new Document();
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("AssetDetails.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(fileName));
             document.open();
             document.add(new Paragraph("Détails de l'Asset"));
             document.add(new Paragraph("ID: " + asset.getIdAssets()));
@@ -43,11 +48,22 @@ public class AssetDetailsController {
             document.add(new Paragraph("Prix: " + asset.getPrix()));
             document.close();
 
-            // Show a success message or perform further actions
-            System.out.println("PDF généré avec succès.");
+            // Afficher une alerte de succès
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setHeaderText(null);
+            alert.setContentText("PDF généré avec succès : " + fileName);
+            alert.showAndWait();
 
         } catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
+
+            // Afficher une alerte d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur s'est produite lors de la génération du PDF.");
+            alert.showAndWait();
         }
     }
 

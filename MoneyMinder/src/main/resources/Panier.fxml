@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PanierController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PanierController">
    <children>
-      <Pane layoutY="-1.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;">
+      <Pane layoutY="-1.0" prefHeight="409.0" prefWidth="182.0" style="-fx-background-color: #004B57;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
             <Text fill="WHITE" layoutX="18.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
             <Text fill="WHITE" layoutX="54.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Panier ">
@@ -20,18 +20,16 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="panierTableView" layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="350.0">
+      <TableView fx:id="panierTableView" layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="350.0" AnchorPane.topAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.bottomAnchor="100.0">
          <columns>
             <TableColumn fx:id="idAsset" prefWidth="50.0" text="ID" />
             <TableColumn fx:id="coloneetitre" prefWidth="150.0" text="Titre" />
             <TableColumn fx:id="clonneprix" prefWidth="150.0" text="Prix" />
          </columns>
       </TableView>
-      <Button fx:id="btnHome" layoutX="199.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home" textFill="#f4f1f1" />
-      <Button fx:id="btnsupp" layoutX="200.0" layoutY="310.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer du panier" textFill="#f4f1f1" />
-      <Button fx:id="btnValidate" layoutX="200.0" layoutY="350.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Valider" textFill="#f4f1f1" />
-<!--      <Button fx:id="btnAfficherDetails" layoutX="454.0" layoutY="352.0" onAction="#afficherDetails" text="Afficher Détails" />-->
-
-      <Button fx:id="btnRetour" layoutX="300.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="#f4f1f1" />
+      <Button fx:id="btnHome" layoutX="199.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home" textFill="#f4f1f1" AnchorPane.topAnchor="24.0" AnchorPane.leftAnchor="199.0"/>
+      <Button fx:id="btnsupp" layoutX="200.0" layoutY="310.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Supprimer du panier" textFill="#f4f1f1" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="200.0"/>
+      <Button fx:id="btnValidate" layoutX="200.0" layoutY="350.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Valider" textFill="#f4f1f1" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="200.0"/>
+      <Button fx:id="btnRetour" layoutX="300.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="#f4f1f1" AnchorPane.topAnchor="24.0" AnchorPane.leftAnchor="300.0"/>
    </children>
 </AnchorPane>

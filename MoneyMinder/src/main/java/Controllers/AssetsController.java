@@ -189,8 +189,7 @@ public class AssetsController {
                     .collect(Collectors.toList());
 
             // Update the table with filtered assets
-            AssetsList = FXCollections.observableArrayList(filteredAssets);
-            AssetsTable.setItems(AssetsList);
+            AssetsList.setAll(filteredAssets); // Use setAll instead of creating a new list
         }
     }
 }

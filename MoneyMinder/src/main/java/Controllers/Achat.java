@@ -26,6 +26,9 @@ public class Achat {
     private TableColumn<AchatAssets, Float> clonneprix;
 
     @FXML
+    private TableColumn<AchatAssets, String> dateAchat; // Nouvelle colonne pour la date d'achat
+
+    @FXML
     private TableView<AchatAssets> achatTableView;
 
     @FXML
@@ -34,12 +37,18 @@ public class Achat {
     @FXML
     private Button btnHome;
 
+    @FXML
+    private TextField totalPriceField;
+    @FXML
+    private TextField totalMonthPurchaseField;
+
     private final ServiceAchatAssets achatService = ServiceAchatAssets.getInstance();
 
     @FXML
     public void initialize() {
         btnHome.setOnAction(event -> loadHome());
         btnRetour.setOnAction(actionEvent -> btnRetour());
+        calculateTotalMonthPurchase();
         setupTable();
         loadData();
     }
@@ -61,13 +70,24 @@ public class Achat {
         idAsset.setCellValueFactory(new PropertyValueFactory<>("id_achat"));
         coloneetitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         clonneprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        dateAchat.setCellValueFactory(new PropertyValueFactory<>("date_achat")); // Associer à la propriété date_achat de AchatAssets
         achatTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     private void loadData() {
         ObservableList<AchatAssets> achatList = FXCollections.observableArrayList(achatService.getAll());
         achatTableView.setItems(achatList);
+        calculateTotalPrice(achatList);
     }
+
+    private void calculateTotalPrice(ObservableList<AchatAssets> achatList) {
+        float totalPrice = 0;
+        for (AchatAssets asset : achatList) {
+            totalPrice += asset.getPrix();
+        }
+        totalPriceField.setText(String.format("Total Price: %.2f", totalPrice));
+    }
+
     @FXML
     void btnRetour() {
         try {
@@ -80,5 +100,10 @@ public class Achat {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void calculateTotalMonthPurchase() {
+        float totalMonthPurchase = achatService.getTotalMonthPurchase(); // Méthode à implémenter dans ServiceAchatAssets
+        totalMonthPurchaseField.setText(String.format("Total Month Purchase: %.2f", totalMonthPurchase));
     }
 }

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
     <children>
-        <SplitPane prefHeight="400.0" prefWidth="613.0">
+        <SplitPane prefHeight="400.0" prefWidth="613.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="622.0" style="-fx-text-fill: #000080;">
                     <children>
@@ -30,7 +30,7 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-        <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="46.0" prefWidth="613.0" style="-fx-background-color: #004B57;">
+        <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="46.0" prefWidth="613.0" style="-fx-background-color: #004B57;" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #004B57; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Mon Compte" textFill="WHITE" />
                 <Text fill="WHITE" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
