@@ -1,0 +1,36 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    -fx-padding: 50 20 50 20;
+}
+
+.image-view {
+    -fx-fit-width: 80;
+    -fx-fit-height: 80;
+}
+
+.text-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+}
+
+.text-welcome {
+    -fx-font-size: 16px;
+    -fx-fill: #34495e;
+    -fx-text-alignment: center;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200;
+}
+
+.button-register {
+    -fx-background-color: #3498db;
+}
+
+.button-login {
+    -fx-background-color: #2ecc71;
+}
