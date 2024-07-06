@@ -98,10 +98,10 @@ public class ModifierType {
     public void setCatobj(Catobj catobjj) {
         this.cobj = catobjj;
         if (catobjj != null) {
-            System.out.println("Objectif à modifier : " + catobjj);  // Debug
+            System.out.println("catégorie à modifier : " + catobjj);  // Debug
             titreField.setText(catobjj.getCatobj());
         } else {
-            System.out.println("Erreur : Objectif est null.");  // Debug
+            System.out.println("Erreur : carégorie est null.");  // Debug
         }
     }
 

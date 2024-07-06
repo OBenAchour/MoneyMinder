@@ -17,12 +17,12 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        // CatobjService In = new CatobjService();
-           //Catobj catobj = new Catobj("autre");
+         CatobjService In = new CatobjService();
+           Catobj catobj = new Catobj("Voiture");
          // In.add(catobj);
+        In.update(catobj);
         //System.out.println(In.getAll());
         //System.out.println(In.getbyfilter("`catobj`","Vehicule"));
-
 
         }
 

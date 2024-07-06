@@ -35,8 +35,16 @@ public class Objectif {
         this.commentaire = commentaire;
         this.montant_globale = montant_globale;
         this.echeance = echeance;
+//        this.catobj = catobj;
+//        this.id_wallet = id_wallet;
+    }
+
+    public Objectif(int mois, String titre, String commentaire, Double montant_globale, Catobj catobj) {
+        this.mois = mois;
+        this.titre = titre;
+        this.commentaire = commentaire;
+        this.montant_globale = montant_globale;
         this.catobj = catobj;
-        this.id_wallet = id_wallet;
     }
 
     public int getId_obj() {

@@ -1,16 +1,22 @@
 package Controller;
 
+import Models.Catobj;
 import Models.Objectif;
+import Services.CatobjService;
 import Services.ObjectifService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class FormulaireModif {
 
@@ -43,10 +49,14 @@ public class FormulaireModif {
     private ObjectifService objectifService = new ObjectifService();
 
     @FXML
+    private ComboBox<String> typecat;
+
+    @FXML
     void initialize() {
         btnretmodif.setOnAction(event -> RetourModif());
         btnHome.setOnAction(event -> retHome());
         btnV.setOnAction(event -> ValiderAjout());
+        typecat.setItems(CRdata);
     }
 
     private void RetourModif() {
@@ -115,4 +125,11 @@ public class FormulaireModif {
             System.out.println("Erreur : Objectif est null.");  // Debug
         }
     }
+
+    CatobjService cr = new CatobjService();
+    List<Catobj> Categories = cr.getAll();
+    public ObservableList<String> CRdata = FXCollections.observableArrayList(Categories.stream().map(CR->CR.getCatobj()).toList());
+
+
+
 }

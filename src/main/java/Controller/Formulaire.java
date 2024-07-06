@@ -5,11 +5,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+
+import Models.Catobj;
+import Models.Catrev;
+import Models.Objectif;
+import Services.CatobjService;
+import Services.ObjectifService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -37,10 +47,15 @@ public class Formulaire {
     private TextField commentaireTextField;
 
     @FXML
+    private ComboBox<String> typecat;
+
+    @FXML
     void initialize() {
         btnret.setOnAction(event -> retourAjouterObjectif());
         btnHome.setOnAction(event -> retourHome());
         btnV.setOnAction(event -> validerAjout());
+        typecat.setItems(CRdata);
+
     }
 
     private void retourAjouterObjectif() {
@@ -53,32 +68,22 @@ public class Formulaire {
 
     private void validerAjout() {
         String titre = titreTextField.getText();
-        String montant_globale = budgetTextField.getText();
-        String mois = moisTextField.getText();
+        Double montant_globale = Double.parseDouble(budgetTextField.getText());
+        Integer mois = Integer.parseInt(moisTextField.getText());
         String commentaire = commentaireTextField.getText();
 
-        String url = "jdbc:mysql://localhost:3306/moneyminderdb";
-        String user = "root";
-        String password = "";
+        String cat = typecat.getValue();
+        Catobj catobj = new Catobj();
+        List<Catobj> catobjs= cr.getbyfilter("catobj",cat);
+        catobj.setCatobj(catobjs.get(0).getCatobj());
+        catobj.setId_obj(catobjs.get(0).getId_obj());
 
-        String sql = "INSERT INTO objectif (titre, montant_globale, mois, commentaire) VALUES (?, ?, ?, ?)";
+        Objectif obj = new Objectif( mois, titre, commentaire, montant_globale, catobj);
+        ObjectifService objser = new ObjectifService();
+        objser.add(obj);
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        navigateTo("/AjouterObjectif.fxml");
 
-            pstmt.setString(1, titre);
-            pstmt.setString(2, montant_globale);
-            pstmt.setString(3, mois);
-            pstmt.setString(4, commentaire);
-
-            pstmt.executeUpdate();
-            System.out.println("Les données ont été ajoutées avec succès.");
-
-            // Redirection après ajout
-            navigateTo("/AjouterObjectif.fxml");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     private void navigateTo(String fxmlPath) {
@@ -93,4 +98,10 @@ public class Formulaire {
             e.printStackTrace();
         }
     }
+
+    CatobjService cr = new CatobjService();
+    List<Catobj> Categories = cr.getAll();
+    public ObservableList<String> CRdata = FXCollections.observableArrayList(Categories.stream().map(CR->CR.getCatobj()).toList());
+
+
 }

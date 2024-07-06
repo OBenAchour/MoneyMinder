@@ -51,18 +51,28 @@ public class CatobjService implements InterfaceMoneyMinder<Catobj> {
 
     @Override
     public void update(Catobj catobj) {
-        String query = "UPDATE `categorieobj` SET `catObj` = ? WHERE `idObj` = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, catobj.getCatobj());
-            pstmt.setInt(2, catobj.getId_obj());
-            int rowsAffected = pstmt.executeUpdate();
-            if (rowsAffected == 0) {
-                System.out.println("Aucune catégorie d'objet trouvée avec cet ID.");
-            } else {
-                System.out.println("Modification avec succès.");
-            }
+//        String query = "UPDATE `categorieobj` SET `catObj` = ? WHERE `idObj` = ?";
+//        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+//            pstmt.setString(1, catobj.getCatobj());
+//            pstmt.setInt(2, catobj.getId_obj());
+//            int rowsAffected = pstmt.executeUpdate();
+//            if (rowsAffected == 0) {
+//                System.out.println("Aucune catégorie d'objet trouvée avec cet ID.");
+//            } else {
+//                System.out.println("Modification avec succès.");
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Erreur lors de la mise à jour de la catégorie d'objet", e);
+//        }
+        String req = "UPDATE `categorieobj` SET `catObj` = ? WHERE `idObj` = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setString(1, catobj.getCatobj());
+           ps.setDouble(2,catobj.getId_obj());
+
+            ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la mise à jour de la catégorie d'objet", e);
+            throw new RuntimeException("Erreur lors de la mise à jour de l'objectif", e);
         }
     }
 

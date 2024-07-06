@@ -60,6 +60,7 @@ public class GestionObjectif implements Initializable {
     private ObservableList<Catobj> catobjobservableList;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupTable();
@@ -110,16 +111,14 @@ public class GestionObjectif implements Initializable {
 
     }
 
-    private void handleModifierButton(ActionEvent event) {
-        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
-        if (selectedcatobj != null) {
-            modifierType();
-        }
-    }
+//    private void handleModifierButton(ActionEvent event) {
+//        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
+//        if (selectedcatobj != null) {
+//            modifierType();
+//        }
+//    }
 
     private void modifierType() {
-        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
-        if (selectedcatobj != null) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
             Parent root = loader.load();
@@ -130,11 +129,50 @@ public class GestionObjectif implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        } else {
+    }
+//    private void modifierType() {
+//        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
+//        if (selectedcatobj != null) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
+//            Parent root = loader.load();
+//            ModifierType controller = loader.getController();
+//            controller.setCatobj(selectedcatobj);
+//
+//            Stage stage = (Stage) btnModifier.getScene().getWindow();
+//
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        } else {
+//            System.out.println("Aucune catégorie sélectionné pour modification.");
+//        }
+//    }
+
+    private void loadModifier() {
+        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
+        if (selectedcatobj != null) {
+//            try {
+                modifierType();
+                CatobjService catobjSer = new CatobjService();
+                catobjSer.update(selectedcatobj);
+
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
+//                Parent root = loader.load();
+//                ModifierType controller = loader.getController();
+//                controller.setCatobj(selectedcatobj);
+
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+        }
+     else {
             System.out.println("Aucune catégorie sélectionné pour modification.");
         }
     }
-
 //    private void loadModifierType() {
 //        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
 //        if (selectedcatobj != null) {
