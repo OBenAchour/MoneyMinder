@@ -73,6 +73,9 @@ public class RevenuH {
     @FXML
     private Button add_revenu;
 
+    @FXML
+    private Button To_Dashboard;
+
     public ObservableList<Models.Transaction> Tdata = FXCollections.observableArrayList();
 
     User u=new User(1,"Ben Achour","Oussema","Oussem@123456",new Date(1996,4,18),"oussema.benachour@esprit.tn");
@@ -81,6 +84,7 @@ public class RevenuH {
 
     @FXML
     void initialize() {
+        To_Dashboard.setOnAction(event -> To_Dashboard());
         To_Home.setOnAction(event -> To_Home());
         add_revenu.setOnAction(event -> Add_revenu());
         delete_revenu.setOnAction(event -> Delete_revenu());
@@ -99,6 +103,20 @@ public class RevenuH {
         Commentaire.setCellValueFactory(new PropertyValueFactory<Transaction,String>("commentaire"));
         Table.setItems(Tdata);
     }
+
+    private void To_Dashboard() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Dashboardincome.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)To_Dashboard.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void update_revenu() {
         Transaction T = Table.getSelectionModel().getSelectedItem();
