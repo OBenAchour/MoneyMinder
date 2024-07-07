@@ -96,7 +96,7 @@ public class DepenseH {
     }
 
     private void To_Dashboard() {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/TransactionStatistics.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Dashboardoutcome.fxml"));
         try {
             Parent root=loader.load();
             Stage stage=(Stage)To_Dashboard.getScene().getWindow();
