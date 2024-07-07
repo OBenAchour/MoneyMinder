@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="437.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetListeController">
+    <children>
+        <TableView fx:id="sujetTable" layoutX="13.0" layoutY="14.0" prefHeight="300.0" prefWidth="300.0">
+            <columns>
+                <TableColumn fx:id="sujetColumn" prefWidth="152.79999351501465" text="Titre" />
+                <TableColumn fx:id="contenuColumn" prefWidth="146.4000244140625" text="Contenu" />
+            </columns>
+        </TableView>
+        <Button layoutX="337.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleAddCommentAction" prefHeight="46.0" prefWidth="130.0" style="-fx-background-color: #1f87b86d;" text="Ajouter Commentaire" />
+        <Button layoutX="14.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleUpdateAction" prefHeight="26.0" prefWidth="77.0" text="Modifier" />
+        <Button layoutX="100.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" />
+        <Button layoutX="338.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleShowCommentsAction" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #1f87b86d;" text="Voir Commentaires" />
+
+        <MenuButton layoutX="177.0" layoutY="343.0" mnemonicParsing="false" text="Trier par">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleGetAllAction" text="Tous les sujets" />
+            </items>
+        </MenuButton>
+        <Label contentDisplay="CENTER" layoutX="338.0" layoutY="35.0" text="Commenter" textFill="#0f89c7">
+            <font>
+                <Font name="System Bold" size="23.0" />
+            </font>
+        </Label>
+      <Separator layoutX="338.0" layoutY="77.0" prefHeight="10.0" prefWidth="128.0" />
+      <Separator layoutX="318.0" orientation="VERTICAL" prefHeight="437.0" prefWidth="3.0" />
+    </children>
+</AnchorPane>
