@@ -54,14 +54,23 @@ public class LoginController {
         try {
             int userId = userServices.login(email, password);
             if (userId != -1) {
-                // Login successful, navigate to Home.fxml
-                HomeController HC =new HomeController();
-                Stage stage = (Stage) emailField.getScene().getWindow();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Home.fxml")));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } else {
+                if (Objects.equals(email, "fincompare@gmail.com")){
+                    // Login successful, navigate to Home.fxml
+                    HomeController HC =new HomeController();
+                    Stage stage = (Stage) emailField.getScene().getWindow();
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomeAdmin.fxml")));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }else {
+                    // Login successful, navigate to Home.fxml
+                    HomeController HC = new HomeController();
+                    Stage stage = (Stage) emailField.getScene().getWindow();
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Home.fxml")));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }} else {
                 // Login failed, show error message
                 errorMessageLabel.setText("Invalid email or password.");
                 errorMessageLabel.setVisible(true);
