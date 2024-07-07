@@ -69,6 +69,12 @@ public class CatobjService implements InterfaceMoneyMinder<Catobj> {
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, catobj.getCatobj());
            ps.setDouble(2,catobj.getId_obj());
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 0) {
+                System.out.println("Aucune catégorie d'objet trouvée avec cet ID.");
+            } else {
+                System.out.println("Modification avec succès.");
+            }
 
             ps.executeUpdate();
         } catch (SQLException e) {

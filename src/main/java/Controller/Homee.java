@@ -1,7 +1,9 @@
 package Controller;
 
+import Models.Catobj;
 import Models.Objectif;
 import Services.ObjectifService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,8 +25,8 @@ import java.util.ResourceBundle;
 
 public class Homee implements Initializable {
 
-    @FXML
-    private TableView<Objectif> objectifTable;
+//    @FXML
+//    private TableView<Objectif> objectifTable;
 
     @FXML
     private Button btnajouter;
@@ -48,7 +50,13 @@ public class Homee implements Initializable {
     private TableColumn<Objectif, Double> colmontant_globale;
 
     @FXML
+    private TableColumn<Objectif, Double> colMontant_conserve;
+
+    @FXML
     private TableColumn<Objectif, Integer> colMois;
+
+    @FXML
+    private TableColumn<Objectif, String> colType;
 
     @FXML
     private TableColumn<Objectif, String> colCommentaire;
@@ -59,20 +67,28 @@ public class Homee implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        objectifService = new ObjectifService();
         setupTable();
         loadData();
         btnajouter.setOnAction(event -> loadFormulaire());
-        btnmodifier.setOnAction(event -> loadFormulaireModif());
-        btnSupprimer.setOnAction(event -> deleteObjectif());
+        btnmodifier.setOnAction(event -> handleModifierButton());
+        btnSupprimer.setOnAction(event -> supprimerType());
         btnHome.setOnAction(event -> retHome());
+
     }
+
 
     private void setupTable() {
         colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         colmontant_globale.setCellValueFactory(new PropertyValueFactory<>("montant_globale"));
         colMois.setCellValueFactory(new PropertyValueFactory<>("mois"));
         colCommentaire.setCellValueFactory(new PropertyValueFactory<>("commentaire"));
+        colMontant_conserve.setCellValueFactory(new PropertyValueFactory<>("montant_conservé"));
+//        TableColumn<Objectif, Double> colMontant_conserve= new TableColumn<>("Montant_conservé");
+//        colMontant_conserve.setCellValueFactory(new PropertyValueFactory<>("montant_conservé"));
+        colType.setCellValueFactory(cellData -> {
+            Objectif objectif = cellData.getValue();
+            return new SimpleStringProperty(objectif.getCatobjName());
+        });
     }
 
     private void loadData() {
@@ -80,7 +96,6 @@ public class Homee implements Initializable {
         ObservableList<Objectif> objectifsList = FXCollections.observableArrayList(objectifs);
         tableView.setItems(objectifsList);
     }
-
     private void loadFormulaire() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Formulaire.fxml"));
@@ -89,32 +104,15 @@ public class Homee implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+            // Add a listener to reload data after the form is closed
+            stage.setOnHidden(event -> loadData());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadFormulaireModif() {
-        Objectif selectedObjectif = tableView.getSelectionModel().getSelectedItem();
-        if (selectedObjectif != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
-                Parent root = loader.load();
 
-                FormulaireModif controller = loader.getController();
-                controller.setObjectif(selectedObjectif);
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Modifier Objectif");
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Aucun objectif sélectionné pour modification.");
-        }
-    }
 
     private void retHome() {
         try {
@@ -129,36 +127,54 @@ public class Homee implements Initializable {
         }
     }
 
-    private void deleteObjectif() {
+
+
+    private void handleModifierButton() {
+        Objectif selectedObjectif = tableView.getSelectionModel().getSelectedItem();
+        if (selectedObjectif != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
+                Parent root = loader.load();
+
+                FormulaireModif controller = loader.getController();
+                controller.setObjectif(selectedObjectif);
+                controller.setOnSaveCallback(this::loadData);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun objectif sélectionné pour modification.");
+        }
+    }
+
+//    private void openModificationForm(Objectif objectif) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
+//            Parent root = loader.load();
+//
+//            FormulaireModif controller = loader.getController();
+//            controller.setObjectif(objectif);
+//            controller.setOnSaveCallback(this::loadData);
+//
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.setTitle("Modifier Objectif");
+//            stage.show();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    private void supprimerType() {
         Objectif selectedObjectif = tableView.getSelectionModel().getSelectedItem();
         if (selectedObjectif != null) {
             objectifService.delete(selectedObjectif);
             tableView.getItems().remove(selectedObjectif);
-        }
-    }
-
-    private void handleModifierButton(ActionEvent event) {
-        Objectif selectedObjectif = objectifTable.getSelectionModel().getSelectedItem();
-        if (selectedObjectif != null) {
-            openModificationForm(selectedObjectif);
-        }
-    }
-
-    private void openModificationForm(Objectif objectif) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
-            Parent root = loader.load();
-
-            FormulaireModif controller = loader.getController();
-            controller.setObjectif(objectif);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Modifier Objectif");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

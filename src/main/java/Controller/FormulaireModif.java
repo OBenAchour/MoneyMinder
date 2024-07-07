@@ -21,13 +21,13 @@ import java.util.List;
 public class FormulaireModif {
 
     @FXML
+    private TextField montantConserveField;
+
+    @FXML
     private TextField titreField;
 
     @FXML
     private TextField montantGlobaleField;
-
-    //@FXML
-    //private TextField echeanceField;
 
     @FXML
     private TextField moisField;
@@ -44,87 +44,142 @@ public class FormulaireModif {
     @FXML
     private Button btnV;
 
-    private Objectif objectif;
-
-    private ObjectifService objectifService = new ObjectifService();
-
     @FXML
     private ComboBox<String> typecat;
 
+    private Objectif objectif;
+    private ObjectifService objectifService = new ObjectifService();
+
+    private CatobjService catobjService = new CatobjService();
+    private ObservableList<String> catobjNames = FXCollections.observableArrayList();
+
+    private Runnable onSaveCallback;
+
     @FXML
     void initialize() {
-        btnretmodif.setOnAction(event -> RetourModif());
-        btnHome.setOnAction(event -> retHome());
-        btnV.setOnAction(event -> ValiderAjout());
+        btnretmodif.setOnAction(event -> retourModif());
+        btnHome.setOnAction(event -> retourHome());
+        btnV.setOnAction(event -> validerModif());
         typecat.setItems(CRdata);
     }
 
-    private void RetourModif() {
-        try {
-            System.out.println("Chargement de l'interface modifier Objectif...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterObjectif.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnretmodif.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Retour avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void retourModif() {
+        loadFXML("/AjouterObjectif.fxml");
     }
 
-    private void retHome() {
-        try {
-            System.out.println("Chargement de l'interface retHome...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnHome.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Retour avec succès !");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void retourHome() {
+        loadFXML("/Home.fxml");
     }
 
-    private void ValiderAjout() {
+    @FXML
+    private void validerModif() {
         if (objectif == null) {
             System.out.println("Erreur : aucun objectif à modifier.");
             return;
         }
 
-        objectif.setTitre(titreField.getText());
-        objectif.setMontant_globale(Double.parseDouble(montantGlobaleField.getText()));
+        // Récupérer et définir la catégorie depuis le ComboBox
+        String cat = typecat.getValue();
+        Catobj catobj = new Catobj();
+        List<Catobj> catobjs= cr.getbyfilter("catobj",cat);
+        catobj.setCatobj(catobjs.get(0).getCatobj());
+        catobj.setId_obj(catobjs.get(0).getId_obj());
 
-        objectif.setMois(Integer.parseInt(moisField.getText()));
+        // Mettre à jour les autres champs de l'objectif
+        objectif.setTitre(titreField.getText());
+        objectif.setMontant_globale(parseDoubleOrDefault(montantGlobaleField.getText(), 0.0));
+        objectif.setMois(parseIntOrDefault(moisField.getText(), 0));
         objectif.setCommentaire(commentaireField.getText());
 
-        objectifService.update(objectif);
+        // Mettre à jour le montant conservé si montantConserveField n'est pas vide
+        if (!montantConserveField.getText().isEmpty()) {
+            double montant_conservé = parseDoubleOrDefault(montantConserveField.getText(),0.0);
+            if (objectif.getMontant_conservé() == null) {
+                objectif.setMontant_conservé(montant_conservé);
+            } else {
+                double montantConserveActuel = objectif.getMontant_conservé();
+                objectif.setMontant_conservé(montantConserveActuel + montant_conservé);
+            }
+        }
 
-        System.out.println("Objectif mis à jour avec succès !");
+        try {
+            // Mettre à jour l'objectif dans la base de données
+            objectifService.update(objectif);
+            System.out.println("Objectif mis à jour avec succès !");
 
-        // Fermer le formulaire de modification
-        Stage stage = (Stage) btnV.getScene().getWindow();
-        stage.close();
+            if (onSaveCallback != null) {
+                onSaveCallback.run();
+            }
 
-        // Vous pouvez aussi ajouter une méthode pour recharger les données de la table dans l'interface principale
+
+            // Charger la vue Home.fxml après la mise à jour
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterObjectif.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnV.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            // Si vous avez une TableView dans Home.fxml, vous devriez actualiser son contenu ici
+            // Par exemple :
+            // HomeController homeController = loader.getController();
+            // homeController.actualiserTableView();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void loadFXML(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnV.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Chargement de l'interface avec succès : " + fxmlPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private double parseDoubleOrDefault(String text, double defaultValue) {
+        try {
+            return Double.parseDouble(text);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    private int parseIntOrDefault(String text, int defaultValue) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
     }
 
     public void setObjectif(Objectif objectif) {
         this.objectif = objectif;
         if (objectif != null) {
-            System.out.println("Objectif à modifier : " + objectif);  // Debug
             titreField.setText(objectif.getTitre());
-            montantGlobaleField.setText(objectif.getMontant_globale().toString());
-            //echeanceField.setText(objectif.getEcheance().toString()); // Assuming echeance est un double
-            moisField.setText(Integer.toString(objectif.getMois()));
+            montantGlobaleField.setText(String.valueOf(objectif.getMontant_globale()));
+            moisField.setText(String.valueOf(objectif.getMois()));
             commentaireField.setText(objectif.getCommentaire());
+            montantConserveField.setText(String.valueOf(objectif.getMontant_conservé()));
         } else {
-            System.out.println("Erreur : Objectif est null.");  // Debug
+            System.out.println("Erreur : Objectif est null.");
         }
     }
+
+
+    public void setOnSaveCallback(Runnable onSaveCallback) {
+        this.onSaveCallback = onSaveCallback;
+    }
+
 
     CatobjService cr = new CatobjService();
     List<Catobj> Categories = cr.getAll();
