@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="cree interface action">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/ActionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/RestClient.java" afterDir="false" />
+    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="api action + bd+ quartz">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Compte.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/CompteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/UserUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AchatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AchatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ActionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/MyConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/MyConnexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/VenteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/VenteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Portefeuille_actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Portefeuille_actions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MoneyMinder/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ActionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ActionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/PortefeuilleActionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/PortefeuilleActionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/RestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/RestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Achat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Achat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/actions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/actions.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,34 +53,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Home.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.RestClient.executor": "Run",
-    "Application.actions.executor": "Run",
-    "Maven.Moneyminder [clean,install].executor": "Run",
-    "Maven.Moneyminder [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "portefeuille-action",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/HP/Desktop/MoneyMinder/MoneyMinder/MoneyMinder/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/ousse/Desktop/PI/MoneyMinder/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Home.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RestClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.actions.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Moneyminder [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Moneyminder [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;portefeuille-action&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/MoneyMinder/MoneyMinder/MoneyMinder/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/ousse/Desktop/PI/MoneyMinder/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\HP\Desktop\MoneyMinder\MoneyMinder\MoneyMinder\src\main\resources" />
@@ -177,7 +184,12 @@
       <workItem from="1718906223261" duration="1058000" />
       <workItem from="1719649058281" duration="7699000" />
       <workItem from="1719669198651" duration="994000" />
-      <workItem from="1719753580630" duration="12348000" />
+      <workItem from="1719753580630" duration="12551000" />
+      <workItem from="1719943456142" duration="1536000" />
+      <workItem from="1720039710722" duration="9937000" />
+      <workItem from="1720119130237" duration="15035000" />
+      <workItem from="1720214077430" duration="2942000" />
+      <workItem from="1720345537428" duration="11834000" />
     </task>
     <task id="LOCAL-00001" summary="cree interface action">
       <option name="closed" value="true" />
@@ -187,7 +199,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718627306771</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="api action + bd+ quartz">
+      <option name="closed" value="true" />
+      <created>1719766919728</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1719766919728</updated>
+    </task>
+    <task id="LOCAL-00003" summary="api action + bd+ quartz">
+      <option name="closed" value="true" />
+      <created>1719766944697</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1719766944697</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +223,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cree interface action" />
-    <option name="LAST_COMMIT_MESSAGE" value="cree interface action" />
+    <MESSAGE value="api action + bd+ quartz" />
+    <option name="LAST_COMMIT_MESSAGE" value="api action + bd+ quartz" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="pf.nom" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

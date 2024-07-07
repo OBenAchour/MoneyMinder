@@ -8,16 +8,69 @@ public class Portefeuille_actions {
     private int id_portefeuille;
     private Date date_creation;
     private float solde_inves;
-    private User id_user;
+    private int id_user;
     private List<Action> actions;
+    private float total;
+    private int quantite;
+    private String nom;
+    private float cours;
+    private String type;
 
+    public float getTotal() {
+        return total;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public float getCours() {
+        return cours;
+    }
+
+    public void setCours(float cours) {
+        this.cours = cours;
+    }
+
+    public Portefeuille_actions(float total, int quantite, String nom, float cours) {
+        this.total = total;
+        this.quantite = quantite;
+        this.nom = nom;
+        this.cours = cours;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+
+    public Portefeuille_actions(int id_portefeuille, Date date_creation, float solde_inves, int id_user, List<Action> actions, float total) {
+        this.id_portefeuille = id_portefeuille;
+        this.date_creation = date_creation;
+        this.solde_inves = solde_inves;
+        this.id_user = id_user;
+        this.actions = actions;
+        this.total = total;
+    }
 
     public Portefeuille_actions() {
         this.actions = new ArrayList<>();
     }
 
 
-    public Portefeuille_actions(int id_portefeuille, Date date_creation, float solde_inves, User id_user) {
+    public Portefeuille_actions(int id_portefeuille, Date date_creation, float solde_inves, int id_user) {
         this.id_portefeuille = id_portefeuille;
         this.date_creation = date_creation;
         this.solde_inves = solde_inves;
@@ -51,11 +104,11 @@ public class Portefeuille_actions {
         this.solde_inves = solde_inves;
     }
 
-    public User getId_user() {
+    public int getId_user() {
         return id_user;
     }
 
-    public void setId_user(User id_user) {
+    public void setId_user(int id_user) {
         this.id_user = id_user;
     }
 
@@ -111,6 +164,14 @@ public class Portefeuille_actions {
         } else {
             return "Quantité insuffisante pour effectuer cette vente.";
         }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
 

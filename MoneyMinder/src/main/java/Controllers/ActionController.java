@@ -1,7 +1,11 @@
 package Controllers;
 
 import Models.Action;
+import Models.Compte;
 import Services.ActionService;
+import Services.CompteService;
+import Services.PortefeuilleActionService;
+import Utils.UserUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -56,6 +60,9 @@ public class ActionController implements Initializable {
     private Text txtBas;
 
     @FXML
+    private Button btnBack;
+
+    @FXML
     private Text txtCloture;
 
     @FXML
@@ -82,7 +89,10 @@ public class ActionController implements Initializable {
     public Action action;
 
     private ActionService actionService = new ActionService();
+    private CompteService compteService = new CompteService();
 
+    @FXML
+    private Text txtSolde;
 
 
     @Override
@@ -101,6 +111,8 @@ public class ActionController implements Initializable {
 
         try {
             tabAction.getItems().addAll(actionService.getAllActions());
+            Compte compte = compteService.getCompteById(UserUtil.userId);
+            txtSolde.setText(String.valueOf(compte.getSolde()));
         } catch (SQLException e) {
           e.printStackTrace();
         }
@@ -146,29 +158,38 @@ public class ActionController implements Initializable {
         popupStage.showAndWait();
     }
 
-    @FXML
-    void onVente(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vente.fxml"));
-        Pane popupPane = loader.load();
-        VenteController controller = loader.getController();
-        controller.setAction(action);
-
-        Stage popupStage = new Stage();
-        controller.setStage(popupStage);
-        popupStage.setTitle("Vente");
-        popupStage.initModality(Modality.APPLICATION_MODAL);
-        Scene popupScene = new Scene(popupPane);
-        popupStage.setScene(popupScene);
-        popupStage.showAndWait();
-
-    }
+//    @FXML
+//    void onVente(ActionEvent event) throws IOException {
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vente.fxml"));
+//        Pane popupPane = loader.load();
+//        VenteController controller = loader.getController();
+//        controller.setAction(action);
+//
+//        Stage popupStage = new Stage();
+//        controller.setStage(popupStage);
+//        popupStage.setTitle("Vente");
+//        popupStage.initModality(Modality.APPLICATION_MODAL);
+//        Scene popupScene = new Scene(popupPane);
+//        popupStage.setScene(popupScene);
+//        popupStage.showAndWait();
+//
+//    }
 
 
     @FXML
     void navigateToPortefeuille(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnPortefeuille.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/portefeuille.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void onBack(ActionEvent event) throws IOException {
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/Home.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

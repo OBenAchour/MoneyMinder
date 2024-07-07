@@ -30,11 +30,15 @@ public class RestClient implements Job {
             // Grab the Scheduler instance from the Factory
             org.quartz.Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
-            // Start the scheduler
-            scheduler.start();
+           if (!scheduler.checkExists(job.getKey())){
+                // Start the scheduler
+                scheduler.start();
+               // Tell quartz to schedule the job using our trigger
+               scheduler.scheduleJob(job, trigger);
 
-            // Tell quartz to schedule the job using our trigger
-            scheduler.scheduleJob(job, trigger);
+            }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,13 +86,6 @@ public class RestClient implements Job {
                     action.setPrix_vente(limit.getFloat("bid"));
 
                     actions.add(action);
-
-
-
-
-
-
-
                 }
             } else {
                 System.out.println("HTTP request failed with status code: " + response.statusCode());
@@ -109,4 +106,48 @@ public class RestClient implements Job {
 
 
     }
+
+    public float getUpdateVente(String tickerParam) {
+        float lastPrice = -1;
+
+        try {
+            String url = "https://www.bvmt.com.tn/rest_api/rest/market/groups/11,12,52,95,99";
+
+            // Create HttpClient
+            HttpClient client = HttpClient.newHttpClient();
+
+            // Create HttpRequest
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
+
+            // Send the request and get HttpResponse
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Check if response status is 200 (OK)
+            if (response.statusCode() == 200) {
+                // Parse the JSON response
+                JSONObject jsonResponse = new JSONObject(response.body());
+                JSONArray markets = jsonResponse.getJSONArray("markets");
+
+                // Loop through the markets array
+                for (int i = 0; i < markets.length(); i++) {
+                    JSONObject market = markets.getJSONObject(i);
+                    JSONObject referentiel = market.getJSONObject("referentiel");
+                    String ticker = referentiel.getString("ticker");
+
+                    // Check if the ticker matches the parameter
+                    if (ticker.equals(tickerParam)) {
+                        lastPrice = (float) market.getDouble("last");
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lastPrice;
+    }
+
+
+
 }
