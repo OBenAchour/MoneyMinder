@@ -24,10 +24,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -226,5 +232,54 @@ public class PortefeuilleController implements Initializable {
 
         Compte compte = compteService.getCompteById(UserUtil.userId);
         txtSolde.setText(String.valueOf(compte.getSolde()));
+    }
+
+    @FXML
+    void onExport(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Excel File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+        File file = fileChooser.showSaveDialog(new Stage());
+        if (file != null) {
+            try {
+                exportToExcel(tabPortefeuille, file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private void exportToExcel(TableView<Portefeuille_actions> tabPortefeuille, File file) throws IOException {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Portefeuille");
+
+        // Create header row
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("Nom");
+        headerRow.createCell(1).setCellValue("Cours");
+        headerRow.createCell(2).setCellValue("Quantite");
+        headerRow.createCell(3).setCellValue("Total");
+        headerRow.createCell(4).setCellValue("Date Creation");
+        headerRow.createCell(5).setCellValue("Type");
+
+        // Create data rows
+        for (int i = 0; i < tabPortefeuille.getItems().size(); i++) {
+            Portefeuille_actions item = tabPortefeuille.getItems().get(i);
+            Row row = sheet.createRow(i + 1);
+            row.createCell(0).setCellValue(item.getNom());
+            row.createCell(1).setCellValue(item.getCours());
+            row.createCell(2).setCellValue(item.getQuantite());
+            row.createCell(3).setCellValue(item.getTotal());
+            row.createCell(4).setCellValue(item.getDate_creation().toString());
+            row.createCell(5).setCellValue(item.getType());
+        }
+
+        // Write the output to a file
+        try (FileOutputStream fileOut = new FileOutputStream("portefeuille.xlsx")) {
+            workbook.write(fileOut);
+        }
+
+        workbook.close();
     }
 }

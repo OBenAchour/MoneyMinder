@@ -35,5 +35,6 @@
          </font>
       </Text>
       <Text fx:id="txtSolde" layoutX="741.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Button fx:id="btnExport" layoutX="14.0" layoutY="327.0" mnemonicParsing="false" onAction="#onExport" prefHeight="57.0" prefWidth="105.0" text="Export" />
    </children>
 </AnchorPane>

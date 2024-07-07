@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="api action + bd+ quartz">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Compte.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/CompteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/UserUtil.java" afterDir="false" />
+    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="vente solde">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AchatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AchatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ActionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/VenteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/VenteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Portefeuille_actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Portefeuille_actions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MoneyMinder/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ActionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ActionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/PortefeuilleActionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/PortefeuilleActionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/RestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/RestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Achat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Achat.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/actions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/actions.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +177,9 @@
       <workItem from="1720039710722" duration="9937000" />
       <workItem from="1720119130237" duration="15035000" />
       <workItem from="1720214077430" duration="2942000" />
-      <workItem from="1720345537428" duration="11834000" />
+      <workItem from="1720345537428" duration="12193000" />
+      <workItem from="1720369771370" duration="1533000" />
+      <workItem from="1720376493624" duration="3807000" />
     </task>
     <task id="LOCAL-00001" summary="cree interface action">
       <option name="closed" value="true" />
@@ -215,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719766944697</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="vente solde">
+      <option name="closed" value="true" />
+      <created>1720357616439</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720357616439</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +222,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cree interface action" />
     <MESSAGE value="api action + bd+ quartz" />
-    <option name="LAST_COMMIT_MESSAGE" value="api action + bd+ quartz" />
+    <MESSAGE value="vente solde" />
+    <option name="LAST_COMMIT_MESSAGE" value="vente solde" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
