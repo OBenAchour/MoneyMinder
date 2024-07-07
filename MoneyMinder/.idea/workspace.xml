@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="vente solde">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/PortefeuilleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Portefeuille.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="49eb039e-054c-44f0-8e6e-860b55fa27c2" name="Changes" comment="Achat + Vente + Export Excel" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +174,7 @@
       <workItem from="1720214077430" duration="2942000" />
       <workItem from="1720345537428" duration="12193000" />
       <workItem from="1720369771370" duration="1533000" />
-      <workItem from="1720376493624" duration="3807000" />
+      <workItem from="1720376493624" duration="4209000" />
     </task>
     <task id="LOCAL-00001" summary="cree interface action">
       <option name="closed" value="true" />
@@ -223,7 +218,8 @@
     <MESSAGE value="cree interface action" />
     <MESSAGE value="api action + bd+ quartz" />
     <MESSAGE value="vente solde" />
-    <option name="LAST_COMMIT_MESSAGE" value="vente solde" />
+    <MESSAGE value="Achat + Vente + Export Excel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Achat + Vente + Export Excel" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
