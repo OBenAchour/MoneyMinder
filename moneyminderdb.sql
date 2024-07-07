@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2024 at 03:32 PM
+-- Generation Time: Jul 05, 2024 at 06:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -82,6 +82,22 @@ CREATE TABLE `categoriedep` (
   `catDep` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `categoriedep`
+--
+
+INSERT INTO `categoriedep` (`idCatDep`, `catDep`) VALUES
+(1, 'Loyer'),
+(6, 'Education'),
+(7, 'Facture'),
+(8, 'Nourriture'),
+(9, 'Argent de poshe'),
+(10, 'Véhicule'),
+(11, 'Santé'),
+(12, 'Loisir'),
+(13, 'Autre'),
+(14, '');
+
 -- --------------------------------------------------------
 
 --
@@ -103,6 +119,21 @@ CREATE TABLE `categorierev` (
   `idCatRev` int(11) NOT NULL,
   `catRev` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categorierev`
+--
+
+INSERT INTO `categorierev` (`idCatRev`, `catRev`) VALUES
+(2, 'Salaire'),
+(5, 'Retraite'),
+(6, 'Indemnité'),
+(7, 'Location diverse'),
+(8, 'Prestation familiale'),
+(9, 'Pension Alimentaire'),
+(10, 'Dividende'),
+(11, 'Autre'),
+(13, '');
 
 -- --------------------------------------------------------
 
@@ -139,6 +170,15 @@ CREATE TABLE `frequence` (
   `type` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `frequence`
+--
+
+INSERT INTO `frequence` (`id_freq`, `type`) VALUES
+(1, 'Journalier'),
+(5, 'Hebdomadaire'),
+(6, 'Mensuel');
+
 -- --------------------------------------------------------
 
 --
@@ -174,12 +214,21 @@ CREATE TABLE `portefeuille_actions` (
 
 --
 -- Table structure for table `quote_dep`
--- 
+--
 
 CREATE TABLE `quote_dep` (
   `id_quote_dep` int(11) NOT NULL,
   `quote` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quote_dep`
+--
+
+INSERT INTO `quote_dep` (`id_quote_dep`, `quote`) VALUES
+(1, 'spend less gain more'),
+(3, ''),
+(4, 'test');
 
 -- --------------------------------------------------------
 
@@ -191,6 +240,15 @@ CREATE TABLE `quote_rev` (
   `id_quote_rev` int(11) NOT NULL,
   `quote` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quote_rev`
+--
+
+INSERT INTO `quote_rev` (`id_quote_rev`, `quote`) VALUES
+(1, 'gain more spend less'),
+(3, 'spending is an  addiction that you gain when you stop doing it '),
+(19, '');
 
 -- --------------------------------------------------------
 
@@ -257,11 +315,19 @@ CREATE TABLE `transactions` (
   `id_user` int(11) DEFAULT NULL,
   `id_freq` int(11) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
-  `id_quote_dep` int(11) NOT NULL,
-  `id_quote_rev` int(11) NOT NULL,
-  `id_cat_depense` int(11) NOT NULL,
-  `id_cat_revenu` int(11) NOT NULL
+  `id_quote_dep` int(11) DEFAULT NULL,
+  `id_quote_rev` int(11) DEFAULT NULL,
+  `id_cat_depense` int(11) DEFAULT NULL,
+  `id_cat_revenu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id_trans`, `titre`, `montant`, `mois`, `annee`, `commentaire`, `id_user`, `id_freq`, `type`, `id_quote_dep`, `id_quote_rev`, `id_cat_depense`, `id_cat_revenu`) VALUES
+(13, 'Salaire', 333, 4, 2023, 'test', 1, 1, 2, 3, 1, 14, 2),
+(22, 'aaa', 500, 4, 2024, 'test', 1, 5, 1, 1, 19, 7, 13);
 
 -- --------------------------------------------------------
 
@@ -273,6 +339,14 @@ CREATE TABLE `transactiontype` (
   `id` int(11) NOT NULL,
   `type` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transactiontype`
+--
+
+INSERT INTO `transactiontype` (`id`, `type`) VALUES
+(1, 'Dépense'),
+(2, 'Revenu');
 
 -- --------------------------------------------------------
 
@@ -289,6 +363,13 @@ CREATE TABLE `user` (
   `mail` varchar(255) DEFAULT NULL,
   `Mot_de_passe` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `nom`, `prenom`, `Date_naissance`, `tel`, `mail`, `Mot_de_passe`) VALUES
+(1, 'Ben achour', 'Oussema', '1996-04-18', NULL, 'oussema.b.achour@gmail.com', 'Oussem@123456');
 
 -- --------------------------------------------------------
 
@@ -491,7 +572,7 @@ ALTER TABLE `categorieassets`
 -- AUTO_INCREMENT for table `categoriedep`
 --
 ALTER TABLE `categoriedep`
-  MODIFY `idCatDep` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCatDep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `categorieobj`
@@ -503,7 +584,7 @@ ALTER TABLE `categorieobj`
 -- AUTO_INCREMENT for table `categorierev`
 --
 ALTER TABLE `categorierev`
-  MODIFY `idCatRev` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCatRev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `commentaire`
@@ -521,7 +602,7 @@ ALTER TABLE `errorcategory`
 -- AUTO_INCREMENT for table `frequence`
 --
 ALTER TABLE `frequence`
-  MODIFY `id_freq` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_freq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `objectif`
@@ -539,13 +620,13 @@ ALTER TABLE `portefeuille_actions`
 -- AUTO_INCREMENT for table `quote_dep`
 --
 ALTER TABLE `quote_dep`
-  MODIFY `id_quote_dep` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_quote_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `quote_rev`
 --
 ALTER TABLE `quote_rev`
-  MODIFY `id_quote_rev` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_quote_rev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `reporterror`
@@ -575,19 +656,19 @@ ALTER TABLE `sujet`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `transactiontype`
 --
 ALTER TABLE `transactiontype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wallet`
@@ -677,7 +758,7 @@ ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_3` FOREIGN KEY (`type`) REFERENCES `transactiontype` (`id`),
   ADD CONSTRAINT `transactions_ibfk_4` FOREIGN KEY (`id_quote_dep`) REFERENCES `quote_dep` (`id_quote_dep`),
   ADD CONSTRAINT `transactions_ibfk_5` FOREIGN KEY (`id_cat_revenu`) REFERENCES `categorierev` (`idCatRev`),
-  ADD CONSTRAINT `transactions_ibfk_6` FOREIGN KEY (`id_quote_dep`) REFERENCES `categoriedep` (`idCatDep`);
+  ADD CONSTRAINT `transactions_ibfk_6` FOREIGN KEY (`id_quote_dep`) REFERENCES `quote_dep` (`id_quote_dep`);
 
 --
 -- Constraints for table `wallet`

@@ -103,7 +103,7 @@ public class AddrevenuH {
     //catrev
     CatrevService cr = new CatrevService();
     List<Models.Catrev> Categories = cr.getAll();
-    public ObservableList<String> CRdata = FXCollections.observableArrayList(Categories.stream().map(CR->CR.getType()).toList());;
+    public ObservableList<String> CRdata = FXCollections.observableArrayList(Categories.stream().map(CR->CR.getType()).toList());
     Catrev CR = new Catrev();
     CatrevService CRS = new CatrevService();
 

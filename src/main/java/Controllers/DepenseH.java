@@ -2,10 +2,12 @@ package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import Models.Transaction;
+import Models.User;
 import Services.GestionTransactionsServices.TransactionService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -51,6 +53,9 @@ public class DepenseH {
     private Button To_Home;
 
     @FXML
+    private Button To_Dashboard;
+
+    @FXML
     private Button add_depense;
 
     @FXML
@@ -67,15 +72,16 @@ public class DepenseH {
 
     public ObservableList<Transaction> Tdata = FXCollections.observableArrayList();
 
-
+    User u=new User(1,"Ben Achour","Oussema","Oussem@123456",new Date(1996,4,18),"oussema.benachour@esprit.tn");
     @FXML
     void initialize() {
+        To_Dashboard.setOnAction(event ->To_Dashboard());
         update_depense.setOnAction(event -> update_depense());
         To_Home.setOnAction(event -> To_Home());
         add_depense.setOnAction(event -> add_depense());
         delete_depense.setOnAction(event -> delete_depense());
         TransactionService ts = new TransactionService();
-        List<Transaction> Transactions = ts.getbyfilter("where type=1");
+        List<Transaction> Transactions = ts.getbyfilter("where type=1 and id_user=" + u.getId());
         Tdata.clear();
         Tdata.addAll(Transactions);
         Titre.setCellValueFactory(new PropertyValueFactory<Transaction, String>("titre"));
@@ -87,6 +93,19 @@ public class DepenseH {
         Commentaire.setCellValueFactory(new PropertyValueFactory<Transaction,String>("commentaire"));
         Table.setItems(Tdata);
 
+    }
+
+    private void To_Dashboard() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/TransactionStatistics.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)To_Dashboard.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void update_depense() {
