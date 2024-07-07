@@ -2,13 +2,11 @@ package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import Models.Transaction;
 import Models.Transactiontype;
+import Models.User;
 import Services.GestionTransactionsServices.CatdepService;
 import Services.GestionTransactionsServices.QuotedepService;
 import Services.GestionTransactionsServices.TransactionService;
@@ -28,6 +26,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class RevenuH {
+
+
 
     @FXML
     private ResourceBundle resources;
@@ -75,6 +75,9 @@ public class RevenuH {
 
     public ObservableList<Models.Transaction> Tdata = FXCollections.observableArrayList();
 
+    User u=new User(1,"Ben Achour","Oussema","Oussem@123456",new Date(1996,4,18),"oussema.benachour@esprit.tn");
+
+
 
     @FXML
     void initialize() {
@@ -83,7 +86,7 @@ public class RevenuH {
         delete_revenu.setOnAction(event -> Delete_revenu());
         update_revenu.setOnAction(event -> update_revenu());
         TransactionService ts = new TransactionService();
-        List<Models.Transaction> Transactions = ts.getbyfilter("where type=2");
+        List<Models.Transaction> Transactions = ts.getbyfilter("where type=2 and id_user=" + u.getId() );
         Tdata.clear();
         Tdata.addAll(Transactions);
         Titre.setCellValueFactory(new PropertyValueFactory<Transaction, String>("titre"));
