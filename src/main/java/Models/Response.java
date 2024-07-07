@@ -1,40 +1,60 @@
 
-package Models;
+package entities;
 
 public class Response {
-    int id_response;
-    String responseText;
+    private int id;
+    private Reclamation reclamation;
+    private String message;
 
-    public Response(int id_response, String responseText) {
-        this.id_response = id_response;
-        this.responseText = responseText;
+    private int adminId;
+
+    public Response(int id, Reclamation reclamation, String message,int adminId) {
+        this.id = id;
+        this.reclamation = reclamation;
+        this.message = message;
+        this.adminId=adminId;
+    }
+    public Response(int id, Reclamation reclamation, String message) {
+        this.id = id;
+        this.reclamation = reclamation;
+        this.message = message;
+        this.adminId=adminId;
+    }
+    public Response(Reclamation reclamation, String message,int adminId) {
+        this.reclamation = reclamation;
+        this.message = message;
+        this.adminId=adminId;
+
+    }
+    public Response(Reclamation reclamation, String message) {
+        this.reclamation = reclamation;
+        this.message = message;
+        this.adminId=adminId;
+
     }
 
-    public Response(String responseText) {
-        this.responseText = responseText;
+    public int getAdminId() {
+        return adminId;
     }
 
-    public int getId_response() {
-        return id_response;
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
     }
 
-    public void setId_response(int id_response) {
-        this.id_response = id_response;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public Reclamation getReclamation() { return reclamation; }
+    public void setReclamation(Reclamation reclamation) { this.reclamation = reclamation; }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
 
-    public String getResponseText() {
-        return responseText;
-    }
-
-    public void setResponseText(String responseText) {
-        this.responseText = responseText;
-    }
 
     @Override
     public String toString() {
         return "Response{" +
-                "id_response=" + id_response +
-                ", responseText='" + responseText + '\'' +
+                "id=" + id +
+                ", reclamation=" + reclamation +
+                ", message='" + message + '\'' +
                 '}';
     }
 }
