@@ -55,4 +55,12 @@ public class Catobj {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Catobj{" +
+                "id_obj=" + id_obj +
+                ", catobj='" + catobj + '\'' +
+                '}';
+    }
 }

@@ -73,12 +73,9 @@ public class Formulaire {
         String commentaire = commentaireTextField.getText();
 
         String cat = typecat.getValue();
-        Catobj catobj = new Catobj();
         List<Catobj> catobjs= cr.getbyfilter("catobj",cat);
-        catobj.setCatobj(catobjs.get(0).getCatobj());
-        catobj.setId_obj(catobjs.get(0).getId_obj());
 
-        Objectif obj = new Objectif( mois, titre, commentaire, montant_globale, catobj);
+        Objectif obj = new Objectif( mois, titre, commentaire, montant_globale, catobjs.get(0));
         ObjectifService objser = new ObjectifService();
         objser.add(obj);
 

@@ -146,7 +146,7 @@ public class Objectif {
                 ", montant_globale=" + montant_globale +
                 ", echeance=" + echeance +
                 ", montant_conservé=" + montant_conservé +
-                ", catobj=" + catobj +
+                ", catobj=" + catobj.toString() +
                 ", id_wallet=" + id_wallet +
                 '}';
     }

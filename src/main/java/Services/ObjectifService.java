@@ -26,23 +26,28 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
 
     @Override
     public void add(Objectif objectif) {
-        String insertQueryObjectif = "INSERT INTO `objectif`( `titre`, `montant_globale`, `echeance`, `mois`, `annee`, `commentaire`, `id_cat_obj`) VALUES (?,?,?,?,?)";
+        String insertQueryObjectif = "INSERT INTO `objectif`( `titre`, `montant_globale`, `echeance`, `mois`, `annee`, `commentaire`, `id_cat_obj`) VALUES (?,?,?,?,?,?,?)";
 
         try {
+            System.out.println(objectif.toString());
             PreparedStatement ps = connectDB.prepareStatement(insertQueryObjectif);
             ps.setString(1, objectif.getTitre());
             ps.setDouble(2, objectif.getMontant_globale());
-            ps.setInt(3, objectif.getMois());
-            ps.setString(4, objectif.getCommentaire());
-            ps.setInt(5, objectif.getCatobj().getId_obj());
-//            if (objectif.getCatobj() != null) {
-//                ps.setInt(5, objectif.getCatobj().getId_obj());
-//            } else {
-//                ps.setNull(5, java.sql.Types.INTEGER);
-//            }
+            ps.setDouble(3, this.calculerEcheance(objectif.getMontant_globale(),objectif.getMois()));
+            ps.setInt(4, objectif.getMois());
+            ps.setInt(5, 2024);
+            ps.setString(6, objectif.getCommentaire());
+//            ps.setInt(5, objectif.getCatobj().getId_obj());
+            if (objectif.getCatobj() != null) {
+                ps.setInt(7, objectif.getCatobj().getId_obj());
+            } else {
+                System.out.println("i null");
+                ps.setNull(7, 1);
+            }
 //            ps.setInt(6, objectif.getId_wallet());
             ps.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("Erreur lors de l'ajout de l'objectif", e);
         }
     }
@@ -180,6 +185,10 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
             update(objectif);
             System.out.println("L'échéance pour l'objectif '" + objectif.getTitre() + "' est de : " + echeance);
         }
+    }
+
+    public double calculerEcheance(double M_Total,int mois) {
+        return M_Total/mois;
     }
 
     public void checkProgressAndSendSMS(Objectif objectif, double progressPercentage, String phoneNumber) {

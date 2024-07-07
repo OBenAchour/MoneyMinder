@@ -93,6 +93,10 @@ public class Homee implements Initializable {
 
     private void loadData() {
         List<Objectif> objectifs = objectifService.getAll();
+        objectifs.forEach((e)->{
+            System.out.println(e.toString());
+        });
+
         ObservableList<Objectif> objectifsList = FXCollections.observableArrayList(objectifs);
         tableView.setItems(objectifsList);
     }

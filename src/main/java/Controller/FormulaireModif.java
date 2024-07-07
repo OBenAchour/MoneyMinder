@@ -90,6 +90,7 @@ public class FormulaireModif {
         objectif.setMontant_globale(parseDoubleOrDefault(montantGlobaleField.getText(), 0.0));
         objectif.setMois(parseIntOrDefault(moisField.getText(), 0));
         objectif.setCommentaire(commentaireField.getText());
+        objectif.setCatobj(catobjs.get(0));
 
         // Mettre à jour le montant conservé si montantConserveField n'est pas vide
         if (!montantConserveField.getText().isEmpty()) {
