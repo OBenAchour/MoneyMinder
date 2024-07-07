@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeController"
-      alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(to bottom, #f0f4f8, #d9e2ec);" maxWidth="400" stylesheets="@welcome.css">
+<VBox alignment="CENTER" maxWidth="799.0" prefHeight="452.0" prefWidth="799.0" spacing="30" styleClass="root" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeController">
     <padding>
-        <Insets top="50" right="20" bottom="50" left="20"/>
+        <Insets bottom="50" left="20" right="20" top="50" />
     </padding>
-    <ImageView fx:id="logoImageView" fitHeight="80" fitWidth="80" pickOnBounds="true" preserveRatio="true"/>
-    <Text fx:id="appNameText" text="MoneyMinder" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
-    <Text fx:id="welcomeText" text="Welcome to MoneyMinder! Your financial companion." wrappingWidth="300" textAlignment="CENTER" style="-fx-font-size: 16px; -fx-fill: #34495e;"/>
-    <Button fx:id="registerButton" text="Register" prefWidth="200" style="-fx-font-size: 14px; -fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 10;" onAction="#handleRegisterButtonAction"/>
-    <Button fx:id="loginButton" text="Login" prefWidth="200" style="-fx-font-size: 14px; -fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 10;" onAction="#handleLoginButtonAction"/>
+    <ImageView fx:id="logoImageView" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+    <Text fx:id="welcomeText" styleClass="text-welcome" text="Welcome to MoneyMinder! Your financial companion." textAlignment="CENTER" wrappingWidth="300" />
+    <Text fx:id="appNameText" styleClass="text-title" text="MoneyMinder" />
+    <Button fx:id="registerButton" onAction="#handleRegisterButtonAction" styleClass="action-button register-button" text="Register" textAlignment="CENTER" />
+    <Button fx:id="loginButton" onAction="#handleLoginButtonAction" styleClass="action-button login-button" text="Login" />
 </VBox>
-

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
     <children>
         <SplitPane prefHeight="400.0" prefWidth="600.0">
             <items>
@@ -32,7 +32,8 @@
         </SplitPane>
         <Pane layoutX="-5.0" layoutY="-1.0" prefHeight="46.0" prefWidth="613.0" style="-fx-background-color: #004B57;">
             <children>
-                <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #004B57; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Mon Compte" textFill="WHITE" />
+                <Button fx:id="monCompteButton" layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToManageAccount" style="-fx-background-color: #004B57; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Mon Compte" textFill="WHITE" />
+                <Text fx:id="balanceText" fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Arial', sans-serif; -fx-font-size: 16;" />
                 <Text fill="WHITE" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: Center; -fx-font-family: 'Brush Script MT', cursive; -fx-font-size: 20; -fx-font-weight: bold;" text="Money Minder " wrappingWidth="149.7980194091797" />
             </children>
         </Pane>

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="404.0" prefWidth="531.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EnterCodeController">
+<VBox alignment="CENTER" prefHeight="404.0" prefWidth="531.0" spacing="20" styleClass="root" stylesheets="@enter_code.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EnterCodeController">
     <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
     </padding>

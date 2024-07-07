@@ -1,33 +1,16 @@
 package Utils;
 
-import com.google.gson.JsonObject;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import org.mindrot.jbcrypt.BCrypt;
-
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.Properties;
-import java.util.Random;
-
-
 
 public class JavaMailUtils {
 
-    public static boolean sendMail(String recipient, String subject, String content) {
+    public static boolean sendMail(String recipient, String subject, String templatePath, String verificationCode) {
         // Sender's email credentials
         final String username = "ahmedzekri143@gmail.com"; // replace with your email
         final String password = "duhv pxaw yeor kofe"; // replace with your email password
@@ -47,27 +30,38 @@ public class JavaMailUtils {
             }
         });
 
-        // Create a JSON payload for the API request
-//        JsonObject jsonPayload = new JsonObject();
-//        jsonPayload.addProperty("to", toEmail);
-//        jsonPayload.addProperty("subject", "Code de vérification");
-//        jsonPayload.addProperty("text", "Votre code de vérification est: " + code);
-
         try {
+            // Read the email template
+            String template = readEmailTemplate(templatePath);
+
+            // Replace placeholders with actual values
+            String content = template.replace("{{verificationCode}}", verificationCode);
+
             // Create a new email message
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
             message.setSubject(subject);
-            message.setText(content);
+            message.setContent(content, "text/html");
 
             // Send the email
             Transport.send(message);
 
             return true;
-        } catch (MessagingException e) {
+        } catch (MessagingException | IOException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private static String readEmailTemplate(String templatePath) throws IOException {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(templatePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        }
+        return content.toString();
     }
 }

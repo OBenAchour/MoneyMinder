@@ -1,0 +1,109 @@
+.root {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 40;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0, 0);
+}
+
+.title-label {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 0);
+    -fx-font-family: "Arial Black";
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #cfcfcf;
+}
+
+.input-field {
+    -fx-pref-width: 250px;
+    -fx-font-size: 16px;
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: #f5f5f5;
+    -fx-border-color: #555555;
+    -fx-border-radius: 5px;
+    -fx-padding: 10 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 0);
+}
+
+.action-button {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-background-radius: 25;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 45px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 0);
+    -fx-transition: background-color 0.3s, border-color 0.3s;
+}
+
+.register-button {
+    -fx-background-color: #ff5252;
+    -fx-border-color: #ff1744;
+}
+
+.register-button:hover {
+    -fx-background-color: #ff1744;
+    -fx-border-color: #d50000;
+}
+
+.register-button:pressed {
+    -fx-background-color: #d50000;
+    -fx-border-color: #b71c1c;
+}
+
+.back-button {
+    -fx-background-color: #448aff;
+    -fx-border-color: #2979ff;
+}
+
+.back-button:hover {
+    -fx-background-color: #2979ff;
+    -fx-border-color: #2962ff;
+}
+
+.back-button:pressed {
+    -fx-background-color: #2962ff;
+    -fx-border-color: #1c54b2;
+}
+
+.button:focused {
+    -fx-border-color: #ffffff;
+    -fx-border-width: 3;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px #ff5252;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff5252;
+    }
+    100% {
+        box-shadow: 0 0 5px #ff5252;
+    }
+}
+
+.register-button:focused {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow-blue {
+    0% {
+        box-shadow: 0 0 5px #448aff;
+    }
+    50% {
+        box-shadow: 0 0 20px #448aff;
+    }
+    100% {
+        box-shadow: 0 0 5px #448aff;
+    }
+}
+
+.back-button:focused {
+    animation: glow-blue 1.5s infinite alternate;
+}

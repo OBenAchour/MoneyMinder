@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -9,11 +10,15 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Objects;
 
 import Services.UserServices;
 import javafx.scene.Parent;
 
 public class LoginController {
+
+
 
     @FXML
     private TextField emailField;
@@ -30,17 +35,29 @@ public class LoginController {
         userServices = new UserServices();
     }
 
+
+    @FXML
+    void inisialize (){
+
+    }
+
     @FXML
     private void handleLoginAction() {
         String email = emailField.getText();
         String password = passwordField.getText();
+        UserServices us =new UserServices();
+        List <User> l =us.getbyfilter("where `mail`="+"'"+email+"'");
+        User u =l.get(0);
+        HomeController hc=new HomeController();
+        hc.setU(u);
 
         try {
             int userId = userServices.login(email, password);
             if (userId != -1) {
                 // Login successful, navigate to Home.fxml
+                HomeController HC =new HomeController();
                 Stage stage = (Stage) emailField.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/Home.fxml"));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Home.fxml")));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();

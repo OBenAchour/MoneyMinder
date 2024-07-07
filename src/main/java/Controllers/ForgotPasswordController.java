@@ -1,5 +1,6 @@
 package Controllers;
 
+import Services.UserServices;
 import Utils.JavaMailUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -8,12 +9,15 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.scene.Parent;
 
 public class ForgotPasswordController {
 
     @FXML
     private TextField emailField;
+
+    private UserServices userService = new UserServices(); // Create an instance of UserServices
 
     @FXML
     private void handleSendCodeAction() {
@@ -24,9 +28,22 @@ public class ForgotPasswordController {
             return;
         }
 
+        // Check if the email is registered
+        try {
+            if (!userService.emailExists(email)) {
+                showAlert(Alert.AlertType.ERROR, "Form Error!", "This email is not registered");
+                return;
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while checking the email");
+            e.printStackTrace();
+            return;
+        }
+
         // Generate and send a verification code
         String verificationCode = generateVerificationCode();
-        boolean isEmailSent = JavaMailUtils.sendMail(email, "Password Reset Code", "Your verification code is: " + verificationCode);
+        String templatePath = "src/main/resources/passwordResetEmailTemplate.html";
+        boolean isEmailSent = JavaMailUtils.sendMail(email, "Password Reset Code", templatePath, verificationCode);
 
         if (isEmailSent) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Verification code sent to your email");
