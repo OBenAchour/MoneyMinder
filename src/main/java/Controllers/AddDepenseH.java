@@ -117,7 +117,7 @@ public class AddDepenseH {
         CB_mois.setItems(moisdata);
         Quotedep.setText("Important  :  "+Quote);
     }
-
+        //commit
     private void add_depense() {
         //quoterev
         QR.setId(listtqr.get(0).getId());
