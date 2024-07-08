@@ -134,7 +134,7 @@ public class Dashboardincome {
         piechart_monthperyear.setLeftAnchor(pieChart, 0.0);
         piechart_monthperyear.setRightAnchor(pieChart, 0.0);
     }
-
+        // comment
     private void to_revenu() {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/RevenuH.fxml"));
         try {
