@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="368.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ActionController">
+   <children>
+      <TableView fx:id="tabAction" layoutX="14.0" layoutY="43.0" prefHeight="451.0" prefWidth="570.0">
+        <columns>
+          <TableColumn fx:id="colNom" prefWidth="256.79997539520264" text="Nom" />
+          <TableColumn fx:id="colCours" prefWidth="56.0" text="Cours" />
+            <TableColumn fx:id="colAchat" prefWidth="67.20001220703125" text="Achat" />
+            <TableColumn fx:id="colVente" prefWidth="92.0" text="Vente" />
+            <TableColumn fx:id="colQuantite" prefWidth="110.39996337890625" text="Quantité" />
+        </columns>
+      </TableView>
+      <AnchorPane fx:id="panelDetail" layoutX="608.0" layoutY="116.0" prefHeight="403.0" prefWidth="243.0">
+         <children>
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ouverture:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qte échange:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="16.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Variation:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P. Bas:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cloture:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P. Haut:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtOuverture" layoutX="107.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtCloture" layoutX="107.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtHaut" layoutX="107.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtBas" layoutX="107.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtVariation" layoutX="107.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txtQteEchange" layoutX="107.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Button layoutX="49.0" layoutY="302.0" mnemonicParsing="false" onAction="#onAchat" prefHeight="54.0" prefWidth="145.0" text="ACHAT" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnPortefeuille" layoutX="608.0" layoutY="73.0" mnemonicParsing="false" onAction="#navigateToPortefeuille" prefHeight="26.0" prefWidth="243.0" text="Portefeuille" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#onBack" prefHeight="26.0" prefWidth="61.0" text="Retour" />
+      <Text fx:id="messageSolde" layoutX="619.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solde: ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtSolde" layoutX="668.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+   </children>
+</AnchorPane>
