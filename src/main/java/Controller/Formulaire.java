@@ -23,6 +23,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+
 public class Formulaire {
 
     @FXML
@@ -49,6 +51,8 @@ public class Formulaire {
     @FXML
     private ComboBox<String> typecat;
 
+    private Homee homeController;
+
     @FXML
     void initialize() {
         btnret.setOnAction(event -> retourAjouterObjectif());
@@ -56,6 +60,10 @@ public class Formulaire {
         btnV.setOnAction(event -> validerAjout());
         typecat.setItems(CRdata);
 
+    }
+
+    public void setHomeController(Homee homeController) {
+        this.homeController = homeController;
     }
 
     private void retourAjouterObjectif() {
@@ -79,6 +87,10 @@ public class Formulaire {
         ObjectifService objser = new ObjectifService();
         objser.add(obj);
 
+        if (homeController != null) {
+            homeController.showEcheanceAlert(obj);
+        }
+
         navigateTo("/AjouterObjectif.fxml");
 
     }
@@ -94,6 +106,8 @@ public class Formulaire {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        JPopupMenu popup = new JPopupMenu();
+
     }
 
     CatobjService cr = new CatobjService();

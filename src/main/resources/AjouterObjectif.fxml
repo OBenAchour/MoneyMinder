@@ -31,7 +31,7 @@
                           <TableColumn fx:id="colmontant_globale" prefWidth="123.0" text="montant_globale" />
                           <TableColumn fx:id="colMois" prefWidth="46.0" text="Mois" />
                           <TableColumn fx:id="colCommentaire" prefWidth="97.0" text="Commentaire" />
-                          <TableColumn fx:id="colMontant_conserve" prefWidth="117.0" text="Montant_conservé" /> <!-- Nouvelle colonne pour le montant conservé -->
+                          <TableColumn fx:id="colMontant_conserve" prefWidth="117.0" text="Montant_conserve" /> <!-- Nouvelle colonne pour le montant conservé -->
                       </columns>
                   </TableView>
          </children>

@@ -3,7 +3,7 @@ package Models;
 public class Objectif {
     int id_obj, mois;
     String titre, commentaire;
-    Double montant_globale, echeance, montant_conservé;
+    Double montant_globale, echeance, montant_conserve;
     Catobj catobj;
     int id_wallet;
 
@@ -41,13 +41,13 @@ public class Objectif {
 //        this.id_wallet = id_wallet;
     }
 
-    public Objectif(int mois, String titre, String commentaire, Double montant_globale, Double echeance, Double montant_conservé, Catobj catobj) {
+    public Objectif(int mois, String titre, String commentaire, Double montant_globale, Double echeance, Double montant_conserve, Catobj catobj) {
         this.mois = mois;
         this.titre = titre;
         this.commentaire = commentaire;
         this.montant_globale = montant_globale;
         this.echeance = echeance;
-        this.montant_conservé = montant_conservé;
+        this.montant_conserve = montant_conserve;
         this.catobj = catobj;
     }
 
@@ -59,12 +59,12 @@ public class Objectif {
         this.catobj = catobj;
     }
 
-    public Double getMontant_conservé() {
-        return montant_conservé;
+    public Double getMontant_conserve() {
+        return montant_conserve;
     }
 
-    public void setMontant_conservé(Double montant_conservé) {
-        this.montant_conservé = montant_conservé;
+    public void setMontant_conserve(Double montant_conserve) {
+        this.montant_conserve = montant_conserve;
     }
 
     public int getId_obj() {
@@ -145,7 +145,7 @@ public class Objectif {
                 ", commentaire='" + commentaire + '\'' +
                 ", montant_globale=" + montant_globale +
                 ", echeance=" + echeance +
-                ", montant_conservé=" + montant_conservé +
+                ", montant_conserve=" + montant_conserve +
                 ", catobj=" + catobj.toString() +
                 ", id_wallet=" + id_wallet +
                 '}';

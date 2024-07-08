@@ -23,6 +23,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
+
 public class Homee implements Initializable {
 
 //    @FXML
@@ -82,9 +86,7 @@ public class Homee implements Initializable {
         colmontant_globale.setCellValueFactory(new PropertyValueFactory<>("montant_globale"));
         colMois.setCellValueFactory(new PropertyValueFactory<>("mois"));
         colCommentaire.setCellValueFactory(new PropertyValueFactory<>("commentaire"));
-        colMontant_conserve.setCellValueFactory(new PropertyValueFactory<>("montant_conservé"));
-//        TableColumn<Objectif, Double> colMontant_conserve= new TableColumn<>("Montant_conservé");
-//        colMontant_conserve.setCellValueFactory(new PropertyValueFactory<>("montant_conservé"));
+        colMontant_conserve.setCellValueFactory(new PropertyValueFactory<>("montant_conserve"));
         colType.setCellValueFactory(cellData -> {
             Objectif objectif = cellData.getValue();
             return new SimpleStringProperty(objectif.getCatobjName());
@@ -104,17 +106,32 @@ public class Homee implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Formulaire.fxml"));
             Parent root = loader.load();
+            Formulaire controller = loader.getController();
+            controller.setHomeController(this);
             Stage stage = (Stage) btnajouter.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-            // Add a listener to reload data after the form is closed
-            stage.setOnHidden(event -> loadData());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public void showEcheanceAlert(Objectif objectif) {
+        double echeance = calculerEcheance(objectif.getMontant_globale(), objectif.getMois());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Résultat de l'échéance");
+        alert.setHeaderText(null);
+        alert.setContentText("L'échéance calculée est : " + echeance);
+        alert.showAndWait();
+
+        loadData();
+    }
+    public double calculerEcheance(double M_Total, int mois) {
+        return M_Total / mois;
+    }
+
+
 
 
 

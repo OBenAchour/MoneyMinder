@@ -94,12 +94,12 @@ public class FormulaireModif {
 
         // Mettre à jour le montant conservé si montantConserveField n'est pas vide
         if (!montantConserveField.getText().isEmpty()) {
-            double montant_conservé = parseDoubleOrDefault(montantConserveField.getText(),0.0);
-            if (objectif.getMontant_conservé() == null) {
-                objectif.setMontant_conservé(montant_conservé);
+            double montant_conserve = parseDoubleOrDefault(montantConserveField.getText(),0.0);
+            if (objectif.getMontant_conserve() == null) {
+                objectif.setMontant_conserve(montant_conserve);
             } else {
-                double montantConserveActuel = objectif.getMontant_conservé();
-                objectif.setMontant_conservé(montantConserveActuel + montant_conservé);
+                double montantConserveActuel = objectif.getMontant_conserve();
+                objectif.setMontant_conserve(montantConserveActuel + montant_conserve);
             }
         }
 
@@ -170,7 +170,7 @@ public class FormulaireModif {
             montantGlobaleField.setText(String.valueOf(objectif.getMontant_globale()));
             moisField.setText(String.valueOf(objectif.getMois()));
             commentaireField.setText(objectif.getCommentaire());
-            montantConserveField.setText(String.valueOf(objectif.getMontant_conservé()));
+            montantConserveField.setText(String.valueOf(objectif.getMontant_conserve()));
         } else {
             System.out.println("Erreur : Objectif est null.");
         }

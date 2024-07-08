@@ -65,7 +65,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
 
     @Override
     public void update(Objectif objectif) {
-        String req = "UPDATE `objectif` SET `titre` = ?, `montant_globale` = ?, `mois` = ?, `commentaire` = ?, `id_cat_obj` = ?, `montant_conservé`= ?  WHERE `id` = ?";
+        String req = "UPDATE `objectif` SET `titre` = ?, `montant_globale` = ?, `mois` = ?, `commentaire` = ?, `id_cat_obj` = ?, `montant_conserve`= ?  WHERE `id` = ?";
         try {
             PreparedStatement ps = connectDB.prepareStatement(req);
             ps.setString(1, objectif.getTitre());
@@ -73,7 +73,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
             ps.setInt(3, objectif.getMois());
             ps.setString(4, objectif.getCommentaire());
             ps.setInt(5, objectif.getCatobj().getId_obj());
-            ps.setDouble(6, objectif.getMontant_conservé());
+            ps.setDouble(6, objectif.getMontant_conserve());
             ps.setInt(7, objectif.getId_obj()); // L'ID doit être défini pour identifier l'objectif à mettre à jour
 
             ps.executeUpdate();
@@ -101,6 +101,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
                 objectif.setMontant_globale(rs.getDouble("montant_globale"));
                 objectif.setMois(rs.getInt("mois"));
                 objectif.setCommentaire(rs.getString("commentaire"));
+                objectif.setMontant_conserve(rs.getDouble("montant_conserve"));
 
                 Catobj catobj = new Catobj();
                 catobj.setId_obj(rs.getInt("idObj")); // Corrected to "idObj"
@@ -132,6 +133,7 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
                 objectif.setMontant_globale(rs.getDouble("montant_globale"));
                 objectif.setMois(rs.getInt("mois"));
                 objectif.setCommentaire(rs.getString("commentaire"));
+                objectif.setMontant_conserve(rs.getDouble("montant_conserve"));
 
                 // Fetch Catobj here and set it to objectif
                 Catobj catobj = new Catobj();
@@ -161,8 +163,9 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
                 objectif.setMontant_globale(rs.getDouble("montant_globale"));
                 objectif.setMois(rs.getInt("mois"));
                 objectif.setCommentaire(rs.getString("commentaire"));
+                objectif.setMontant_conserve(rs.getDouble("montant_conserve"));
 
-                // Fetch Catobj here and set it to objectif
+
                 Catobj catobj = new Catobj();
                 catobj.setId_obj(rs.getInt("id_cat_obj"));
                 objectif.setCatobj(catobj);
@@ -176,16 +179,6 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
     }
 
 
-    public void calculerEcheance() {
-        List<Objectif> objectifs = getAll();
-        for (Objectif objectif : objectifs) {
-            int dureeTotaleMois = objectif.getMois();
-            double echeance = objectif.getMontant_globale() / dureeTotaleMois;
-            objectif.setEcheance(echeance);
-            update(objectif);
-            System.out.println("L'échéance pour l'objectif '" + objectif.getTitre() + "' est de : " + echeance);
-        }
-    }
 
     public double calculerEcheance(double M_Total,int mois) {
         return M_Total/mois;
@@ -214,52 +207,19 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
 
         double step = targetPercentage / 100.0;
         double totalAmount = objectif.getMontant_globale();
-        double currentAmount = totalAmount * (progressPercentage / 100.0);
+        double currentAmount = objectif.getMontant_conserve();
 
-        if (currentAmount >= step * totalAmount) {
-            // smsService.sendSMS(phoneNumber, "Félicitations ! Vous avez atteint " + progressPercentage + "% de votre objectif \"" + objectif.getTitre() + "\".");
+        while (currentAmount >= step * totalAmount) {
+            smsService.sendSMS(phoneNumber, "Félicitations ! Vous avez atteint " + progressPercentage + "% de votre objectif \"" + objectif.getTitre() + "\".");
+            step += targetPercentage / 100.0;
         }
     }
 
-//    public void calculerPourcentageObjectifsParRapportAuWallet(Wallet wallet) {
-//        List<Objectif> objectifs = getAll();
-//        double montantTotalObjectifs = 0.0;
-//
-//        for (Objectif objectif : objectifs) {
-//            montantTotalObjectifs += objectif.getMontant_globale();
-//        }
-//
-//        double pourcentageTotalObjectifs = (montantTotalObjectifs / wallet.getMontant()) * 100;
-//        System.out.println("Le pourcentage total des montants des objectifs par rapport au wallet est de : " + pourcentageTotalObjectifs + "%");
-//
-//        for (Objectif objectif : objectifs) {
-//            double pourcentageObjectif = (objectif.getMontant_globale() / montantTotalObjectifs) * 100;
-//            double montantParPourcentage = (pourcentageObjectif / 100) * wallet.getMontant();
-//
-//            System.out.println("L'objectif '" + objectif.getTitre() + "' représente " + pourcentageObjectif + "% du total des objectifs.");
-//            System.out.println("Montant calculé pour l'objectif '" + objectif.getTitre() + "' est : " + montantParPourcentage);
-//
-//            if (montantParPourcentage >= objectif.getMontant_globale()) {
-//                System.out.println("Le montant calculé est supérieur ou égal au montant de l'objectif sélectionné.");
-//            } else {
-//                System.out.println("Le montant calculé est inférieur au montant de l'objectif sélectionné.");
-//            }
-//        }
-//    }
-
-//    public void updateMontantConserve(int objectifId, double nouveauMontant) {
-//        // Récupérer l'objectif par son ID
-//        Objectif objectif = (Objectif) getbyid(objectifId);
-//
-//        if (objectif != null) {
-//            // Ajouter le nouveau montant au montant conservé actuel
-//            double montantConserveActuel = objectif.getMontant_conservé();
-//            objectif.setMontant_conservé(montantConserveActuel + nouveauMontant);
-//
-//            // Mettre à jour l'objectif dans la base de données
-//            // Cela dépend de la façon dont vous gérez la persistance des données
-//            // Par exemple, en utilisant un DAO ou directement une mise à jour SQL
-//            update(objectif);
-//        }
-//    }
+    public void updateMontantConserve(Objectif objectif, double nouveauMontant, String phoneNumber) {
+        objectif.setMontant_conserve(objectif.getMontant_conserve() + nouveauMontant);
+        update(objectif);
+        double progressPercentage = (objectif.getMontant_conserve() / objectif.getMontant_globale()) * 100;
+        checkProgressAndSendSMS(objectif, progressPercentage, phoneNumber);
+    }
 }
+
