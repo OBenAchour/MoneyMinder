@@ -142,6 +142,7 @@ public class User {
                 ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", mail='" + mail + '\'' +
                 ", date_de_naiss=" + date_de_naiss +
+                ", mail='" + mail + '\'' +
                 '}';
     }
 }
