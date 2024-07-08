@@ -38,12 +38,8 @@
             <TableColumn fx:id="dateAchat" prefWidth="120.0" text="Date Achat" />
          </columns>
       </TableView>
-
-      <TextField fx:id="totalPriceField" layoutX="219.0" layoutY="350.0" prefWidth="380.0" editable="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="10.0"/>
-
-
-
-      <TextField fx:id="totalMonthPurchaseField" layoutX="219.0" layoutY="380.0" prefWidth="380.0" editable="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="10.0"/>
-
+      <TextField fx:id="totalPriceField" editable="false" layoutX="219.0" layoutY="346.0" prefHeight="31.0" prefWidth="180.0" promptText="Total Price" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="10.0" />
+      <TextField fx:id="totalMonthPurchaseField" editable="false" layoutX="439.0" layoutY="346.0" prefHeight="31.0" prefWidth="180.0" promptText="Total Month Purchase" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>
+

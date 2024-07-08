@@ -71,7 +71,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ServiceAchatAssets {
+public class  ServiceAchatAssets {
     private static ServiceAchatAssets instance;
     private Connection connection;
 
@@ -127,7 +127,7 @@ public class ServiceAchatAssets {
                 asset.setId_assets(rs.getInt("id_assets"));
                 asset.setTitre(rs.getString("titre"));
                 asset.setPrix(rs.getFloat("prix") * 0.8f); // Apply 20% discount
-                asset.setId_catassets(new CatAssets(rs.getInt("id_catassets")));
+                asset.setId_catassets(new CatAssets(rs.getInt("id_categ")));
                 asset.setId_user(new User(rs.getInt("id_user")));
                 asset.setStatut(rs.getString("statut"));
                 assetsList.add(asset);
