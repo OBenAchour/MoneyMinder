@@ -19,7 +19,7 @@
                </children>
             </Pane>
             <Text layoutX="257.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie" />
-            <TextField layoutX="320.0" layoutY="147.0" />
+            <TextField fx:id="titreField" layoutX="320.0" layoutY="147.0" />
             <Button fx:id="btnV" layoutX="250.0" layoutY="308.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Valider" textFill="#f4f1f1" />
             <Button fx:id="btnHomeAd" layoutX="193.0" layoutY="18.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Home Admin" textFill="#f4f1f1" />
             <Button fx:id="btnretour" layoutX="402.0" layoutY="308.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: #004B57; -fx-border-color: #FFFAF0; -fx-font-family: 'Trebuchet MS', sans-serif; -fx-font-weight: bold; -fx-border-width: 2;" text="Retour" textFill="#f4f1f1" />

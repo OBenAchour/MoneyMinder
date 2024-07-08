@@ -67,7 +67,7 @@ public class GestionObjectif implements Initializable {
         loadData();
         btnBack.setOnAction(event -> goBack());
         btnAjouter.setOnAction(event -> ajouterType());
-        btnModifier.setOnAction(event -> modifierType());
+        btnModifier.setOnAction(event -> handleModifierButton());
         btnSupprimer.setOnAction(event -> supprimerType());
         catobjService = new CatobjService();
 
@@ -111,90 +111,6 @@ public class GestionObjectif implements Initializable {
 
     }
 
-//    private void handleModifierButton(ActionEvent event) {
-//        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
-//        if (selectedcatobj != null) {
-//            modifierType();
-//        }
-//    }
-
-    private void modifierType() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnModifier.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-//    private void modifierType() {
-//        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
-//        if (selectedcatobj != null) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
-//            Parent root = loader.load();
-//            ModifierType controller = loader.getController();
-//            controller.setCatobj(selectedcatobj);
-//
-//            Stage stage = (Stage) btnModifier.getScene().getWindow();
-//
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        } else {
-//            System.out.println("Aucune catégorie sélectionné pour modification.");
-//        }
-//    }
-
-    private void loadModifier() {
-        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
-        if (selectedcatobj != null) {
-//            try {
-                modifierType();
-                CatobjService catobjSer = new CatobjService();
-                catobjSer.update(selectedcatobj);
-
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
-//                Parent root = loader.load();
-//                ModifierType controller = loader.getController();
-//                controller.setCatobj(selectedcatobj);
-
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-        }
-     else {
-            System.out.println("Aucune catégorie sélectionné pour modification.");
-        }
-    }
-//    private void loadModifierType() {
-//        Catobj selectedcatobj = tableView.getSelectionModel().getSelectedItem();
-//        if (selectedcatobj != null) {
-//            try {
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
-//                Parent root = loader.load();
-//
-//                ModifierType controller = loader.getController();
-//                controller.setCatobj(selectedcatobj);
-//
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene(root));
-//                stage.setTitle("Modifier Catégorie");
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("Aucune catégorie sélectionné pour modification.");
-//        }
-//    }
-
 
     private void supprimerType() {
         Catobj selectedCatobj = tableView.getSelectionModel().getSelectedItem();
@@ -204,5 +120,27 @@ public class GestionObjectif implements Initializable {
         }
     }
 
+
+    private void handleModifierButton() {
+        Catobj selectedcatobjj = tableView.getSelectionModel().getSelectedItem();
+        if (selectedcatobjj != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierType.fxml"));
+                Parent root = loader.load();
+
+                ModifierType controller = loader.getController();
+                controller.setCatobj(selectedcatobjj);
+//                controller.setOnSaveCallback(this::loadData);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun objectif sélectionné pour modification.");
+        }
+    }
 
 }

@@ -13,10 +13,11 @@ public class SMSService {
         Twilio.init("AC3788dff27b6661da6ca889608c31c6ad", "737a1fdeee4dfd3b08158d090d73c083");
     }
 
+
     public void sendSMS(String toPhoneNumber, String messageBody) {
         Message message = Message.creator(
-                new PhoneNumber(toPhoneNumber),
-                new PhoneNumber(FROM_PHONE_NUMBER),
+                new PhoneNumber("+21654629015"),
+                new PhoneNumber("+21654629015"),
                 messageBody
         ).create();
         System.out.println("SMS sent: " + message.getSid());

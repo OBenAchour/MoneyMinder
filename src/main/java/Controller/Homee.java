@@ -127,12 +127,10 @@ public class Homee implements Initializable {
 
         loadData();
     }
+
     public double calculerEcheance(double M_Total, int mois) {
         return M_Total / mois;
     }
-
-
-
 
 
     private void retHome() {
@@ -172,24 +170,6 @@ public class Homee implements Initializable {
         }
     }
 
-//    private void openModificationForm(Objectif objectif) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireModif.fxml"));
-//            Parent root = loader.load();
-//
-//            FormulaireModif controller = loader.getController();
-//            controller.setObjectif(objectif);
-//            controller.setOnSaveCallback(this::loadData);
-//
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-//            stage.setTitle("Modifier Objectif");
-//            stage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void supprimerType() {
         Objectif selectedObjectif = tableView.getSelectionModel().getSelectedItem();

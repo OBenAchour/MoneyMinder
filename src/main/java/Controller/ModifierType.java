@@ -2,6 +2,7 @@ package Controller;
 
 import Models.Catobj;
 import Models.Objectif;
+import Services.CatobjService;
 import Services.ObjectifService;
 import Utils.Myconnection;
 import javafx.event.ActionEvent;
@@ -37,10 +38,7 @@ public class ModifierType {
     private Catobj cobj;
 
 
-    @FXML
-    private TextField typeTextField;
-
-    //private Catobj catobjser = new ObjectifService();
+    private CatobjService catser = new CatobjService();
 
 
     @FXML
@@ -82,7 +80,16 @@ public class ModifierType {
     }
 
     private void ValiderModif() {
+
+        if ( cobj== null) {
+            System.out.println("Erreur : aucune catégorie à modifier.");
+            return;
+        }
+
+        cobj.setCatobj(titreField.getText());
         try {
+            catser.update(cobj);
+            System.out.println("Objectif mis à jour avec succès !");
             System.out.println("Chargement de l'interface modifier Objectif...");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionObjectif.fxml"));
             Parent root = loader.load();

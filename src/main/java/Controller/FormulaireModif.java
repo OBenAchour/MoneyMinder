@@ -78,21 +78,20 @@ public class FormulaireModif {
             return;
         }
 
-        // Récupérer et définir la catégorie depuis le ComboBox
         String cat = typecat.getValue();
         Catobj catobj = new Catobj();
         List<Catobj> catobjs= cr.getbyfilter("catobj",cat);
         catobj.setCatobj(catobjs.get(0).getCatobj());
         catobj.setId_obj(catobjs.get(0).getId_obj());
 
-        // Mettre à jour les autres champs de l'objectif
+
         objectif.setTitre(titreField.getText());
         objectif.setMontant_globale(parseDoubleOrDefault(montantGlobaleField.getText(), 0.0));
         objectif.setMois(parseIntOrDefault(moisField.getText(), 0));
         objectif.setCommentaire(commentaireField.getText());
         objectif.setCatobj(catobjs.get(0));
 
-        // Mettre à jour le montant conservé si montantConserveField n'est pas vide
+
         if (!montantConserveField.getText().isEmpty()) {
             double montant_conserve = parseDoubleOrDefault(montantConserveField.getText(),0.0);
             if (objectif.getMontant_conserve() == null) {
@@ -104,7 +103,6 @@ public class FormulaireModif {
         }
 
         try {
-            // Mettre à jour l'objectif dans la base de données
             objectifService.update(objectif);
             System.out.println("Objectif mis à jour avec succès !");
 
@@ -112,8 +110,6 @@ public class FormulaireModif {
                 onSaveCallback.run();
             }
 
-
-            // Charger la vue Home.fxml après la mise à jour
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterObjectif.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btnV.getScene().getWindow();
@@ -121,10 +117,6 @@ public class FormulaireModif {
             stage.setScene(scene);
             stage.show();
 
-            // Si vous avez une TableView dans Home.fxml, vous devriez actualiser son contenu ici
-            // Par exemple :
-            // HomeController homeController = loader.getController();
-            // homeController.actualiserTableView();
 
         } catch (IOException e) {
             e.printStackTrace();
