@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="620.0" prefWidth="1000.0" styleClass="vbox" stylesheets="@stylesResponse.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ResponseController">
+    <children>
+        <Label styleClass="label-title" text="Response Management" textFill="#004b57" />
+        <HBox spacing="10" styleClass="hbox">
+            <Label styleClass="label-subtitle" text="Message:" />
+            <TextField fx:id="messageTextField" styleClass="text-field" />
+            <Label styleClass="label-subtitle" text="Reclamation:" />
+            <ComboBox fx:id="reclamationTitleComboBox" prefHeight="38.0" prefWidth="361.0" styleClass="combo-box" />
+            <Button onAction="#handleAddResponse" styleClass="button-add-err" text="Add Response" />
+        </HBox>
+        <TreeTableView fx:id="responseTableView" styleClass="tree-table-view">
+            <columns>
+                <TreeTableColumn fx:id="idColumn" styleClass="tree-table-column" text="ID" />
+                <TreeTableColumn fx:id="messageColumn" styleClass="tree-table-column" text="Message" />
+                <TreeTableColumn fx:id="adminIdColumn" styleClass="tree-table-column" text="Admin ID" />
+                <TreeTableColumn fx:id="reclamationColumn" prefWidth="169.0" styleClass="tree-table-column" text="Reclamation title" />
+            </columns>
+        </TreeTableView>
+    </children>
+</VBox>
