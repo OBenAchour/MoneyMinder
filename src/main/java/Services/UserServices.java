@@ -63,6 +63,26 @@ public class UserServices implements InterfaceMoneyMinder<User> {
             System.err.println("Erreur lors de l'ajout de l'utilisateur: " + e.getMessage());
         }
     }
+    public User getUserById(int id) {
+        User u = null;
+        try {
+            String req = "SELECT * FROM user WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rst = pst.executeQuery();
+            if (rst.next()) {
+                String nom = rst.getString("nom");
+                String prenom = rst.getString("prenom");
+                String mot_de_passe = rst.getString("mot_de_passe");
+                java.sql.Date date_de_naiss = rst.getDate("Date_naissance");
+                String mail = rst.getString("mail");
+                u = new User(id, nom, prenom, mot_de_passe, new java.util.Date(date_de_naiss.getTime()), mail);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return u;
+    }
 
 
     public boolean emailExists(String email) throws SQLException {

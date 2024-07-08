@@ -1,9 +1,11 @@
 
-package controllers;
+package Controllers;
 
-import entities.ErrorCategory;
-import entities.Reclamation;
-import entities.Status;
+import Models.ErrorCategory;
+import Models.Reclamation;
+import Models.User;
+import Services.UserServices;
+import Utils.UserSession;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,13 +13,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.util.Callback;
-import services.ErrorCategoryService;
-import services.ReclamationService;
+import Services.ErrorCategoryService;
+import Services.ReclamationService;
+
+import java.sql.SQLException;
 
 public class ReclamationController {
 
     @FXML
-    private TextField descriptionTextField;
+    private TextArea descriptionTextField;
 
     @FXML
     private TextField titleTextField;
@@ -161,7 +165,7 @@ public class ReclamationController {
     }
 
     @FXML
-    public void addReclamation() {
+    public void addReclamation() throws SQLException {
         String description = descriptionTextField.getText();
         String title = titleTextField.getText();
         ErrorCategory errorCategory = getSelectedErrorCategory();
@@ -170,11 +174,15 @@ public class ReclamationController {
             return;
         }
         // here i added user id static until user management module finish
-        Reclamation newReclamation = new Reclamation(title, description, errorCategory, 1);
+        String userEmail = UserSession.getEmail();
+        UserServices userServices = new UserServices();
+        User user = userServices.getUserByEmail(userEmail);
+        Reclamation newReclamation = new Reclamation(title, description, errorCategory, user.getId());
         reclamationService.ajouter(newReclamation);
         reclamationList.add(newReclamation);
 
         reclamationTreeTableView.getRoot().getChildren().add(new TreeItem<>(newReclamation));
+        reclamationService.sendEmail(newReclamation);
     }
 
     private ErrorCategory getSelectedErrorCategory() {

@@ -44,5 +44,25 @@ public class HomeAdmin {
             e.printStackTrace();
         }
     }
+    @FXML
+    void response() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/responseGUI.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage errorCategoryStage = new Stage();
+        errorCategoryStage.setScene(scene);
+        errorCategoryStage.setTitle("MoneyMinder");
+        errorCategoryStage.show();
+    }
+    @FXML
+    void errorCategory() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/createErrorCategory.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage errorCategoryStage = new Stage();
+        errorCategoryStage.setScene(scene);
+        errorCategoryStage.setTitle("MoneyMinder");
+        errorCategoryStage.show();
+    }
 
 }

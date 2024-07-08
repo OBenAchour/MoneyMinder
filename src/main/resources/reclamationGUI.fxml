@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="766.0" prefWidth="882.0" styleClass="root" stylesheets="@stylesReclamation.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReclamationController">
+   <children>
+      <Label layoutX="198.0" layoutY="24.0" styleClass="label-title" text="Reclamation Management" textFill="#004b57" />
+      <Label layoutX="282.0" layoutY="139.0" styleClass="text-add" text="Description :" textFill="#004b57" />
+      <Label layoutX="282.0" layoutY="86.0" styleClass="text-add" text="Title :" textFill="#004b57" />
+      <TextField fx:id="titleTextField" layoutX="400.0" layoutY="87.0" prefHeight="32.0" prefWidth="280.0" styleClass="text-field" />
+      <Label layoutX="282.0" layoutY="330.0" styleClass="text-add" text="Error Category :" textFill="#004b57" />
+      <ComboBox fx:id="errorCategoryComboBox" layoutX="458.0" layoutY="331.0" prefHeight="27.0" prefWidth="129.0" />
+      <Button layoutX="346.0" layoutY="373.0" mnemonicParsing="false" onAction="#addReclamation" styleClass="button add-button" text="Submit" />
+      <TreeTableView fx:id="reclamationTreeTableView" layoutX="41.0" layoutY="433.0" prefHeight="278.0" prefWidth="800.0" styleClass="tree-table-view">
+         <columns>
+            <TreeTableColumn fx:id="descriptionColumn" text="Description" />
+            <TreeTableColumn fx:id="titleColumn" text="Title" />
+            <TreeTableColumn fx:id="errorCategoryColumn" text="Error Category" />
+            <TreeTableColumn fx:id="statusColumn" text="Status" />
+            <TreeTableColumn fx:id="actionColumn" text="Action" />
+         </columns>
+      </TreeTableView>
+      <TextArea fx:id="descriptionTextField" layoutX="400.0" layoutY="139.0" prefHeight="174.0" prefWidth="280.0" />
+   </children>
+</AnchorPane>

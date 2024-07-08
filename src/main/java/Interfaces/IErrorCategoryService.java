@@ -1,6 +1,6 @@
-package services;
+package Interfaces;
 
-import entities.ErrorCategory;
+import Models.ErrorCategory;
 import java.util.List;
 
 public interface IErrorCategoryService {

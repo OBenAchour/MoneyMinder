@@ -1,6 +1,6 @@
-package services;
+package Interfaces;
 
-import entities.Response;
+import Models.Response;
 import java.util.List;
 
 public interface IResponseService {

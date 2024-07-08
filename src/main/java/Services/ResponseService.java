@@ -1,11 +1,14 @@
-package services;
+package Services;
 
-import entities.ErrorCategory;
-import entities.Reclamation;
-import entities.Response;
-import entities.Status;
-import utils.DataSource;
+import Models.ErrorCategory;
+import Models.Reclamation;
+import Models.Response;
+import Models.Status;
+import Utils.Myconnection;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +16,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+import Interfaces.IResponseService;
 
 public class ResponseService implements IResponseService {
-    private Connection cnx = DataSource.getinstance().getCnx();
+    private Connection cnx= Myconnection.getInstance().getCnx();
 
     public void ajouter(Response response) {
         try {
@@ -136,4 +141,58 @@ public class ResponseService implements IResponseService {
         }
         return ec;
     }
+    public void sendEmail(int userId, String message) {
+        String userEmail = getUserEmailById(userId);
+        System.out.println("user mail  : "+ userEmail);
+        String subject = "Response to Your Reclamation";
+        String body = "Dear User,\n\nYour reclamation has received a response:\n\n" + message + "\n\nBest regards,\nMoneyMinder";
+
+        final String username = "itssaminechebbi@gmail.com";
+        final String password = "pzbpaomxngxqcpbe";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            Message mimeMessage = new MimeMessage(session);
+            mimeMessage.setFrom(new InternetAddress("oryxoneticketing@gmail.com"));
+            mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEmail));
+            mimeMessage.setSubject(subject);
+            mimeMessage.setText(body);
+
+            Transport.send(mimeMessage);
+
+            System.out.println("Email sent successfully");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getUserEmailById(int userId) {
+        String email = "";
+        try {
+            String req = "SELECT mail FROM user WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setInt(1, userId);
+            ResultSet rst = pst.executeQuery();
+            if (rst.next()) {
+                email = rst.getString("mail");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return email;
+    }
+
 }

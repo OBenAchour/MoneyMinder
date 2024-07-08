@@ -1,9 +1,11 @@
-package services;
+package Services;
 
-import entities.ErrorCategory;
-import entities.Reclamation;
-import entities.Status;
-import utils.DataSource;
+import Interfaces.IReclamationService;
+import Models.ErrorCategory;
+import Models.Reclamation;
+import Models.Status;
+import Models.User;
+import Utils.Myconnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +16,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Session;
+import java.util.Properties;
 
 public class ReclamationService implements IReclamationService {
-    private Connection cnx = DataSource.getinstance().getCnx();
+    private Connection cnx= Myconnection.getInstance().getCnx();
 
     public void ajouter(Reclamation r) {
         try {
@@ -105,8 +112,6 @@ public class ReclamationService implements IReclamationService {
 
     public void supprimer(int id) {
         try {
-//            DELETE FROM response WHERE reclamation.id=15;
-//            DELETE FROM reclamation WHERE id=15;
             String req1 = "DELETE FROM response WHERE reclamation_id=?;";
             String req2 ="DELETE FROM reclamation WHERE id=?";
             PreparedStatement pst1 = cnx.prepareStatement(req1);
@@ -159,6 +164,55 @@ public class ReclamationService implements IReclamationService {
             System.out.println(e.getMessage());
         }
         return list;
+    }
+    public void sendEmail(Reclamation reclamation) {
+        String userEmail = "fincompare@gmail.com";
+        UserServices userService = new UserServices();
+        User user = userService.getUserById(reclamation.getUserId());
+        String subject = "Response to Your Reclamation";
+        String body = "Dear Admin,\n\n" +
+                "Your have been received a reclamation with title '" + reclamation.getTitle() + "\n\n" +
+
+                "Details of the reclamation:\n" +
+                "Title: " + reclamation.getTitle() + "\n" +
+                "Description: " + reclamation.getDescription() + "\n" +
+                "Error Category: " + reclamation.getErrorCategory().getName() + "\n" +
+                "Status: " + reclamation.getStatus() + "\n" +
+                "Creation Date: " + reclamation.getCreationDate() + "\n" +
+                "Attachments: " + String.join(", ", reclamation.getAttachments()) + "\n\n" +
+                "Best regards,\n" +
+                "MoneyMinder";
+
+        final String username = "itssaminechebbi@gmail.com";
+        final String password = "pzbpaomxngxqcpbe";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            Message mimeMessage = new MimeMessage(session);
+            mimeMessage.setFrom(new InternetAddress("your-email@example.com"));
+            mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEmail));
+            mimeMessage.setSubject(subject);
+            mimeMessage.setText(body);
+
+            Transport.send(mimeMessage);
+
+            System.out.println("Email sent successfully");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

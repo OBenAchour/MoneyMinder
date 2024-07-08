@@ -1,4 +1,4 @@
-package entities;
+package Models;
 
 public class ErrorCategory {
     private int id;

@@ -1,6 +1,6 @@
-package controllers;
+package Controllers;
 
-import entities.ErrorCategory;
+import Models.ErrorCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.TableCell;
 import javafx.util.Callback;
-import services.ErrorCategoryService;
+import Services.ErrorCategoryService;
 
 public class errorCategoryController {
 

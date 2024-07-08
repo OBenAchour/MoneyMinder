@@ -1,5 +1,5 @@
 
-package entities;
+package Models;
 
 import java.sql.Time;
 import java.time.LocalDateTime;

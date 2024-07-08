@@ -58,5 +58,14 @@ public class HomeController {
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
+    void reclamation() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationGUI.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage errorCategoryStage = new Stage();
+        errorCategoryStage.setScene(scene);
+        errorCategoryStage.setTitle("MoneyMinder");
+        errorCategoryStage.show();
+    }
 }

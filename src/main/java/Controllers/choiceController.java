@@ -1,4 +1,4 @@
-package controllers;
+package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class choiceController {
 
     @FXML
     void errorCategory() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/createErrorCategory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/createErrorCategory.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage errorCategoryStage = new Stage();
@@ -32,7 +32,7 @@ public class choiceController {
 
     @FXML
     void reclamation() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/reclamationGUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationGUI.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage errorCategoryStage = new Stage();
@@ -43,7 +43,7 @@ public class choiceController {
 
     @FXML
     void response() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/responseGUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/responseGUI.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage errorCategoryStage = new Stage();

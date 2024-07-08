@@ -1,7 +1,8 @@
-package services;
+package Services;
 
-import entities.ErrorCategory;
-import utils.DataSource;
+import Interfaces.IErrorCategoryService;
+import Models.ErrorCategory;
+import Utils.Myconnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ErrorCategoryService implements IErrorCategoryService{
-    private Connection cnx = DataSource.getinstance().getCnx();
-
+public class ErrorCategoryService implements IErrorCategoryService {
+    private Connection cnx= Myconnection.getInstance().getCnx();
     public void ajouter(ErrorCategory ec) {
         try {
             String req = "INSERT INTO errorcategory(name) VALUES (?);";

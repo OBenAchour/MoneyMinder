@@ -1,17 +1,20 @@
 
-package controllers;
+package Controllers;
 
-import entities.Reclamation;
-import entities.Response;
-import entities.Status;
+import Models.Reclamation;
+import Models.Response;
+import Models.Status;
+import Models.User;
+import Services.ResponseService;
+import Services.UserServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import services.ReclamationService;
-import services.ResponseService;
+import Services.ReclamationService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ResponseController {
@@ -22,8 +25,6 @@ public class ResponseController {
     @FXML
     private ComboBox<Reclamation> reclamationTitleComboBox;
 
-    @FXML
-    private TextField adminIdTextField;
 
     @FXML
     private Button addResponseButton;
@@ -86,24 +87,51 @@ public class ResponseController {
     }
 
     @FXML
-    private void handleAddResponse() {
+    private void handleAddResponse() throws SQLException {
         String message = messageTextField.getText();
-        int adminId = Integer.parseInt(adminIdTextField.getText());
-        System.out.println(adminId);
+
+        if (message.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Message field cannot be empty. Please enter a valid message.");
+            alert.showAndWait();
+            return;
+        }
+
+
+
+
+
         Reclamation reclamation = reclamationTitleComboBox.getValue();
+        if (reclamation == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please select a reclamation.");
+            alert.showAndWait();
+            return;
+        }
+
         reclamation.setStatus(Status.SOLVED);
-        reclamationService.modifier(reclamation.getId(),reclamation);
-        Response newResponse = new Response(reclamation,message, adminId);
+        reclamationService.modifier(reclamation.getId(), reclamation);
+        UserServices userServices = new UserServices();
+        User admin = userServices.getUserByEmail("fincompare@gmail.com");
+        Response newResponse = new Response(reclamation, message, admin.getId());
         responseService.ajouter(newResponse);
         responses.add(newResponse);
+
         TreeItem<Response> newResponseItem = new TreeItem<>(newResponse);
         responseTableView.getRoot().getChildren().add(newResponseItem);
+
         clearFields();
+
+        responseService.sendEmail(reclamation.getUserId(), newResponse.getMessage());
     }
 
     private void clearFields() {
         messageTextField.clear();
-        adminIdTextField.clear();
-        reclamationTitleComboBox.getSelectionModel().clearSelection();
+
+        reclamationTitleComboBox.setValue(null);
     }
 }

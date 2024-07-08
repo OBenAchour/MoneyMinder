@@ -1,6 +1,6 @@
-package services;
+package Interfaces;
 
-import entities.Reclamation;
+import Models.Reclamation;
 import java.util.List;
 
 public interface IReclamationService {

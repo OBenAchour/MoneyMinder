@@ -1,7 +1,7 @@
-package controllers;
+package Controllers;
 
-import entities.ErrorCategory;
-import services.ErrorCategoryService;
+import Models.ErrorCategory;
+import Services.ErrorCategoryService;
 
 import java.util.List;
 import java.util.Optional;

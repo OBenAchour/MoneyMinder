@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.choiceController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.choiceController">
     <children>
         <Pane layoutX="81.0" layoutY="99.0" prefHeight="287.0" prefWidth="309.0">
             <children>

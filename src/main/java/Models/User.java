@@ -21,6 +21,16 @@ public class User {
         this.mail = mail;
         this.tel = tel;
     }
+//      u = new User(id, nom, prenom, mot_de_passe, new java.util.Date(date_de_naiss.getTime()), mail);
+    public User(int id,String nom,String prenom, String mot_de_passe,  Date date,String mail) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mot_de_passe = mot_de_passe;
+        this.mail = mail;
+        this.tel = tel;
+        this.date_de_naiss = date;
+    }
     // constructeur sans ID
     public User(int tel, String nom, String prenom, String mot_de_passe, String mail) {
         this.tel = tel;
