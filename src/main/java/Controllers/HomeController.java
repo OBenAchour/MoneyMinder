@@ -26,8 +26,16 @@ public class HomeController {
 
     @FXML
     private Button btnFinancement;
+
+    @FXML
+    private Button to_depense;
+
+    @FXML
+    private Button to_revenu;
     public void setU(User u) {
+
         this.u = u;
+
     }
 
 
@@ -35,6 +43,8 @@ public class HomeController {
     @FXML
     void initialize(){
         System.out.println(u);
+        to_depense.setOnAction(event ->to_depense());
+        to_revenu.setOnAction(event ->to_revenu());
     }
     @FXML
     private void goToManageAccount(ActionEvent event) {
@@ -42,6 +52,32 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/manageAccount.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void to_depense() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/DepenseH.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_depense.getScene().getWindow();
+            Scene scene=new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void to_revenu() {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/RevenuH.fxml"));
+        try {
+            Parent root=loader.load();
+            Stage stage=(Stage)to_revenu.getScene().getWindow();
+            Scene scene=new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

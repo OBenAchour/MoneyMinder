@@ -145,8 +145,10 @@ public class UserServices implements InterfaceMoneyMinder<User> {
         return users;
     }
 
+
+
     @Override
-    public List<User> getbyid() {
+    public List<User> getbyid(int id) {
         List<User> users = new ArrayList<>();
         try (PreparedStatement ps = cnx.prepareStatement(SELECT_USER_BY_ID)) {
             ps.setString(1, "%filterName%");

@@ -10,5 +10,5 @@ public interface InterfaceMoneyMinder <T>{
     public void update(T t);
     public List<T> getAll();
     public List<T> getbyfilter(String req);
-    public List<T> getbyid();
+    public List<T> getbyid(int id);
 }

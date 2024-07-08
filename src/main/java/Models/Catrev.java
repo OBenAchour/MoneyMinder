@@ -1,8 +1,19 @@
 package Models;
 
+import Utils.Myconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Catrev {
     private int id;
     private String type;
+
+    //var
+
+    Connection cnx= Myconnection.getInstance().getCnx();
 
     //constructors
 
@@ -36,6 +47,27 @@ public class Catrev {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    // get categorie rev by id
+
+    public Catrev getCatrevbyid(int id) throws SQLException {
+        String req="SELECT * FROM `categorierev` WHERE idCatRev=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()){
+                Catrev catrev = new Catrev();
+                catrev.setId(res.getInt("idCatRev"));
+                catrev.setType(res.getString("catRev"));
+                return catrev;
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     // to string
