@@ -25,7 +25,7 @@ public class Serviceassets implements InterfaceMoneyMinder<Assets> {
             pstmt.setString(2, assets.getTitre());
             pstmt.setFloat(3, assets.getPrix());
             pstmt.setInt(4, assets.getId_catassets().getId_cat());
-            pstmt.setInt(5, assets.getId_user().getId_user());
+            pstmt.setInt(5, assets.getId_user().getId());
             pstmt.setString(6, assets.getStatut());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class Serviceassets implements InterfaceMoneyMinder<Assets> {
             pstmt.setString(1, assets.getTitre());
             pstmt.setFloat(2, assets.getPrix());
             pstmt.setInt(3, assets.getId_catassets().getId_cat());
-            pstmt.setInt(4, assets.getId_user().getId_user());
+            pstmt.setInt(4, assets.getId_user().getId());
             pstmt.setString(5, assets.getStatut());
             pstmt.setInt(6, assets.getId_assets());
             pstmt.executeUpdate();

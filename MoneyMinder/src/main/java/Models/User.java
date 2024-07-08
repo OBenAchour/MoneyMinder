@@ -3,41 +3,30 @@ package Models;
 import java.util.Date;
 
 public class User {
-    int id_user;
+    int id;
     String nom, prenom, mot_de_passe;
     Date date_de_naiss;
     String mail;
 
+    public User(int id) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mot_de_passe = mot_de_passe;
+        this.date_de_naiss = date_de_naiss;
+        this.mail = mail;
+
+    }
+
     public User() {
     }
 
-    public User(int id_user) {
-        this.id_user = id_user;
+    public int getId() {
+        return id;
     }
 
-    public User(String nom, String prenom, String mot_de_passe, Date date_de_naiss, String mail) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mot_de_passe = mot_de_passe;
-        this.date_de_naiss = date_de_naiss;
-        this.mail = mail;
-    }
-
-    public User(int id_user, String nom, String prenom, String mot_de_passe, Date date_de_naiss, String mail) {
-        this.id_user = id_user;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mot_de_passe = mot_de_passe;
-        this.date_de_naiss = date_de_naiss;
-        this.mail = mail;
-    }
-
-    public int getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -83,7 +72,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id_user +
+                "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", mot_de_passe='" + mot_de_passe + '\'' +
@@ -91,4 +80,6 @@ public class User {
                 ", mail='" + mail + '\'' +
                 '}';
     }
+
 }
+
