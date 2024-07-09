@@ -1,8 +1,10 @@
 package Controller;
 
-import Models.Catobj;
 import Models.Objectif;
 import Services.ObjectifService;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,18 +19,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 
 
 public class Homee implements Initializable {
 
+    private static final String ACCOUNT_SID = "AC3788dff27b6661da6ca889608c31c6ad";
+    private static final String AUTH_TOKEN = "d21bc4cfe5a45eace407599c14e1b920";
+    private static final String FROM_PHONE_NUMBER = "+16184089413";
+    private static final String USER_PHONE_NUMBER = "+21654629015";
 //    @FXML
 //    private TableView<Objectif> objectifTable;
 
@@ -73,6 +79,8 @@ public class Homee implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setupTable();
         loadData();
+
+
         btnajouter.setOnAction(event -> loadFormulaire());
         btnmodifier.setOnAction(event -> handleModifierButton());
         btnSupprimer.setOnAction(event -> supprimerType());
@@ -101,6 +109,10 @@ public class Homee implements Initializable {
 
         ObservableList<Objectif> objectifsList = FXCollections.observableArrayList(objectifs);
         tableView.setItems(objectifsList);
+
+        for (Objectif objectif : objectifs) {
+            objectifService.checkProgressAndSendSMS(objectif, USER_PHONE_NUMBER);
+        }
     }
     private void loadFormulaire() {
         try {
@@ -178,4 +190,8 @@ public class Homee implements Initializable {
             tableView.getItems().remove(selectedObjectif);
         }
     }
+
+
+
 }
+

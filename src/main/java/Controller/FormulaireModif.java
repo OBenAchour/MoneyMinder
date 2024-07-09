@@ -1,9 +1,16 @@
 package Controller;
 
+
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import Models.Catobj;
 import Models.Objectif;
 import Services.CatobjService;
 import Services.ObjectifService;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +26,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class FormulaireModif {
+
+
+    private static final String ACCOUNT_SID = "your_account_sid";
+    private static final String AUTH_TOKEN = "your_auth_token";
+    //private static final String FROM_PHONE_NUMBER = "your_twilio_phone_number";
 
     @FXML
     private TextField montantConserveField;
@@ -163,6 +175,11 @@ public class FormulaireModif {
             moisField.setText(String.valueOf(objectif.getMois()));
             commentaireField.setText(objectif.getCommentaire());
             montantConserveField.setText(String.valueOf(objectif.getMontant_conserve()));
+
+            String categoryName = objectif.getCatobj().getCatobj();
+
+
+            typecat.getSelectionModel().select(categoryName);
         } else {
             System.out.println("Erreur : Objectif est null.");
         }
@@ -178,6 +195,55 @@ public class FormulaireModif {
     List<Catobj> Categories = cr.getAll();
     public ObservableList<String> CRdata = FXCollections.observableArrayList(Categories.stream().map(CR->CR.getCatobj()).toList());
 
-
+//    public void sendSMS(String to,String body) {
+//        Twilio.init("AC3788dff27b6661da6ca889608c31c6ad", "d21bc4cfe5a45eace407599c14e1b920");
+//        Message message = Message.creator(
+//                        new PhoneNumber("+21654629015"),
+//                        new PhoneNumber("+16184089413"),
+//
+//                        body)
+//                .create();
+//        System.out.println("phoneNumberDONE");
+//
+//    }
+//    public void checkProgressAndSendSMS(Objectif objectif, double progressPercentage, String phoneNumber) {
+//        String category = objectif.getCatobj().getCatobj();
+//        double targetPercentage = 0;
+//
+//        switch (category) {
+//            case "immobilier":
+//            case "véhicule":
+//                targetPercentage = 10;
+//                break;
+//            case "voyage":
+//                targetPercentage = 25;
+//                break;
+//            default:
+//                if (objectif.getMontant_globale() > 20000) {
+//                    targetPercentage = 10;
+//                } else {
+//                    targetPercentage = 25;
+//                }
+//                break;
+//        }
+//
+//        double step = targetPercentage / 100.0;
+//        double totalAmount = objectif.getMontant_globale();
+//        double currentAmount = objectif.getMontant_conserve();
+//
+//        while (currentAmount >= step * totalAmount) {
+//            sendSMS(phoneNumber, "Félicitations ! Vous avez atteint " + progressPercentage + "% de votre objectif \"" + objectif.getTitre() + "\".");
+//            step += targetPercentage / 100.0;
+//        }
+//    }
+//
+//
+//    public void updateMontantConserve(Objectif objectif, double nouveauMontant, String phoneNumber) {
+//        objectif.setMontant_conserve(objectif.getMontant_conserve() + nouveauMontant);
+//        objectifService.update(objectif);
+//
+//        double progressPercentage = (objectif.getMontant_conserve() / objectif.getMontant_globale()) * 100;
+//        checkProgressAndSendSMS(objectif, progressPercentage, phoneNumber);
+//    }
 
 }

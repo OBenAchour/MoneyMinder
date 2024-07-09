@@ -1,11 +1,20 @@
 package Services;
 
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
 import Interfaces.InterfaceMoneyMinder;
 import Models.Objectif;
 import Models.Catobj;
 import Models.Wallet;
 import Utils.Myconnection;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +24,22 @@ import java.util.List;
 
 public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
 
+
+    private static final String ACCOUNT_SID = "AC3788dff27b6661da6ca889608c31c6ad";
+    private static final String AUTH_TOKEN = "d21bc4cfe5a45eace407599c14e1b920";
+    private static final String FROM_PHONE_NUMBER = "+16184089413";
+
+
+
     private Connection connectDB;
-    private SMSService smsService;
+//    private SMSService smsService;
+private Map<Integer, Double> lastNotifiedPercentages = new HashMap<>();
+
 
     public ObjectifService() {
         Myconnection connectNow = Myconnection.getInstance();
         connectDB = connectNow.getCnx();
-        smsService = new SMSService();
+//        smsService = new SMSService();
     }
 
     @Override
@@ -37,14 +55,14 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
             ps.setInt(4, objectif.getMois());
             ps.setInt(5, 2024);
             ps.setString(6, objectif.getCommentaire());
-//            ps.setInt(5, objectif.getCatobj().getId_obj());
+
             if (objectif.getCatobj() != null) {
                 ps.setInt(7, objectif.getCatobj().getId_obj());
             } else {
                 System.out.println("i null");
                 ps.setNull(7, 1);
             }
-//            ps.setInt(6, objectif.getId_wallet());
+
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -184,42 +202,35 @@ public class ObjectifService implements InterfaceMoneyMinder<Objectif> {
         return M_Total/mois;
     }
 
-    public void checkProgressAndSendSMS(Objectif objectif, double progressPercentage, String phoneNumber) {
-        String category = objectif.getCatobj().getCatobj();
-        double targetPercentage = 0;
 
-        switch (category) {
-            case "immobilier":
-            case "véhicule":
-                targetPercentage = 10;
-                break;
-            case "voyage":
-                targetPercentage = 25;
-                break;
-            default:
-                if (objectif.getMontant_globale() > 20000) {
-                    targetPercentage = 10;
-                } else {
-                    targetPercentage = 25;
-                }
-                break;
-        }
-
-        double step = targetPercentage / 100.0;
+    public void checkProgressAndSendSMS(Objectif objectif, String phoneNumber) {
         double totalAmount = objectif.getMontant_globale();
         double currentAmount = objectif.getMontant_conserve();
+        double percentage = (currentAmount / totalAmount) * 100;
 
-        while (currentAmount >= step * totalAmount) {
-            smsService.sendSMS(phoneNumber, "Félicitations ! Vous avez atteint " + progressPercentage + "% de votre objectif \"" + objectif.getTitre() + "\".");
-            step += targetPercentage / 100.0;
+        double threshold = totalAmount > 50000 ? 10 : 25;
+        double lastNotifiedPercentage = lastNotifiedPercentages.getOrDefault(objectif.getId_obj(), 0.0);
+
+        if (percentage >= lastNotifiedPercentage + threshold) {
+            String messageBody = "Félicitations ! Vous avez atteint " + ((int) (percentage / threshold) * threshold) + "% de votre objectif \"" + objectif.getTitre() + "\".";
+            sendSMS(phoneNumber, messageBody);
+            lastNotifiedPercentages.put(objectif.getId_obj(), (int) (percentage / threshold) * threshold);
         }
     }
 
-    public void updateMontantConserve(Objectif objectif, double nouveauMontant, String phoneNumber) {
-        objectif.setMontant_conserve(objectif.getMontant_conserve() + nouveauMontant);
-        update(objectif);
-        double progressPercentage = (objectif.getMontant_conserve() / objectif.getMontant_globale()) * 100;
-        checkProgressAndSendSMS(objectif, progressPercentage, phoneNumber);
+    public void sendSMS(String toPhoneNumb, String messageBody) {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new PhoneNumber(toPhoneNumb),
+                new PhoneNumber(FROM_PHONE_NUMBER),
+                messageBody
+        ).create();
+       // System.out.println("SMS sent: " + message.getSid());
     }
+
+
+
 }
+
+
 
