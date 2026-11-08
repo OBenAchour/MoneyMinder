@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+# IDE / local config
+.idea/
+*.iml
+.env

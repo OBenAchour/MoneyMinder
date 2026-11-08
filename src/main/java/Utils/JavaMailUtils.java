@@ -12,8 +12,13 @@ public class JavaMailUtils {
 
     public static boolean sendMail(String recipient, String subject, String templatePath, String verificationCode) {
         // Sender's email credentials
-        final String username = "ahmedzekri143@gmail.com"; // replace with your email
-        final String password = "duhv pxaw yeor kofe"; // replace with your email password
+        // Credentials are read from environment variables (never hard-code secrets).
+        final String username = System.getenv("MAIL_USERNAME");
+        final String password = System.getenv("MAIL_APP_PASSWORD");
+        if (username == null || username.isBlank() || password == null || password.isBlank()) {
+            System.err.println("Email not sent: set MAIL_USERNAME and MAIL_APP_PASSWORD environment variables.");
+            return false;
+        }
 
         // SMTP server configuration
         Properties properties = new Properties();

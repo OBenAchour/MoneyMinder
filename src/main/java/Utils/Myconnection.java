@@ -6,9 +6,15 @@ import java.sql.SQLException;
 
 public class Myconnection {
     //database
-    final String URL = "jdbc:mysql://localhost:3306/moneyminderdb";
-    final String USR = "root";
-    final String PWD = "";
+    // Configuration from environment variables, with local-dev defaults.
+    final String URL = env("DB_URL", "jdbc:mysql://localhost:3306/moneyminderdb");
+    final String USR = env("DB_USER", "root");
+    final String PWD = env("DB_PASSWORD", "");
+
+    private static String env(String key, String def) {
+        String v = System.getenv(key);
+        return (v == null || v.isBlank()) ? def : v;
+    }
 
     //var
     private Connection cnx;
